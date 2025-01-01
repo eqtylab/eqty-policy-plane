@@ -1,0 +1,189 @@
+.react-flow {
+  --bg-color: rgb(255, 255, 255);
+  --text-color: rgb(243, 244, 246);
+  --node-border-radius: 50%;
+  --node-box-shadow: 5px 0 15px rgba(42, 138, 246, 0.3),
+    -5px 0 15px rgba(233, 42, 103, 0.3);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.react-flow__node-turbo {
+  border-radius: var(--node-border-radius);
+  display: flex;
+}
+
+.react-flow__node-turbo .wrapper {
+  /* overflow: hidden; */
+  display: flex;
+  position: relative;
+  height: 44px;
+  width: 44px;
+  border-radius: var(--node-border-radius);
+  flex-grow: 1;
+}
+
+.react-flow__node-turbo .wrapper-half {
+  /* overflow: hidden; */
+  display: flex;
+  position: relative;
+  height: 22px;
+  width: 22px;
+  border-radius: var(--node-border-radius);
+  flex-grow: 1;
+}
+
+.react-flow__node-turbo .inner {
+  background: var(--bg-color);
+  border-radius: var(--node-border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+.react-flow__node-turbo .inner svg.agent-icon {
+  position: absolute;
+  height: 27.5px;
+  width: 27.5px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.react-flow__node-turbo .wrapper-half .inner svg.agent-icon {
+  height: 13.75px;
+  width: 13.75px;
+}
+
+/* .react-flow__node-turbo .icon {
+  margin-right: 8px;
+}
+
+.react-flow__node-turbo .body {
+  display: flex;
+}
+
+.react-flow__node-turbo .title {
+  font-size: 16px;
+  margin-bottom: 2px;
+  line-height: 1;
+} */
+
+/* .react-flow__node-turbo .subline {
+  font-size: 12px;
+  color: #777;
+} */
+
+/* .react-flow__node-turbo .cloud {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  right: 0;
+  position: absolute;
+  top: 0;
+  transform: translate(50%, -50%);
+  display: flex;
+  transform-origin: center center;
+  padding: 2px;
+  overflow: hidden;
+  box-shadow: var(--node-box-shadow);
+  z-index: 1;
+}
+
+.react-flow__node-turbo .cloud div {
+  background-color: var(--bg-color);
+  flex-grow: 1;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+} */
+
+.react-flow__handle {
+  opacity: 0;
+}
+
+.react-flow__handle-right.source {
+  right: -3px;
+}
+
+.react-flow__handle-left.target {
+  left: -5px;
+}
+
+.react-flow__handle-top.source {
+  top: -3px;
+}
+
+.react-flow__handle-bottom.target {
+  bottom: -5px;
+}
+
+.react-flow__node:focus {
+  outline: none;
+}
+
+.react-flow__edge .react-flow__edge-path {
+  stroke: rgb(222, 222, 222);
+  stroke-width: 1;
+  stroke-opacity: 1;
+}
+
+/* .react-flow__controls button {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid #95679e;
+  border-bottom: none;
+}
+
+.react-flow__controls button:hover {
+  background-color: rgb(37, 37, 37);
+}
+
+.react-flow__controls button:first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+.react-flow__controls button:last-child {
+  border-bottom: 1px solid #95679e;
+  border-radius: 0 0 5px 5px;
+}
+
+.react-flow__controls button path {
+  fill: var(--text-color);
+} */
+
+.react-flow__node-turbo .wrapper-alert {
+  /* overflow: hidden; */
+  display: flex;
+  position: relative;
+  border-radius: var(--node-border-radius);
+  flex-grow: 1;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 2s ease-out infinite;
+}
+
+.animate-ripple-delayed {
+  animation: ripple 2s ease-out 0.5s infinite;
+}
+
+.animate-ripple-more-delayed {
+  animation: ripple 2s ease-out 1s infinite;
+}
