@@ -150,7 +150,7 @@ const Title = () => {
 
 const Button = () => {
   return (
-    <button className="flex items-center gap-1 px-2 h-[44px] bg-[rgba(255,255,255,0.02)] border border-[rgb(91,91,97)] rounded-xl">
+    <button className="flex items-center gap-1 px-2 h-[44px] bg-[rgba(255,255,255,0.02)] border !border-[rgb(91,91,97)] rounded-xl">
       <div className="w-8 h-8 flex items-center justify-center">
         <PlaneCertButtonIcon />
       </div>

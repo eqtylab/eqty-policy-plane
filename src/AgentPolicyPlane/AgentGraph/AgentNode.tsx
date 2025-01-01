@@ -32,7 +32,7 @@ const NodeLabel = ({
 
   return (
     <div
-      className={`absolute whitespace-nowrap ${positionClasses[position]} border-brandbordergray border rounded-xl p-1`}
+      className={`absolute whitespace-nowrap ${positionClasses[position]} !border-brandbordergray border rounded-xl p-1`}
     >
       <div className="text-white text-[14px]">{title}</div>
       {subline && <div className="text-white text-[10px]">{subline}</div>}

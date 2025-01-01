@@ -34,20 +34,20 @@ export const ActiveControlsList: React.FC<ActiveControlsListProps> = ({
 
           // 1) If "isAlert" is true => red border + red text
           if (control.isAlert) {
-            classes += " border border-brandreddark bg-brandred";
+            classes += " border !border-brandreddark bg-brandred";
           }
           // 2) If mandatory and implemented => highlight with blue border
           else if (control.mandatory && control.implemented) {
-            classes += " border border-brandblue ";
+            classes += " border !border-brandblue ";
             // (the above is wrong) custom tailwind border looks like:
           }
           // 3) If not mandatory => show a neutral/gray style
           else if (!control.mandatory) {
-            classes += " border border-brandgray ";
+            classes += " border !border-brandgray ";
           }
           // 4) Otherwise (e.g., mandatory but not implemented, or any other combos)
           else {
-            classes += " border border-red-600 text-red-200";
+            classes += " border !border-red-600 text-red-200";
           }
 
           return (

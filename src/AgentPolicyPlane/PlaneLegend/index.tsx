@@ -31,8 +31,8 @@ export const ComplianceLegend = () => {
 
       <div className="flex items-center gap-2">
         <div
-          className="min-h-[11px] min-w-[21px] rounded-full border border-dashed"
-          style={{ borderColor: "rgba(255, 255, 255, 1)" }}
+          className="min-h-[11px] min-w-[21px] rounded-full border !border-dashed"
+          style={{ borderColor: "rgba(255, 255, 255, 1) !important" }}
         ></div>
         <span
           className="text-xs font-medium"
