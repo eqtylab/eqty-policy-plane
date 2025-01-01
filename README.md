@@ -24,13 +24,12 @@ npm link
 or use demo here: [example-app](https://github.com/eqtylab/example-app)
 
 ```jsx
-// ... other imports
+// import the component AND the styles
 import { AgentPolicyPlane } from "eqty-agent-policy-plane";
 import "eqty-agent-policy-plane/dist/styles.css";
 
 const ReactComponentDemo = () => {
   return (
-    //... component code (e.g. a header)
     <div
       style={
         {
@@ -40,7 +39,6 @@ const ReactComponentDemo = () => {
     >
       <AgentPolicyPlane />
     </div>
-    // ... component code (e.g. a footer)
   );
 };
 ```
