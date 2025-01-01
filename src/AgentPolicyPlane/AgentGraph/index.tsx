@@ -230,17 +230,31 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
   };
 
   useEffect(() => {
-    if (reactFlowInstance && nodes?.length) {
-      reactFlowInstance.fitView({
-        padding: 0.2,
-      });
-    }
+    const fitAndCenter = async () => {
+      if (reactFlowInstance && nodes?.length) {
+        // this might be async, so we can await it if needed
+        await reactFlowInstance.fitView({
+          padding: 0.22,
+        });
+
+        // // 2. Then shift it over
+        const { x, y, zoom } = reactFlowInstance.getViewport();
+
+        // const newX = -275 * zoom + 270.5;
+        reactFlowInstance.setViewport({ x: x - 50, y: y + 10, zoom });
+      }
+    };
+
+    fitAndCenter();
   }, [reactFlowInstance, nodes?.length]);
   const proOptions = { hideAttribution: true };
 
   return (
     <ReactFlow
-      style={{ backgroundColor: stylesFlowBg, color: stylesTextColor }}
+      style={{
+        backgroundColor: stylesFlowBg,
+        color: stylesTextColor,
+      }}
       nodes={nodes}
       edges={edges}
       onNodesChange={onNodesChange}
@@ -248,10 +262,10 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
       onConnect={onConnect}
       nodeTypes={nodeTypes}
       edgeTypes={edgeTypes}
-      // onInit={onInit}
+      onInit={onInit}
       defaultEdgeOptions={defaultEdgeOptions}
       proOptions={proOptions}
-      viewport={{ x: 0, y: -120, zoom: 1.05 }}
+      // viewport={{ x: 0, y: -120, zoom: 1.05 }}
     >
       {/* <Controls showInteractive={true} /> */}
       <svg>

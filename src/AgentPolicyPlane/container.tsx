@@ -38,7 +38,11 @@ export const AgentPolicyPlaneContainer = ({
     return () => window.removeEventListener("resize", adjustGrid);
   }, []);
   return (
-    <div className="py-16 px-9 w-full h-full overflow-scroll">
+    <div
+      className="py-16 px-9 w-full h-full overflow-scroll 
+      
+    "
+    >
       {/* Outer container for centering */}
       <div className="w-full h-full relative flex items-center justify-center">
         {/* Grid container with exact dimensions */}
@@ -48,7 +52,7 @@ export const AgentPolicyPlaneContainer = ({
           className="absolute inset-0 z-50 flex justify-center"
         >
           <div
-            className="relative shadow-[4px_4px_10px_1px_rgba(0,0,0,0.18)] "
+            className="relative shadow-[4px_4px_10px_1px_rgba(0,0,0,0.18)] flex justify-center"
             style={{
               width: dimensions.width,
               height: dimensions.height,
@@ -63,7 +67,9 @@ export const AgentPolicyPlaneContainer = ({
               borderBottom: "1px solid rgba(65,66,67,0.2)",
             }}
           >
-            <div className="relative z-10 w-full h-full p-8">{children}</div>
+            <div className="relative z-10 w-full max-w-[1736px] h-full p-8">
+              {children}
+            </div>
           </div>
         </div>
       </div>

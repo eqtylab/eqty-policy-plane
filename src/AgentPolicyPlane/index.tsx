@@ -116,7 +116,7 @@ export const AgentPolicyPlane = () => {
             data={sampleControls}
             onControlClick={handleControlClick}
           />
-          <div className="h-full grow relative">
+          <div className="h-full grow relative flex items-center pr-6">
             {/* absolute pos plane nav in middle  */}
             <div className="absolute top-0 left-0 transform  -translate-y-[56px]">
               <PlaneNav />
