@@ -13,6 +13,9 @@ cd eqty-policy-plane
 # Install dependencies
 npm install
 
+# Build the package
+npm run build
+
 # link the package, so you can import in other local react apps
 npm link
 ```
