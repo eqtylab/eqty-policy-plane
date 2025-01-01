@@ -19,8 +19,6 @@ export const AgentPolicyPlaneContainer = ({
       // @ts-expect-error
       const containerHeight = container.offsetHeight;
 
-      console.log("containerWidth", containerWidth);
-
       // Calculate number of complete cells that can fit
       const numHorizontalCells = Math.floor(containerWidth / baseCellSize);
       const numVerticalCells = Math.floor(containerHeight / baseCellSize);

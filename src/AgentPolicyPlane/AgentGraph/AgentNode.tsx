@@ -42,7 +42,6 @@ const NodeLabel = ({
 
 export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   if (data.type && data.type === "policy-alert") {
-    console.log("HEY");
     return (
       <div className="wrapper wrapper-alert">
         <div className="flex items-center justify-center relative w-full">
@@ -57,15 +56,24 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
           />
 
           {/* Red circle with ripple effect */}
-          <div className="absolute">
+          <div className="absolute ripple-wrapper">
             {/* Base circle */}
             <div className="w-4 h-4 bg-brandalert rounded-full m-auto relative">
               {/* Ripple rings - only shown when animating */}
               {data.animating && (
                 <>
-                  <div className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple opacity-75" />
-                  <div className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple-delayed opacity-75" />
-                  <div className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple-more-delayed opacity-75" />
+                  <div
+                    className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple "
+                    style={{ opacity: "0.75" }}
+                  ></div>
+                  <div
+                    className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple-delayed "
+                    style={{ opacity: "0.75" }}
+                  ></div>
+                  <div
+                    className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple-more-delayed "
+                    style={{ opacity: "0.75" }}
+                  ></div>
                 </>
               )}
             </div>

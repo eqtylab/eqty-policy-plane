@@ -165,7 +165,7 @@
   flex-grow: 1;
 }
 
-@keyframes ripple {
+@keyframes ripplerrr {
   0% {
     transform: scale(1);
     opacity: 0.75;
@@ -176,14 +176,14 @@
   }
 }
 
-.animate-ripple {
-  animation: ripple 2s ease-out infinite;
+.ripple-wrapper .animate-ripple {
+  animation: ripplerrr 2s ease-out infinite;
 }
 
-.animate-ripple-delayed {
-  animation: ripple 2s ease-out 0.5s infinite;
+.ripple-wrapper .animate-ripple-delayed {
+  animation: ripplerrr 2s ease-out 0.5s infinite;
 }
 
-.animate-ripple-more-delayed {
-  animation: ripple 2s ease-out 1s infinite;
+.ripple-wrapper .animate-ripple-more-delayed {
+  animation: ripplerrr 2s ease-out 1s infinite;
 }
