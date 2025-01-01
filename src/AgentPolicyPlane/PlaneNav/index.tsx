@@ -148,9 +148,12 @@ const Title = () => {
   );
 };
 
-const Button = () => {
+const Button = ({ action }: { action: () => void }) => {
   return (
-    <button className="flex items-center gap-1 px-2 h-[44px] bg-[rgba(255,255,255,0.02)] border !border-[rgb(91,91,97)] rounded-xl">
+    <button
+      onClick={action}
+      className="flex items-center gap-1 px-2 h-[44px] bg-[rgba(255,255,255,0.02)] border !border-[rgb(91,91,97)] rounded-xl"
+    >
       <div className="w-8 h-8 flex items-center justify-center">
         <PlaneCertButtonIcon />
       </div>
@@ -160,11 +163,21 @@ const Button = () => {
 };
 
 // Container to display both components with dark background
-export const PlaneNav = () => {
+export const PlaneNav = ({
+  showCertApp,
+  setShowCertApp,
+}: {
+  showCertApp: boolean;
+  setShowCertApp: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div className="flex items-center gap-2">
       <Title />
-      <Button />
+      <Button
+        action={() => {
+          setShowCertApp(!showCertApp);
+        }}
+      />
     </div>
   );
 };

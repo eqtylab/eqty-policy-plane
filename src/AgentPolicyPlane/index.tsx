@@ -6,6 +6,9 @@ import { AgentGraph } from "./AgentGraph";
 import { AgentPolicyOverrideDialog } from "./OverrideDialog";
 import { PlaneNav } from "./PlaneNav";
 import { ComplianceLegend } from "./PlaneLegend";
+
+// import { CertApp } from "./CertApp";
+
 const sampleControls = [
   {
     id: "ctrl-1",
@@ -88,6 +91,7 @@ const sampleControls = [
 
 export const AgentPolicyPlane = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showCertApp, setShowCertApp] = useState(false);
 
   useEffect(() => {
     // Short delay to ensure components have rendered
@@ -103,10 +107,63 @@ export const AgentPolicyPlane = () => {
     // Place your logic here, e.g., open a panel, highlight in UI, etc.
   };
 
+  if (showCertApp) {
+    // get the actual-wrap element
+    const actualWrap = document.getElementById("actual-wrap");
+
+    if (!actualWrap) {
+      return null;
+    }
+    const screenHeight = window.innerHeight;
+    const adjustedHeight =
+      screenHeight - actualWrap.getBoundingClientRect().top;
+    const scaleRatio = (adjustedHeight - 100) / screenHeight;
+
+    const screenWidth = window.innerWidth;
+    const adjustedWidth = screenWidth - actualWrap.getBoundingClientRect().left;
+    const scaleRatioWidth = (adjustedWidth - 100) / screenWidth;
+
+    return (
+      <AgentPolicyPlaneContainer>
+        <div className="absolute top-0 left-0 h-full w-full">
+          <div
+            // ref={wrapperRef}
+            className="relative w-screen h-screen flex "
+            style={{
+              transform: `scaleX(${scaleRatioWidth}) scaleY(${scaleRatio})`,
+              transformOrigin: "top left",
+              // marginLeft: ,
+            }}
+          >
+            <iframe
+              src="https://navai-svg.vercel.app/"
+              className="h-full w-full border-none ml-[25px]"
+            />
+          </div>
+          {/* a button that closes this */}
+          {/* <button
+           
+            className="absolute top-0 right-0 m-4"
+          >
+            Close
+          </button> */}
+          {/* make button cooler (red bg-brandred) and float down in the middle on bottom edge: */}
+          <button
+            onClick={() => {
+              setShowCertApp(false);
+            }}
+            className="absolute -bottom-3 left-0 right-0 m-auto  w-24 bg-brandred text-white p-2 rounded-lg"
+          >
+            Close
+          </button>
+        </div>
+      </AgentPolicyPlaneContainer>
+    );
+  }
+
   return (
     <AgentPolicyPlaneContainer>
       <div className="text-white flex h-full overflow-visible">
-        {/* Wrap content in a div with transition classes */}
         <div
           className={`w-full flex transition-opacity duration-500 ease-in-out overflow-x-visible  ${
             isVisible ? "opacity-100" : "opacity-0"
@@ -117,14 +174,15 @@ export const AgentPolicyPlane = () => {
             onControlClick={handleControlClick}
           />
           <div className="h-full grow relative flex items-center pr-6">
-            {/* absolute pos plane nav in middle  */}
             <div className="absolute top-0 left-0 transform  -translate-y-[56px]">
-              <PlaneNav />
+              <PlaneNav
+                showCertApp={showCertApp}
+                setShowCertApp={setShowCertApp}
+              />
             </div>
             <AgentGraph backgroundColor="transparent" textColor="white" />
           </div>
           <div className="relative">
-            {/* absolute pos compliance legend to the top right */}
             <div className="absolute top-0 right-0 transform -translate-y-[56px]">
               <ComplianceLegend />
             </div>

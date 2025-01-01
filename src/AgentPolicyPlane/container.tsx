@@ -68,7 +68,10 @@ export const AgentPolicyPlaneContainer = ({
                 borderBottom: "1px solid rgba(65,66,67,0.2)",
               }}
             >
-              <div className="relative z-10 w-full max-w-[1736px] h-full p-8">
+              <div
+                id="actual-wrap"
+                className="relative z-10 w-full max-w-[1736px] h-full p-8"
+              >
                 {children}
               </div>
             </div>

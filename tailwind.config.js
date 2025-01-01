@@ -12,6 +12,13 @@ module.exports = {
         brandalert: "rgba(208, 86, 89, 1)",
         brandbordergray: "rgba(161, 161, 170, 0.75)",
         branddialogbg: "rgba(45, 41, 59, 0.8)",
+        sidebar: "rgba(70, 70, 70, 0.4)",
+        "card-1": "rgba(26, 28, 30, 1)",
+        "card-2": "rgba(127, 127, 127, 0.46)",
+
+        "btn-blue": "#72aec6",
+        "btn-red": "#995758",
+        "btn-grey": "#6e758f",
       },
       backgroundImage: {
         "permission-gradient":
