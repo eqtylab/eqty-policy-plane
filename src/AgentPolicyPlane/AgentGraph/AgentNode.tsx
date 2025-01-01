@@ -58,7 +58,10 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
           {/* Red circle with ripple effect */}
           <div className="absolute ripple-wrapper">
             {/* Base circle */}
-            <div className="w-4 h-4 bg-brandalert rounded-full m-auto relative">
+            <div
+              id={data.animating ? "ripple-point-eq" : ""}
+              className="w-4 h-4 bg-brandalert rounded-full m-auto relative"
+            >
               {/* Ripple rings - only shown when animating */}
               {data.animating && (
                 <>

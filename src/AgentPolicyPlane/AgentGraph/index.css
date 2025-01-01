@@ -187,3 +187,29 @@
 .ripple-wrapper .animate-ripple-more-delayed {
   animation: ripplerrr 2s ease-out 1s infinite;
 }
+@keyframes deepSeaPulse {
+  0% {
+    transform: scaleX(1) scaleY(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scaleX(1.2) scaleY(1.4);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scaleX(1.4) scaleY(1.7);
+    opacity: 0;
+  }
+}
+
+.animate-sonar {
+  animation: deepSeaPulse 7.8s cubic-bezier(0.1, 0, 0.2, 0.3) infinite;
+}
+
+.animate-sonar-delayed {
+  animation: deepSeaPulse 7.8s cubic-bezier(0.1, 0, 0.2, 0.3) 4s infinite;
+}
+
+.animate-sonar-more-delayed {
+  animation: deepSeaPulse 7.8s cubic-bezier(0.1, 0, 0.2, 0.3) 5.8s infinite;
+}

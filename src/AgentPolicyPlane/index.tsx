@@ -105,10 +105,10 @@ export const AgentPolicyPlane = () => {
 
   return (
     <AgentPolicyPlaneContainer>
-      <div className="text-white flex h-full">
+      <div className="text-white flex h-full overflow-visible">
         {/* Wrap content in a div with transition classes */}
         <div
-          className={`w-full flex transition-opacity duration-500 ease-in-out  ${
+          className={`w-full flex transition-opacity duration-500 ease-in-out overflow-x-visible  ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
