@@ -4,7 +4,9 @@ This is a **react component.**
 
 You will import it in your react app to display the policy plane.
 
-```
+### Installation
+
+```bash
 git clone git@github.com:eqtylab/eqty-policy-plane.git
 cd eqty-policy-plane
 
@@ -18,6 +20,8 @@ npm link
 ### Example usage
 
 **In your react app**
+
+or use demo here: [example-app](https://github.com/eqtylab/example-app)
 
 ```jsx
 // ... other imports
