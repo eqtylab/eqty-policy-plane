@@ -6,8 +6,11 @@ import { AgentGraph } from "./AgentGraph";
 import { AgentPolicyOverrideDialog } from "./OverrideDialog";
 import { PlaneNav } from "./PlaneNav";
 import { ComplianceLegend } from "./PlaneLegend";
+import { CertApp } from "./CertApp";
 
 // import { CertApp } from "./CertApp";
+
+import ResponsiveContainer from "./responsive";
 
 const sampleControls = [
   {
@@ -108,6 +111,29 @@ export const AgentPolicyPlane = () => {
   };
 
   if (showCertApp) {
+    return (
+      <AgentPolicyPlaneContainer
+        responsiveRender={() => (
+          <ResponsiveContainer>
+            <CertApp />
+            <button
+              onClick={() => {
+                setShowCertApp(false);
+              }}
+              className="absolute -bottom-10 left-0 right-0 m-auto  w-24 bg-brandred text-white p-2 rounded-lg"
+            >
+              Close
+            </button>
+          </ResponsiveContainer>
+        )}
+      >
+        {/* absolute positioned bg-brandred button that closes showCertApp */}
+        {null}
+      </AgentPolicyPlaneContainer>
+    );
+  }
+
+  if (showCertApp) {
     // get the actual-wrap element
     const actualWrap = document.getElementById("actual-wrap");
 
@@ -135,10 +161,11 @@ export const AgentPolicyPlane = () => {
               // marginLeft: ,
             }}
           >
-            <iframe
+            {/* <iframe
               src="https://navai-svg.vercel.app/"
               className="h-full w-full border-none ml-[25px]"
-            />
+            /> */}
+            <CertApp />
           </div>
           {/* a button that closes this */}
           {/* <button

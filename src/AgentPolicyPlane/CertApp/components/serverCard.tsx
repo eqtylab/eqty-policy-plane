@@ -1,4 +1,11 @@
 import React from "react";
+
+import AtomIcon from "../icons/atom";
+import AlertFilled from "../icons/alert-filled";
+
+import NvidiaIcon from "../icons/nvidia";
+import IntelIcon from "../icons/intel";
+
 const ServerCard = () => {
   return (
     <div>
@@ -25,15 +32,16 @@ const ServerCard = () => {
           </div>
           <div>
             <div className="flex mb-3 gap-x-2 align-center">
-              <img src="/icons/atom.svg" alt="" width={40} />
+              {/* <img src={AtomIcon} alt="" width={40} /> */}
+              <div className="w-[40px]">
+                <AtomIcon />
+              </div>
               <h2 className="text-xl font-semibold">First Responder Agent</h2>
             </div>
             <div className="flex  items-start p-3 bg-[#A35456] rounded-lg gap-x-2 ">
-              <img
-                src="/icons/alert-filled.svg"
-                alt=""
-                className="translate-y-2"
-              />
+              <div className="translate-y-2">
+                <AlertFilled />
+              </div>
               <p>
                 Your action was halted because it flagged the sourcing protocol
                 mandatory control #234
@@ -43,13 +51,13 @@ const ServerCard = () => {
         </div>
 
         <div className="bg-[#D3E660] p-2 ">
-          <img src="/icons/nvidia.svg" alt="" />
+          <NvidiaIcon />
           <h2 className="pt-6 pb-12 text-4xl font-semibold text-center text-black">
             H100
           </h2>
         </div>
         <div className="bg-[#4F99E9] px-3 py-6 grid grid-cols-3 gap-2 ">
-          <img src="/icons/intel.svg" alt="" />
+          <IntelIcon />
           <h2 className="text-2xl font-semibold text-center text-black ">
             XEON 5
           </h2>
