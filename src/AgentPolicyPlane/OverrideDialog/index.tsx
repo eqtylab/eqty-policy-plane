@@ -27,6 +27,14 @@ export const AgentPolicyOverrideDialog: React.FC<
           {/* Override button */}
           <button
             onClick={onOverride}
+            onMouseEnter={() => {
+              const graphAlert = document.getElementById("ripple-point-eq");
+              graphAlert?.setAttribute("data-eqalertoverride", "true");
+            }}
+            onMouseLeave={() => {
+              const graphAlert = document.getElementById("ripple-point-eq");
+              graphAlert?.setAttribute("data-eqalertoverride", "false");
+            }}
             className="w-full py-3 px-4 rounded-xl bg-override-gradient text-white text-sm hover:opacity-90 transition-opacity"
           >
             Override

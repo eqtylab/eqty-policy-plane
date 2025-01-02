@@ -10,6 +10,7 @@ module.exports = {
         brandreddark: "rgba(81, 45, 45, 1)",
         brandgray: "rgba(91, 91, 97, 1)",
         brandalert: "rgba(208, 86, 89, 1)",
+        brandalertblue: "rgba(0,157,255,1)",
         brandbordergray: "rgba(161, 161, 170, 0.75)",
         branddialogbg: "rgba(45, 41, 59, 0.8)",
         sidebar: "rgba(70, 70, 70, 0.4)",

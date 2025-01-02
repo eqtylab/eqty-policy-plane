@@ -60,8 +60,17 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             {/* Base circle */}
             <div
               id={data.animating ? "ripple-point-eq" : ""}
-              className="w-4 h-4 bg-brandalert rounded-full m-auto relative"
+              className="w-4 h-4 bg-brandalert rounded-full m-auto relative data-[eqalertoverride='true']:bg-brandalertblue"
+              // data-eqalertoverride="false"
             >
+              {/* add custom stylesheet here */}
+              <style>
+                {`
+                [data-eqalertoverride='true'] * {
+                  background-color: rgba(0,157,255,1) !important;
+                }
+              `}
+              </style>
               {/* Ripple rings - only shown when animating */}
               {data.animating && (
                 <>
