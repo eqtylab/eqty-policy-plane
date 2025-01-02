@@ -121,10 +121,10 @@ const DrawLine = ({ startId, endId }: { startId: string; endId: string }) => {
     >
       <path
         ref={lineRef}
-        strokeWidth="2"
+        strokeWidth="1"
         fill="none"
-        strokeDasharray="5,5"
-        className=" stroke-brandred"
+        strokeDasharray="8,4"
+        className=" stroke-brandalert"
       />
     </svg>
   );
