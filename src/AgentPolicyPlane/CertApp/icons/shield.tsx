@@ -8,8 +8,8 @@ export default function Icon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_429_998)">
-        <g clip-path="url(#clip1_429_998)">
+      <g clipPath="url(#clip0_429_998)">
+        <g clipPath="url(#clip1_429_998)">
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"

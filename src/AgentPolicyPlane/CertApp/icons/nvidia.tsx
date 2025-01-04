@@ -8,7 +8,7 @@ export default function Icon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_429_924)">
+      <g clipPath="url(#clip0_429_924)">
         <mask
           id="mask0_429_924"
           style={{ maskType: "luminance" }}

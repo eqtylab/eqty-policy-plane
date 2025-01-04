@@ -9,21 +9,21 @@ export const AgentPolicyOverrideDialog: React.FC<
   AgentPolicyOverrideDialogProps
 > = ({ onOverride, onCancel }) => {
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="rounded-xl bg-branddialogbg p-6 max-w-[258px] space-y-6">
+    <div className="tw-flex tw-items-center tw-justify-center tw-h-full">
+      <div className="tw-rounded-xl tw-bg-branddialogbg tw-p-6 tw-max-w-[258px] tw-space-y-6">
         {/* Permission needed banner */}
-        <div className="inline-block bg-permission-gradient text-white rounded-lg px-4 py-2 text-xs">
+        <div className="tw-inline-block tw-bg-permission-gradient tw-text-white tw-rounded-lg tw-px-4 tw-py-2 tw-text-xs">
           Permissions needed.
         </div>
 
         {/* Message text */}
-        <p className="text-white text-base">
+        <p className="tw-text-white tw-text-base">
           You action was halted because it flagged the Sourcing Protocol Control
           #234 which is mandatory.
         </p>
 
         {/* Buttons container */}
-        <div className="space-y-3">
+        <div className="tw-space-y-3">
           {/* Override button */}
           <button
             onClick={onOverride}
@@ -35,7 +35,7 @@ export const AgentPolicyOverrideDialog: React.FC<
               const graphAlert = document.getElementById("ripple-point-eq");
               graphAlert?.setAttribute("data-eqalertoverride", "false");
             }}
-            className="w-full py-3 px-4 rounded-xl bg-override-gradient text-white text-sm hover:opacity-90 transition-opacity"
+            className="tw-w-full tw-py-3 tw-px-4 tw-rounded-xl tw-bg-override-gradient tw-text-white tw-text-sm hover:tw-opacity-90 tw-transition-opacity"
           >
             Override
           </button>
@@ -43,7 +43,7 @@ export const AgentPolicyOverrideDialog: React.FC<
           {/* Cancel button */}
           <button
             onClick={onCancel}
-            className="w-full py-3 px-4 rounded-xl bg-cancel-gradient text-white text-sm hover:opacity-90 transition-opacity"
+            className="tw-w-full tw-py-3 tw-px-4 tw-rounded-xl tw-bg-cancel-gradient tw-text-white tw-text-sm hover:tw-opacity-90 tw-transition-opacity"
           >
             Cancel
           </button>

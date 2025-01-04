@@ -116,7 +116,7 @@ const DrawLine = ({ startId, endId }: { startId: string; endId: string }) => {
 
   return (
     <svg
-      className="fixed inset-0 pointer-events-none z-50 w-full h-full"
+      className="tw-fixed tw-inset-0 tw-pointer-events-none tw-z-50 tw-w-full tw-h-full"
       style={{ overflow: "visible" }}
     >
       <path
@@ -124,7 +124,7 @@ const DrawLine = ({ startId, endId }: { startId: string; endId: string }) => {
         strokeWidth="1"
         fill="none"
         strokeDasharray="8,4"
-        className=" stroke-brandalert"
+        className="tw-stroke-brandalert"
       />
     </svg>
   );
@@ -142,20 +142,20 @@ const AlertList = ({
   return (
     <>
       {data.map((control) => {
-        let classes = `px-2 py-1 rounded-lg cursor-pointer transition-colors max-w-[153px] flex items-center relative`;
+        let classes = `tw-px-2 tw-py-1 tw-rounded-lg tw-cursor-pointer tw-transition-colors tw-max-w-[153px] tw-flex tw-items-center tw-relative`;
 
         if (control.isAlert) {
-          classes += " border !border-brandreddark bg-brandred";
+          classes += " tw-border !tw-border-brandreddark tw-bg-brandred";
         } else if (control.mandatory && control.implemented) {
-          classes += " border !border-brandblue ";
+          classes += " tw-border !tw-border-brandblue ";
         } else if (!control.mandatory) {
-          classes += " border !border-brandgray ";
+          classes += " tw-border !tw-border-brandgray ";
         } else {
-          classes += " border !border-red-600 text-red-200";
+          classes += " tw-border !tw-border-red-600 tw-text-red-200";
         }
 
         return (
-          <div key={control.id} className="relative">
+          <div key={control.id} className="tw-relative">
             <div
               className={classes}
               onClick={() => {
@@ -177,12 +177,12 @@ const AlertList = ({
             {control.isAlert && (
               <div
                 id={`${control.id}-item-wrapper`}
-                className="absolute inset-0 z-0 pointer-events-none"
+                className="tw-absolute tw-inset-0 tw-z-0 tw-pointer-events-none"
                 style={{ overflow: "visible" }}
               >
-                <div className="absolute inset-0 rounded-lg border !border-brandreddark animate-sonar opacity-40"></div>
-                <div className="absolute inset-0 rounded-lg border !border-brandreddark animate-sonar-delayed opacity-40"></div>
-                <div className="absolute inset-0 rounded-lg border !border-brandreddark animate-sonar-more-delayed opacity-40"></div>
+                <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar tw-opacity-40"></div>
+                <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar-delayed tw-opacity-40"></div>
+                <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar-more-delayed tw-opacity-40"></div>
               </div>
             )}
           </div>
@@ -204,10 +204,12 @@ export const ActiveControlsList: React.FC<ActiveControlsListProps> = ({
   onControlClick,
 }) => {
   return (
-    <div className=" text-white w-64 flex-col flex items-center overflow-x-visible">
-      <h2 className="text-[18px] mb-4 font-[500] w-[153px]">Active Controls</h2>
+    <div className="tw-text-white tw-w-64 tw-flex-col tw-flex tw-items-center tw-overflow-x-visible">
+      <h2 className="tw-text-[18px] tw-mb-4 tw-font-[500] tw-w-[153px]">
+        Active Controls
+      </h2>
       <div
-        className="flex flex-col gap-3 font-[400] text-[16px]  h-[90%] pb-14 scroll-smooth	scrollbar-hidden" // removed 0verflow-y-auto
+        className="tw-flex tw-flex-col tw-gap-3 tw-font-[400] tw-text-[16px]  tw-h-[90%] tw-pb-14 tw-scroll-smooth	tw-scrollbar-hidden" // removed 0verflow-y-auto
         style={{
           // maskImage: "linear-gradient(to bottom, black 80%, transparent 99%)",
           overflowX: "visible",

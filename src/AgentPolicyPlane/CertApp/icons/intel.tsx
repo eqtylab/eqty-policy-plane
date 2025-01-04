@@ -8,7 +8,7 @@ export default function Icon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_429_935)">
+      <g clipPath="url(#clip0_429_935)">
         <path
           d="M5.19884 0.348602H0.636364V5.01328H5.19884V0.348602Z"
           fill="black"

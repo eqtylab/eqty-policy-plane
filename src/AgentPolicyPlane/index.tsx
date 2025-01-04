@@ -151,10 +151,10 @@ export const AgentPolicyPlane = () => {
 
     return (
       <AgentPolicyPlaneContainer>
-        <div className="absolute top-0 left-0 h-full w-full">
+        <div className="tw-absolute tw-top-0 tw-left-0 tw-h-full tw-w-full">
           <div
             // ref={wrapperRef}
-            className="relative w-screen h-screen flex "
+            className="tw-relative tw-w-screen tw-h-screen tw-flex "
             style={{
               transform: `scaleX(${scaleRatioWidth}) scaleY(${scaleRatio})`,
               transformOrigin: "top left",
@@ -179,7 +179,7 @@ export const AgentPolicyPlane = () => {
             onClick={() => {
               setShowCertApp(false);
             }}
-            className="absolute -bottom-3 left-0 right-0 m-auto  w-24 bg-brandred text-white p-2 rounded-lg"
+            className="tw-absolute tw--bottom-3 tw-left-0 tw-right-0 tw-m-auto  tw-w-24 tw-bg-brandred tw-text-white tw-p-2 tw-rounded-lg"
           >
             Close
           </button>
@@ -190,18 +190,18 @@ export const AgentPolicyPlane = () => {
 
   return (
     <AgentPolicyPlaneContainer>
-      <div className="text-white flex h-full overflow-visible">
+      <div className="tw-text-white tw-flex tw-h-full tw-overflow-visible">
         <div
-          className={`w-full flex transition-opacity duration-500 ease-in-out overflow-x-visible  ${
-            isVisible ? "opacity-100" : "opacity-0"
+          className={`tw-w-full tw-flex tw-transition-opacity tw-duration-500 tw-ease-in-out tw-overflow-x-visible  ${
+            isVisible ? "tw-opacity-100" : "tw-opacity-0"
           }`}
         >
           <ActiveControlsList
             data={sampleControls}
             onControlClick={handleControlClick}
           />
-          <div className="h-full grow relative flex items-center pr-6">
-            <div className="absolute top-0 left-0 transform  -translate-y-[56px]">
+          <div className="tw-h-full tw-grow tw-relative tw-flex tw-items-center tw-pr-6">
+            <div className="tw-absolute tw-top-0 tw-left-0 tw-transform  tw--translate-y-[56px]">
               <PlaneNav
                 showCertApp={showCertApp}
                 setShowCertApp={setShowCertApp}
@@ -209,8 +209,8 @@ export const AgentPolicyPlane = () => {
             </div>
             <AgentGraph backgroundColor="transparent" textColor="white" />
           </div>
-          <div className="relative">
-            <div className="absolute top-0 right-0 transform -translate-y-[56px]">
+          <div className="tw-relative">
+            <div className="tw-absolute tw-top-0 tw-right-0 tw-transform tw--translate-y-[56px]">
               <ComplianceLegend />
             </div>
             <AgentPolicyOverrideDialog />

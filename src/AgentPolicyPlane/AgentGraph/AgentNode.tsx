@@ -3,6 +3,7 @@ import React, { memo, type ReactNode } from "react";
 import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 
 import { AgentIcon } from "./icons/AgentIcon";
+import { NemoIcon } from "./icons/NemoIcon";
 
 export type AgentNodeData = {
   title?: string;
@@ -24,18 +25,18 @@ const NodeLabel = ({
   position?: "top" | "right" | "left" | "bottom";
 }) => {
   const positionClasses = {
-    top: "-top-10 left-1/2 -translate-x-1/2",
-    right: "top-1/2 -translate-y-1/2 left-full ml-2",
-    bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
-    left: "top-1/2 -translate-y-1/2 right-full mr-4", // TODO
+    top: "tw--top-10 tw-left-1/2 tw--translate-x-1/2",
+    right: "tw-top-1/2 tw--translate-y-1/2 tw-left-full tw-ml-2",
+    bottom: "tw-top-full tw-left-1/2 tw--translate-x-1/2 tw-mt-2",
+    left: "tw-top-1/2 tw--translate-y-1/2 tw-right-full tw-mr-4", // TODO
   };
 
   return (
     <div
-      className={`absolute whitespace-nowrap ${positionClasses[position]} !border-brandbordergray border rounded-xl p-1`}
+      className={`tw-absolute tw-whitespace-nowrap ${positionClasses[position]} !tw-border-brandbordergray tw-border tw-rounded-xl tw-p-1`}
     >
-      <div className="text-white text-[14px]">{title}</div>
-      {subline && <div className="text-white text-[10px]">{subline}</div>}
+      <div className="tw-text-white tw-text-[14px]">{title}</div>
+      {subline && <div className="tw-text-white tw-text-[10px]">{subline}</div>}
     </div>
   );
 };
@@ -44,10 +45,10 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   if (data.type && data.type === "policy-alert") {
     return (
       <div className="wrapper wrapper-alert">
-        <div className="flex items-center justify-center relative w-full">
+        <div className="tw-flex tw-items-center tw-justify-center tw-relative tw-w-full">
           {/* Horizontal dotted line */}
           <div
-            className="absolute w-full h-px "
+            className="tw-absolute tw-w-full tw-h-px "
             style={{
               background: `repeating-linear-gradient(to right, rgba(208, 86, 89, 1) 0, rgba(208, 86, 89, 1) 4px, transparent 4px, transparent 8px)`,
               backgroundSize: "8px 100%",
@@ -56,11 +57,11 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
           />
 
           {/* Red circle with ripple effect */}
-          <div className="absolute ripple-wrapper">
+          <div className="tw-absolute ripple-wrapper">
             {/* Base circle */}
             <div
               id={data.animating ? "ripple-point-eq" : ""}
-              className="w-4 h-4 bg-brandalert rounded-full m-auto relative data-[eqalertoverride='true']:bg-brandalertblue"
+              className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandalertblue"
               // data-eqalertoverride="false"
             >
               {/* add custom stylesheet here */}
@@ -75,21 +76,43 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
               {data.animating && (
                 <>
                   <div
-                    className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple "
+                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple "
                     style={{ opacity: "0.75" }}
                   ></div>
                   <div
-                    className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple-delayed "
+                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple-delayed "
                     style={{ opacity: "0.75" }}
                   ></div>
                   <div
-                    className="absolute inset-0 w-4 h-4 rounded-full bg-brandalert animate-ripple-more-delayed "
+                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple-more-delayed "
                     style={{ opacity: "0.75" }}
                   ></div>
                 </>
               )}
             </div>
           </div>
+        </div>
+        {data.title && (
+          <NodeLabel
+            title={data.title}
+            subline={data.subline}
+            position={data.labelPosition}
+          />
+        )}
+      </div>
+    );
+  }
+
+  if (data.type && data.type === "nemo-guardrail") {
+    return (
+      <div className="wrapper tw-justify-center tw-items-center">
+        <div className="tw-bg-nvidiagreen tw-w-8 tw-h-8 tw-rounded-full">
+          <NemoIcon />
+          <Handle type="target" position={Position.Left} />
+          <Handle type="source" position={Position.Right} />
+
+          <Handle id="sourcetop" type="source" position={Position.Top} />
+          <Handle id="targetbottom" type="target" position={Position.Bottom} />
         </div>
         {data.title && (
           <NodeLabel

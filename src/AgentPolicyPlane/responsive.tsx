@@ -28,9 +28,9 @@ const SVGViewportScaler = ({ children }: { children: React.ReactNode }) => {
 
   return (
     // <div className="component-container">
-    <div className="absolute top-0 m-auto h-screen w-screen ">
+    <div className="tw-absolute tw-top-0 tw-m-auto tw-h-screen tw-w-screen ">
       <div
-        className="absolute top-0 m-auto"
+        className="tw-absolute tw-top-0 tw-m-auto"
         style={{
           width: `${window.innerWidth}px`,
           height: `${window.innerHeight}px`,

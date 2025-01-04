@@ -43,21 +43,17 @@ export const AgentPolicyPlaneContainer = ({
     <div className="component-container">
       {responsiveRender && responsiveRender()}
       {!responsiveRender && (
-        <div
-          className="py-16 px-9 w-full h-full overflow-scroll 
-      
-    "
-        >
+        <div className="tw-py-16 tw-px-9 tw-w-full tw-h-full tw-overflow-scroll">
           {/* Outer container for centering */}
-          <div className="w-full h-full relative flex items-center justify-center">
+          <div className="tw-w-full tw-h-full tw-relative tw-flex tw-items-center tw-justify-center">
             {/* Grid container with exact dimensions */}
 
             <div
               ref={gridContainerRef}
-              className="absolute inset-0 z-50 flex justify-center"
+              className="tw-absolute tw-inset-0 tw-z-50 tw-flex tw-justify-center"
             >
               <div
-                className="relative shadow-[4px_4px_10px_1px_rgba(0,0,0,0.18)] flex justify-center"
+                className="tw-relative tw-shadow-[4px_4px_10px_1px_rgba(0,0,0,0.18)] tw-flex tw-justify-center"
                 style={{
                   width: dimensions.width,
                   height: dimensions.height,
@@ -72,7 +68,7 @@ export const AgentPolicyPlaneContainer = ({
                   borderBottom: "1px solid rgba(65,66,67,0.2)",
                 }}
               >
-                <div className="relative z-10 w-full max-w-[1736px] h-full p-8">
+                <div className="tw-relative tw-z-10 tw-w-full tw-max-w-[1736px] tw-h-full tw-p-8">
                   {children}
                 </div>
               </div>

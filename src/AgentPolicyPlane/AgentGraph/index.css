@@ -129,7 +129,7 @@
 
 .react-flow__edge .react-flow__edge-path {
   stroke: rgb(222, 222, 222);
-  stroke-width: 1;
+  strokewidth: 1;
   stroke-opacity: 1;
 }
 
@@ -157,7 +157,7 @@
   fill: var(--text-color);
 } */
 
-.react-flow__node-turbo .wrapper-alert {
+.react-flow__node-turbo .wrapper-nemo {
   /* overflow: hidden; */
   display: flex;
   position: relative;

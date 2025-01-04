@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  prefix: "tw-", // Add 'tw-' as the prefix
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-
   theme: {
     extend: {
       colors: {
@@ -13,6 +13,7 @@ module.exports = {
         brandalertblue: "rgba(0,157,255,1)",
         brandbordergray: "rgba(161, 161, 170, 0.75)",
         branddialogbg: "rgba(45, 41, 59, 0.8)",
+        nvidiagreen: "#76B900",
         sidebar: "rgba(70, 70, 70, 0.4)",
         "card-1": "rgba(26, 28, 30, 1)",
         "card-2": "rgba(127, 127, 127, 0.46)",
@@ -21,6 +22,7 @@ module.exports = {
         "btn-red": "#995758",
         "btn-grey": "#6e758f",
       },
+
       backgroundImage: {
         "permission-gradient":
           "linear-gradient(90deg, rgba(247, 114, 117, 0.4) 0%, rgba(145, 67, 69, 0.4) 100%)",
