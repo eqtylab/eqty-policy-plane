@@ -19,10 +19,12 @@ const NodeLabel = ({
   title,
   subline,
   position = "top",
+  type = "default",
 }: {
   title: string;
   subline?: string;
   position?: "top" | "right" | "left" | "bottom";
+  type?: "default" | "alert" | "nemo";
 }) => {
   const positionClasses = {
     top: "tw--top-10 tw-left-1/2 tw--translate-x-1/2",
@@ -30,11 +32,16 @@ const NodeLabel = ({
     bottom: "tw-top-full tw-left-1/2 tw--translate-x-1/2 tw-mt-2",
     left: "tw-top-1/2 tw--translate-y-1/2 tw-right-full tw-mr-4", // TODO
   };
+  let classes = `tw-absolute tw-whitespace-nowrap ${positionClasses[position]} !tw-border-brandbordergray tw-border tw-rounded-xl tw-p-1`;
+
+  if (type === "alert") {
+    classes += " tw-bg-brandred !tw-border-brandred";
+  } else if (type === "nemo") {
+    classes += " tw-bg-nvidiagreen !tw-border-nvidiagreen";
+  }
 
   return (
-    <div
-      className={`tw-absolute tw-whitespace-nowrap ${positionClasses[position]} !tw-border-brandbordergray tw-border tw-rounded-xl tw-p-1`}
-    >
+    <div className={`${classes}`}>
       <div className="tw-text-white tw-text-[14px]">{title}</div>
       {subline && <div className="tw-text-white tw-text-[10px]">{subline}</div>}
     </div>
@@ -97,6 +104,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             title={data.title}
             subline={data.subline}
             position={data.labelPosition}
+            type="alert"
           />
         )}
       </div>
@@ -106,7 +114,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   if (data.type && data.type === "nemo-guardrail") {
     return (
       <div className="wrapper tw-justify-center tw-items-center">
-        <div className="tw-bg-nvidiagreen tw-w-8 tw-h-8 tw-rounded-full">
+        <div className="tw-bg-nvidiagreen tw-w-9 tw-h-9 tw-rounded-full">
           <NemoIcon />
           <Handle type="target" position={Position.Left} />
           <Handle type="source" position={Position.Right} />
@@ -119,6 +127,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             title={data.title}
             subline={data.subline}
             position={data.labelPosition}
+            type="nemo"
           />
         )}
       </div>

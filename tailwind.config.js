@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       colors: {
         brandblue: "rgb(93, 176, 200)",
+
         brandred: "rgba(163, 84, 86, 1)",
         brandreddark: "rgba(81, 45, 45, 1)",
         brandgray: "rgba(91, 91, 97, 1)",
@@ -13,6 +14,7 @@ module.exports = {
         brandalertblue: "rgba(0,157,255,1)",
         brandbordergray: "rgba(161, 161, 170, 0.75)",
         branddialogbg: "rgba(45, 41, 59, 0.8)",
+        branddialogbg_full: "rgba(45, 41, 59, 1)",
         nvidiagreen: "#76B900",
         sidebar: "rgba(70, 70, 70, 0.4)",
         "card-1": "rgba(26, 28, 30, 1)",

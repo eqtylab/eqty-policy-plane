@@ -80,7 +80,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "nemo-guardrail1",
     position: { x: 450, y: 525 },
     data: {
-      title: "Nemo Guardrail 1",
+      title: "Nemo Guardrail",
       labelPosition: "right",
       type: "nemo-guardrail",
     },

@@ -175,11 +175,11 @@ export const PlaneNav = ({
   return (
     <div className="tw-flex tw-items-center tw-gap-2">
       <Title />
-      <Button
+      {/* <Button
         action={() => {
           setShowCertApp(!showCertApp);
         }}
-      />
+      /> */}
     </div>
   );
 };
