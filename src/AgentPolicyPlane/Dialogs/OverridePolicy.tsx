@@ -12,7 +12,7 @@ export const AgentPolicyOverrideDialog: React.FC<
 > = ({ onOverride, onCancel, onDetails }) => {
   return (
     <div className="tw-flex tw-items-center tw-justify-center tw-h-full">
-      <div className="tw-rounded-xl tw-bg-branddialogbg tw-p-6 tw-max-w-[258px] tw-space-y-6">
+      <div className="tw-rounded-xl tw-bg-branddialogbg tw-p-6 tw-max-w-[258px] tw-space-y-6 mt-3">
         {/* Permission needed banner */}
         <div
           id="eq-control-dialog"

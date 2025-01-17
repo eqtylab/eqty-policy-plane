@@ -7,6 +7,7 @@ import { ActiveControlsList } from "./ActiveControlsList";
 import { AgentGraph } from "./AgentGraph";
 import { AgentPolicyOverrideDialog } from "./Dialogs/OverridePolicy";
 import { AgentPolicyDetailsDialog } from "./Dialogs/PolicyDetails";
+import { AgentPolicyWorkflowOverviewDialog } from "./Dialogs/WorkflowOverview";
 import { PlaneNav } from "./PlaneNav";
 import { PlaneTabs } from "./PlaneNav/Tabs";
 import { ComplianceLegend } from "./PlaneLegend";
@@ -105,6 +106,8 @@ const sampleControls = [
     implemented: false,
   },
 ];
+
+
 
 
 /**
@@ -252,15 +255,22 @@ const AgentPolicyPlane = () => {
                   onPause={() => null} // todo
                   onCancel={() => null} // todo
                 />
-                {activeAlertUID && (
-                  <AnimationWrapper>
-                    <AgentPolicyOverrideDialog
-                      onCancel={handleDismissAlert}
-                      onDetails={handleShowPolicyDetails}
-                    />
-                  </AnimationWrapper>
-                )}
-                {!activeAlertUID && <div className="tw-w-[248px]"></div>}
+                <div className="tw-w-[264px] tw-relative">
+                  {activeAlertUID && (
+                    <AnimationWrapper>
+                      <AgentPolicyOverrideDialog
+                        onCancel={handleDismissAlert}
+                        onDetails={handleShowPolicyDetails}
+                      />
+                    </AnimationWrapper>
+                  )}
+                  {!activeAlertUID && (
+                    <AnimationWrapper>
+                      <AgentPolicyWorkflowOverviewDialog />
+                    </AnimationWrapper>
+                  )}
+                </div>
+
               </div>
             </div>
             {activeAlertUID && activeAlertControlDivId && (

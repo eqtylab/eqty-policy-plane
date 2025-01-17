@@ -80,7 +80,7 @@ export const ActiveControlsList: React.FC<ActiveControlsListProps> = ({
   onControlClick,
 }) => {
   return (
-    <div className="tw-text-white tw-w-64 tw-flex-col tw-flex tw-items-center tw-overflow-x-visible">
+    <div className="tw-text-white tw-flex-col tw-flex tw-items-center tw-overflow-x-visible">
       <h2 className="tw-text-[18px] tw-mb-4 tw-font-[500] tw-w-[153px]">
         Active Controls
       </h2>

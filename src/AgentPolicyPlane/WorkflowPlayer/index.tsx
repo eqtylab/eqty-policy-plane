@@ -29,7 +29,7 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
   ).length;
 
   return (
-    <div className="tw-w-[248px] tw-min-w-[248px] tw-rounded-xl tw-bg-branddialogbg tw-p-4">
+    <div className="tw-w-[264px] tw-min-w-[264px] tw-rounded-xl tw-bg-branddialogbg tw-p-4">
       <div className="tw-flex tw-flex-col tw-gap-3">
 
         {/* Status indicator */}
@@ -42,11 +42,11 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
                 : "tw-bg-gray-400"
               }`}
           />
-          <span className="tw-text-white tw-text-sm tw-truncate">
+          <span className="tw-text-white tw-text-xs tw-truncate">
             {isBlocked
               ? "Workflow Blocked"
               : state.status === 'running'
-                ? `Running (${completedNodes}/${Object.keys(pipelineConfig.nodes).length} nodes)`
+                ? `Running. Completed: (${completedNodes}/11 Agents)`
                 : "Ready to Run"}
           </span>
         </div>
