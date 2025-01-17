@@ -28,10 +28,6 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
     node => node.status === 'completed'
   ).length;
 
-  console.log("WorkflowPlayer state.nodes");
-  console.log(state.nodes);
-  console.log(completedNodes)
-  console.log(state.status)
   return (
     <div className="tw-w-[248px] tw-min-w-[248px] tw-rounded-xl tw-bg-branddialogbg tw-p-4">
       <div className="tw-flex tw-flex-col tw-gap-3">

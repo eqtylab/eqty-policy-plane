@@ -3,6 +3,8 @@ import React, { memo, type ReactNode } from "react";
 
 import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 
+import { NodeStatus } from "../context/types";
+
 import { AgentIcon } from "./icons/AgentIcon";
 import { NemoIcon } from "./icons/NemoIcon";
 
@@ -14,6 +16,7 @@ export type AgentNodeData = {
   animating?: boolean;
   parallelVertSize?: boolean;
   labelPosition?: "top" | "bottom" | "left" | "right";
+  status?: NodeStatus;
 };
 
 const NodeLabel = ({
@@ -50,6 +53,41 @@ const NodeLabel = ({
 };
 
 export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
+
+  console.log("AGENT NODE DATA", data);
+
+
+  const getNodeStatusStyles = (status: NodeStatus | undefined) => {
+    if (!status) {
+      console.error("Node status is not defined");
+      return {};
+    }
+    switch (status) {
+      case 'running':
+        return {
+          background: 'rgba(0, 157, 255, 0.2)',
+          boxShadow: '0 0 15px rgba(0, 157, 255, 0.5)',
+          animation: 'pulse 2s infinite'
+        };
+      case 'completed':
+        return {
+          background: 'rgba(39, 174, 96, 0.2)',
+          boxShadow: '0 0 15px rgba(39, 174, 96, 0.5)'
+        };
+      case 'error':
+        return {
+          background: 'rgba(255, 0, 0, 0.2)',
+          boxShadow: '0 0 15px rgba(255, 0, 0, 0.5)'
+        };
+      default:
+        return {
+          background: 'rgba(255, 255, 255, 0.1)',
+          opacity: 0.5
+        };
+    }
+  };
+
+
   if (data.type && data.type === "policy-alert") {
     return (
       <div className="wrapper wrapper-alert">
@@ -70,7 +108,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             <div
               id={data.animating ? "ripple-point-eq" : ""}
               className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandalertblue"
-              // data-eqalertoverride="false"
+            // data-eqalertoverride="false"
             >
               {/* add custom stylesheet here */}
               <style>
@@ -136,7 +174,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   }
   return (
     <>
-      <div className={`${data.parallelVertSize ? "wrapper-half" : "wrapper"}`}>
+      <div className={`${data.parallelVertSize ? "wrapper-half" : "wrapper"}`} style={getNodeStatusStyles(data.status)}>
         <div className="inner">
           <AgentIcon />
           <Handle type="target" position={Position.Left} />

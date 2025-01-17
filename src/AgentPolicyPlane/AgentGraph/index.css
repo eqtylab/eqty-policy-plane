@@ -1,3 +1,10 @@
+/*  
+// src/AgentPolicyPlane/AgentGraph/index.css
+
+custom css for the AgentGraph component (react flow overriden styles)
+
+*/
+
 .react-flow {
   --bg-color: rgb(255, 255, 255);
   --text-color: rgb(243, 244, 246);
@@ -57,51 +64,6 @@
   height: 13.75px;
   width: 13.75px;
 }
-
-/* .react-flow__node-turbo .icon {
-  margin-right: 8px;
-}
-
-.react-flow__node-turbo .body {
-  display: flex;
-}
-
-.react-flow__node-turbo .title {
-  font-size: 16px;
-  margin-bottom: 2px;
-  line-height: 1;
-} */
-
-/* .react-flow__node-turbo .subline {
-  font-size: 12px;
-  color: #777;
-} */
-
-/* .react-flow__node-turbo .cloud {
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-  right: 0;
-  position: absolute;
-  top: 0;
-  transform: translate(50%, -50%);
-  display: flex;
-  transform-origin: center center;
-  padding: 2px;
-  overflow: hidden;
-  box-shadow: var(--node-box-shadow);
-  z-index: 1;
-}
-
-.react-flow__node-turbo .cloud div {
-  background-color: var(--bg-color);
-  flex-grow: 1;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-} */
 
 .react-flow__handle {
   opacity: 0;
@@ -212,4 +174,16 @@
 
 .animate-sonar-more-delayed {
   animation: deepSeaPulse 7.8s cubic-bezier(0.1, 0, 0.2, 0.3) 5.8s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

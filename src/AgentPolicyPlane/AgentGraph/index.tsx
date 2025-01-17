@@ -11,9 +11,10 @@ import {
   type Edge,
   type OnConnect,
   type ReactFlowInstance,
-  // type NodeType,
-  // type EdgeType,
+
 } from "@xyflow/react";
+
+import { usePipeline } from "../context/PipelineContext";
 
 import AgentNode, { type AgentNodeData } from "./AgentNode";
 import AgentEdge from "./AgentEdge";
@@ -223,8 +224,21 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
   const stylesFlowBg = backgroundColor || "transparent";
   const stylesTextColor = textColor || "rgb(243, 244, 246)";
 
+  const { state: pipelineState } = usePipeline();
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  useEffect(() => {
+    setNodes(nodes =>
+      nodes.map(node => ({
+        ...node,
+        data: {
+          ...node.data,
+          status: pipelineState.nodes[node.id]?.status || 'idle'
+        }
+      }))
+    );
+  }, [pipelineState, setNodes]);
 
   const onConnect: OnConnect = useCallback(
     (params) => setEdges((els) => addEdge(params, els)),

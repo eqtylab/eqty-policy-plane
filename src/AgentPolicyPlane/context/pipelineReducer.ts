@@ -166,7 +166,7 @@ export function pipelineReducer(state: PipelineState, action: PipelineAction): P
     }
 
     // Log state changes
-    logStateChange(action, state, nextState);
+    // logStateChange(action, state, nextState);
 
     return nextState;
 }

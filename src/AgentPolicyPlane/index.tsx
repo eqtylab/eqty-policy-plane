@@ -212,7 +212,7 @@ const AgentPolicyPlane = () => {
   };
 
   const renderTabContent = () => {
-    console.log('debug: renderTabContent')
+    // console.log('debug: renderTabContent')
     const selectedTab = getSelectedTab();
 
     return (
