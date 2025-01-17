@@ -8,6 +8,7 @@ type Control = {
   isAlert?: boolean;
   mandatory?: boolean;
   implemented?: boolean;
+  overridden?: boolean;
 };
 
 interface ActiveControlsListProps {

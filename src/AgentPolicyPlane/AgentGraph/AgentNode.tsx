@@ -54,7 +54,7 @@ const NodeLabel = ({
 
 export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
 
-  console.log("AGENT NODE DATA", data);
+
 
 
   const getNodeStatusStyles = (status: NodeStatus | undefined) => {
