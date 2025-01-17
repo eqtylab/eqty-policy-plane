@@ -187,3 +187,38 @@ custom css for the AgentGraph component (react flow overriden styles)
     transform: scale(1);
   }
 }
+@keyframes rotate-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.react-flow__edge .react-flow__edge-path {
+  stroke: rgb(222, 222, 222);
+  stroke-width: 1;
+  transition: opacity 0.3s ease;
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke-dasharray: 5;
+  animation: dashdraw 1s linear infinite;
+}
+
+@keyframes dashdraw {
+  from {
+    stroke-dashoffset: 10;
+  }
+}

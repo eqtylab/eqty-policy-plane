@@ -240,6 +240,29 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
     );
   }, [pipelineState, setNodes]);
 
+  useEffect(() => {
+    setEdges(edges =>
+      edges.map(edge => {
+        const sourceNode = pipelineState.nodes[edge.source];
+        const targetNode = pipelineState.nodes[edge.target];
+
+        // Edge should be animated if source is running
+        const animated = sourceNode?.status === 'running';
+
+        // Edge should be dimmed if target hasn't started yet
+        const style = targetNode?.status === 'idle' ?
+          { opacity: 0.2, stroke: 'rgb(222, 222, 222)' } :
+          { opacity: 1, stroke: 'rgb(222, 222, 222)' };
+
+        return {
+          ...edge,
+          animated,
+          style
+        };
+      })
+    );
+  }, [pipelineState, setEdges]);
+
   const onConnect: OnConnect = useCallback(
     (params) => setEdges((els) => addEdge(params, els)),
     []

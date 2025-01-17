@@ -55,19 +55,16 @@ const NodeLabel = ({
 export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
 
 
-
-
   const getNodeStatusStyles = (status: NodeStatus | undefined) => {
     if (!status) {
-      console.error("Node status is not defined");
       return {};
     }
+
     switch (status) {
       case 'running':
         return {
-          background: 'rgba(0, 157, 255, 0.2)',
-          boxShadow: '0 0 15px rgba(0, 157, 255, 0.5)',
-          animation: 'pulse 2s infinite'
+          background: 'rgba(0, 157, 255, 0.15)',
+          animation: 'node-pulse 2s ease-in-out infinite'
         };
       case 'completed':
         return {
@@ -174,12 +171,17 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   }
   return (
     <>
-      <div className={`${data.parallelVertSize ? "wrapper-half" : "wrapper"}`} style={getNodeStatusStyles(data.status)}>
+      <div className={`${data.parallelVertSize ? "wrapper-half" : "wrapper"} tw-relative`}
+        style={getNodeStatusStyles(data.status)}>
+        {/* Add rotating ring for running state */}
+        {data.status === 'running' && (
+          <div className="tw-absolute tw-inset-[-2px] tw-rounded-full tw-border-2 tw-border-transparent tw-border-t-blue-400"
+            style={{ animation: 'rotate-ring 1s linear infinite' }} />
+        )}
         <div className="inner">
           <AgentIcon />
           <Handle type="target" position={Position.Left} />
           <Handle type="source" position={Position.Right} />
-
           <Handle id="sourcetop" type="source" position={Position.Top} />
           <Handle id="targetbottom" type="target" position={Position.Bottom} />
         </div>
