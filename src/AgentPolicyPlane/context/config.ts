@@ -1,4 +1,4 @@
-// src/AgentPolicyPlane/state/config.ts
+// src/AgentPolicyPlane/context/config.ts
 
 
 import { OutputType } from './types';

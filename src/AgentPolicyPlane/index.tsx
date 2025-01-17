@@ -13,6 +13,11 @@ import { ComplianceLegend } from "./PlaneLegend";
 import { CertApp } from "./CertApp";
 import { WorkflowPlayer } from "./WorkflowPlayer";
 
+
+
+import { PipelineProvider } from "./context/PipelineContext";
+import { usePipeline } from "./context/PipelineContext";
+
 // import { CertApp } from "./CertApp";
 
 import { AnimationWrapper } from "./Interactive/AnimationWrapper";
@@ -102,8 +107,12 @@ const sampleControls = [
 ];
 
 
-
-export const AgentPolicyPlane = () => {
+/**
+ * This is the main functional application
+ * 
+ * @returns 
+ */
+const AgentPolicyPlane = () => {
   const [showCertApp, setShowCertApp] = useState(false);
   const [activeAlertUID, setActiveAlertUID] = useState<string | null>(null);
   const [activeAlertControlDivId, setActiveAlertControlDivId] = useState<
@@ -112,6 +121,9 @@ export const AgentPolicyPlane = () => {
   const [showPolicyDetails, setShowPolicyDetails] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const fadeTransitionRef = useRef<HTMLDivElement | null>(null);
+
+  const { state, startPipeline } = usePipeline();
+
 
   // Track whether content is actually invisible
   const [isContentInvisible, setIsContentInvisible] = useState(false);
@@ -200,6 +212,7 @@ export const AgentPolicyPlane = () => {
   };
 
   const renderTabContent = () => {
+    console.log('debug: renderTabContent')
     const selectedTab = getSelectedTab();
 
     return (
@@ -229,9 +242,13 @@ export const AgentPolicyPlane = () => {
               </div>
               <div className="tw-relative">
                 <WorkflowPlayer
-                  isBlocked={isWorkflowBlocked(sampleControls)}
+                  isBlocked={false} // isWorkflowBlocked(sampleControls)} // currently testing the simulation
                   isPlaying={false} // todo
-                  onPlay={() => null} // todo
+                  onPlay={() => {
+                    console.log('debug: about to start')
+                    startPipeline()
+                  }} // todo // currently testing the simulation
+                  // onPlay={() => null} // todo
                   onPause={() => null} // todo
                   onCancel={() => null} // todo
                 />
@@ -306,3 +323,12 @@ export const AgentPolicyPlane = () => {
     </AgentPolicyPlaneContainer>
   );
 };
+
+
+export const AgentPolicyPlaneApplication = () => {
+  return (
+    <PipelineProvider>
+      <AgentPolicyPlane />
+    </PipelineProvider>
+  );
+}

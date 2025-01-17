@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
+
 export const AgentPolicyPlaneContainer = ({
   children,
   responsiveRender,
@@ -71,7 +72,9 @@ export const AgentPolicyPlaneContainer = ({
                 }}
               >
                 <div className="tw-relative tw-z-10 tw-w-full tw-max-w-[1736px] tw-h-full tw-p-8">
+
                   {children}
+
                 </div>
               </div>
             </div>

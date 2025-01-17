@@ -19,7 +19,7 @@ Before we design/code this... we need to think step by step, and provide conside
 
 ## Solution (Design Draft) Using react context for state management. 
 
-1. **State Structure**
+1. **State Structure (FINALIZED)**
 ```typescript
 // src/AgentPolicyPlane/state/types.ts
 
@@ -76,6 +76,7 @@ export interface NodeState {
     timestamp: number;
     level: 'info' | 'warning' | 'error';
   }>;
+  inputData: Record<string, PipelineOutput[]>;
   outputs: PipelineOutput[];
   error?: {
     message: string;
@@ -132,7 +133,7 @@ export interface PipelineState {
 }
 ```
 
-2. **Pipeline Configuration**
+2. **Pipeline Configuration (FINALIZED)**
 ```typescript
 // src/AgentPolicyPlane/state/config.ts
 import { OutputType } from './types';
@@ -149,7 +150,6 @@ export interface OutputTemplate {
 export interface LogTemplate {
   message: string;
   level: 'info' | 'warning' | 'error';
-  probability?: number; // Likelihood of this log appearing during execution
 }
 
 export interface NodeDependency {
@@ -194,7 +194,7 @@ export interface PipelineConfig {
 }
 ```
 
-3. **Simple Context-based State Management**
+3. **Simple Context-based State Management (DRAFT)**
 ```typescript
 // PipelineContext.tsx
 interface PipelineContextType {
@@ -342,7 +342,7 @@ export function PipelineProvider({ children }: { children: React.ReactNode }) {
 }
 ```
 
-4. **Integration with React Flow**
+4. **Integration with React Flow (DRAFT)**
 ```typescript
 // PipelineFlow.tsx
 export function PipelineFlow() {

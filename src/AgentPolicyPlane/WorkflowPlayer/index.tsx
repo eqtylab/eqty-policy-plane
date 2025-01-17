@@ -1,6 +1,11 @@
 // src/AgentPolicyPlane/WorkflowPlayer/index.tsx
 import React from "react";
 
+// import { usePipeline } from "../redux/state/PipelineContext";
+import { usePipeline } from "../context/PipelineContext";
+
+import { pipelineConfig } from "../context/demo-simulation-pipeline";
+
 interface WorkflowPlayerProps {
   isBlocked?: boolean; // Changed from isDisabled to be more semantic
   isPlaying?: boolean;
@@ -16,24 +21,36 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
   onPause,
   onCancel,
 }) => {
+  const { state } = usePipeline(); // Add this
+
+  // Add completed nodes count
+  const completedNodes = Object.values(state.nodes).filter(
+    node => node.status === 'completed'
+  ).length;
+
+  console.log("WorkflowPlayer state.nodes");
+  console.log(state.nodes);
+  console.log(completedNodes)
+  console.log(state.status)
   return (
     <div className="tw-w-[248px] tw-min-w-[248px] tw-rounded-xl tw-bg-branddialogbg tw-p-4">
       <div className="tw-flex tw-flex-col tw-gap-3">
+
         {/* Status indicator */}
         <div className="tw-flex tw-items-center tw-gap-2 tw-w-full">
           <div
             className={`tw-min-w-[8px] tw-min-h-[8px] tw-rounded-full ${isBlocked
-                ? "tw-bg-brandalert"
-                : isPlaying
-                  ? "tw-bg-brandblue tw-animate-pulse"
-                  : "tw-bg-gray-400"
+              ? "tw-bg-brandalert"
+              : state.status === 'running'
+                ? "tw-bg-brandblue tw-animate-pulse"
+                : "tw-bg-gray-400"
               }`}
           />
           <span className="tw-text-white tw-text-sm tw-truncate">
             {isBlocked
               ? "Workflow Blocked"
-              : isPlaying
-                ? "Running"
+              : state.status === 'running'
+                ? `Running (${completedNodes}/${Object.keys(pipelineConfig.nodes).length} nodes)`
                 : "Ready to Run"}
           </span>
         </div>

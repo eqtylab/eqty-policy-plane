@@ -1,4 +1,4 @@
-// src/AgentPolicyPlane/state/types.ts
+// src/AgentPolicyPlane/context/types.ts
 
 export type OutputType =
   | 'markdown'
@@ -46,19 +46,15 @@ export interface PipelineOutput {
 
 export interface NodeState {
   status: NodeStatus;
-  startTime?: number;
-  endTime?: number;
   logs: Array<{
     message: string;
     timestamp: number;
     level: 'info' | 'warning' | 'error';
   }>;
   outputs: PipelineOutput[];
-  error?: {
-    message: string;
-    code: string;
-    timestamp: number;
-  };
+  completedInputs?: string[]; // New field to track dependencies
+  startTime?: number;
+  endTime?: number;
 }
 
 export interface GuardrailAlert {
@@ -68,7 +64,6 @@ export interface GuardrailAlert {
   severity: 'warning' | 'error';
   nodeId: string; // Reference to the node that triggered the guardrail
   controlId: string; // Reference to the control that was violated
-
   context?: {
     riskFactors: string[];
     evidenceSnippets: string[];
@@ -87,7 +82,6 @@ export interface PipelineState {
   status: PipelineStatus;
   nodes: Record<string, NodeState>;
   activeGuardrail: GuardrailAlert | null;
-  currentPhase: 'collection' | 'analysis' | 'decision' | 'response';
   userOverrides: {
     nodeId: string;
     timestamp: number;
@@ -106,4 +100,15 @@ export interface PipelineState {
     failedNodes: number;
     blockedNodes: number;
   };
+}
+
+// New types to add to types.ts
+export type NodePhase = 'waiting' | 'ready' | 'running' | 'completed';
+
+export interface NodeStateMetrics {
+  phase: NodePhase;
+  waitingOn?: string[]; // List of dependency nodeIds still needed
+  startTime?: number;
+  endTime?: number;
+  attempts: number; // For debugging duplicate runs
 }

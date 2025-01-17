@@ -1,6 +1,6 @@
-// src/AgentPolicyPlane/state/simulation/demo-simulation-pipeline.ts
-import { PipelineConfig, NodeConfig, LogTemplate } from '../config';
-import { OutputType, } from '../types'; // WE FORGOT TO USE THIS????
+// src/AgentPolicyPlane/context/demo-simulation-pipeline.ts
+import { PipelineConfig, NodeConfig, LogTemplate } from './config';
+
 
 // Common log templates that many nodes might use
 const commonLogs: LogTemplate[] = [
@@ -293,6 +293,9 @@ const nodes: Record<string, NodeConfig> = {
         description: "Human approval checkpoint for high-risk scenarios",
         minDuration: 1000,
         maxDuration: 3000,
+        dependencies: [
+            { nodeId: "prioritize", required: true }
+        ],
         guardrails: {
             controlIds: ["ctrl-3"], // Maps to the "Sourcing Protocol" control
             checkOnStart: true,
@@ -319,6 +322,9 @@ const nodes: Record<string, NodeConfig> = {
         description: "Creates formal response plan documentation",
         minDuration: 8000,
         maxDuration: 15000,
+        dependencies: [
+            { nodeId: "reconfirm", required: true }
+        ],
         outputs: [
             {
                 type: "response-plan",
@@ -344,6 +350,9 @@ const nodes: Record<string, NodeConfig> = {
         description: "Dispatches notifications through multiple channels",
         minDuration: 5000,
         maxDuration: 10000,
+        dependencies: [
+            { nodeId: "plan", required: true }
+        ],
         outputs: [
             {
                 type: "tool-call",
