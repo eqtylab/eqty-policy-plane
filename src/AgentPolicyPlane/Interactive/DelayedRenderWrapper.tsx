@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/Interactive/DelayedRenderWrapper.tsx
 import React from "react";
 
 // Delayed render wrapper - standard render wrapped in a setTimeout

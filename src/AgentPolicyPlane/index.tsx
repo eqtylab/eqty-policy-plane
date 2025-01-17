@@ -1,3 +1,5 @@
+// src/AgentPolicyPlane/index.tsx
+
 import React, { useState, useEffect, useRef } from "react";
 
 import { AgentPolicyPlaneContainer } from "./container";
@@ -9,6 +11,7 @@ import { PlaneNav } from "./PlaneNav";
 import { PlaneTabs } from "./PlaneNav/Tabs";
 import { ComplianceLegend } from "./PlaneLegend";
 import { CertApp } from "./CertApp";
+import { WorkflowPlayer } from "./WorkflowPlayer";
 
 // import { CertApp } from "./CertApp";
 
@@ -98,211 +101,7 @@ const sampleControls = [
   },
 ];
 
-// export const AgentPolicyPlane = () => {
-//   const [isVisible, setIsVisible] = useState(false);
-//   const [showCertApp, setShowCertApp] = useState(false);
-//   const [activeAlertUID, setActiveAlertUID] = useState<string | null>(null);
-//   const [activeAlertControlDivId, setActiveAlertControlDivId] = useState<
-//     string | null
-//   >(null);
-//   const [showPolicyDetails, setShowPolicyDetails] = useState(false);
 
-//   const [tabs, setTabs] = React.useState([
-//     { name: "Workflow", current: true },
-//     { name: "Console", current: false },
-//     { name: "Audit", current: false },
-//   ]);
-
-//   useEffect(() => {
-//     // Short delay to ensure components have rendered
-//     const timer = setTimeout(() => {
-//       setIsVisible(true);
-//     }, 750);
-
-//     return () => clearTimeout(timer);
-//   }, []);
-
-//   const getSelectedTab = () => {
-//     return tabs.find((tab) => tab.current)?.name || tabs[0].name;
-//   };
-
-//   const handleTabChange = (selectedTabName: string) => {
-//     setTabs(
-//       tabs.map((tab) => ({
-//         ...tab,
-//         current: tab.name === selectedTabName,
-//       }))
-//     );
-//   };
-
-//   const handleControlClick = (controlId: string, fromDivId?: string | null) => {
-//     console.log("Clicked on:", controlId);
-//     setActiveAlertUID(controlId);
-
-//     setActiveAlertControlDivId(fromDivId || null);
-//   };
-
-//   const handleDismissAlert = () => {
-//     setActiveAlertUID(null);
-//   };
-
-//   const handleShowPolicyDetails = () => {
-//     setShowPolicyDetails(true);
-//   };
-
-//   const selectedTab = getSelectedTab();
-
-//   if (showCertApp) {
-//     return (
-//       <AgentPolicyPlaneContainer
-//         responsiveRender={() => (
-//           <ResponsiveContainer>
-//             <CertApp />
-//             <button
-//               onClick={() => {
-//                 setShowCertApp(false);
-//               }}
-//               className="tw-absolute tw--bottom-10 tw-left-0 tw-right-0 tw-m-auto tw-w-24 tw-bg-brandred tw-text-white tw-p-2 tw-rounded-lg"
-//             >
-//               Close
-//             </button>
-//           </ResponsiveContainer>
-//         )}
-//       >
-//         {/* absolute positioned bg-brandred button that closes showCertApp */}
-//         {null}
-//       </AgentPolicyPlaneContainer>
-//     );
-//   }
-
-//   // if (showCertApp) {
-//   //   // get the actual-wrap element
-//   //   const actualWrap = document.getElementById("actual-wrap");
-
-//   //   if (!actualWrap) {
-//   //     return null;
-//   //   }
-//   //   const screenHeight = window.innerHeight;
-//   //   const adjustedHeight =
-//   //     screenHeight - actualWrap.getBoundingClientRect().top;
-//   //   const scaleRatio = (adjustedHeight - 100) / screenHeight;
-
-//   //   const screenWidth = window.innerWidth;
-//   //   const adjustedWidth = screenWidth - actualWrap.getBoundingClientRect().left;
-//   //   const scaleRatioWidth = (adjustedWidth - 100) / screenWidth;
-
-//   //   return (
-//   //     <AgentPolicyPlaneContainer>
-//   //       <div className="tw-absolute tw-top-0 tw-left-0 tw-h-full tw-w-full">
-//   //         <div
-//   //           // ref={wrapperRef}
-//   //           className="tw-relative tw-w-screen tw-h-screen tw-flex "
-//   //           style={{
-//   //             transform: `scaleX(${scaleRatioWidth}) scaleY(${scaleRatio})`,
-//   //             transformOrigin: "top left",
-//   //             // marginLeft: ,
-//   //           }}
-//   //         >
-//   //           {/* <iframe
-//   //             src="https://navai-svg.vercel.app/"
-//   //             className="h-full w-full border-none ml-[25px]"
-//   //           /> */}
-//   //           <CertApp />
-//   //         </div>
-//   //         {/* a button that closes this */}
-//   //         {/* <button
-
-//   //           className="absolute top-0 right-0 m-4"
-//   //         >
-//   //           Close
-//   //         </button> */}
-//   //         {/* make button cooler (red bg-brandred) and float down in the middle on bottom edge: */}
-//   //         <button
-//   //           onClick={() => {
-//   //             setShowCertApp(false);
-//   //           }}
-//   //           className="tw-absolute tw--bottom-3 tw-left-0 tw-right-0 tw-m-auto  tw-w-24 tw-bg-brandred tw-text-white tw-p-2 tw-rounded-lg"
-//   //         >
-//   //           Close
-//   //         </button>
-//   //       </div>
-//   //     </AgentPolicyPlaneContainer>
-//   //   );
-//   // }
-
-//   return (
-//     <AgentPolicyPlaneContainer>
-//       {selectedTab === "Workflow" && (
-//         <div className="tw-text-white tw-flex tw-h-full tw-overflow-visible">
-//           <div
-//             className={`tw-w-full tw-flex tw-transition-opacity tw-duration-500 tw-ease-in-out tw-overflow-x-visible  ${
-//               isVisible ? "tw-opacity-100" : "tw-opacity-0"
-//             }`}
-//           >
-//             {/* left */}
-//             <ActiveControlsList
-//               data={sampleControls}
-//               onControlClick={handleControlClick}
-//             />
-//             {/* middle */}
-//             <div className="tw-h-full tw-grow tw-relative tw-flex tw-items-center ">
-//               <AgentGraph backgroundColor="transparent" textColor="white" />
-//               {showPolicyDetails && (
-//                 <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
-//                   <AnimationWrapper>
-//                     <AgentPolicyDetailsDialog
-//                       onClose={() => setShowPolicyDetails(false)}
-//                     />
-//                   </AnimationWrapper>
-//                 </div>
-//               )}
-//             </div>
-//             {/* right */}
-//             <div className="tw-relative">
-//               {activeAlertUID && (
-//                 <AnimationWrapper>
-//                   <AgentPolicyOverrideDialog
-//                     onCancel={handleDismissAlert}
-//                     onDetails={handleShowPolicyDetails}
-//                   />
-//                 </AnimationWrapper>
-//               )}
-//               {!activeAlertUID && (
-//                 // show empty div min-width 248
-//                 <div className="tw-w-[248px]"></div>
-//               )}
-//             </div>
-//           </div>
-//           {activeAlertUID && activeAlertControlDivId && (
-//             <>
-//               <DelayedRenderWrapper t={120}>
-//                 <DrawLine
-//                   startId={activeAlertControlDivId}
-//                   endId="ripple-point-eq"
-//                 />
-//               </DelayedRenderWrapper>
-//               <DelayedRenderWrapper t={480}>
-//                 <DrawLine
-//                   startId="ripple-point-eq"
-//                   endId="eq-control-dialog"
-//                   isEndpointInFlow={false}
-//                 />
-//               </DelayedRenderWrapper>
-//             </>
-//           )}
-//           <div className="tw-absolute tw-bottom-1 tw-w-full tw-left-[256px]">
-//             <ComplianceLegend />
-//           </div>
-//         </div>
-//       )}
-
-//       <div className="tw-absolute tw--top-12 tw-left-[256px]  tw-transform  tw--translate-y-[32px] tw-w-full tw-flex tw-z-10">
-//         <PlaneNav showCertApp={showCertApp} setShowCertApp={setShowCertApp} />
-//         <PlaneTabs tabs={tabs} onTabChange={handleTabChange} />
-//       </div>
-//     </AgentPolicyPlaneContainer>
-//   );
-// };
 
 export const AgentPolicyPlane = () => {
   const [showCertApp, setShowCertApp] = useState(false);
@@ -322,6 +121,13 @@ export const AgentPolicyPlane = () => {
     { name: "Console", current: false },
     { name: "Audit", current: false },
   ]);
+
+  const isWorkflowBlocked = (controls: typeof sampleControls) => {
+    return controls.some(control =>
+      (control.mandatory && !control.implemented) || // Mandatory but not implemented
+      control.isAlert // Has an active alert
+    );
+  };
 
   useEffect(() => {
     // Initial fade in
@@ -374,6 +180,11 @@ export const AgentPolicyPlane = () => {
   };
 
   const handleControlClick = (controlId: string, fromDivId?: string | null) => {
+    if (activeAlertUID && activeAlertUID !== controlId) {
+      alert("ho");
+      setActiveAlertUID(null);
+      setShowPolicyDetails(false);
+    }
     console.log("Clicked on:", controlId);
     setActiveAlertUID(controlId);
     setActiveAlertControlDivId(fromDivId || null);
@@ -381,6 +192,7 @@ export const AgentPolicyPlane = () => {
 
   const handleDismissAlert = () => {
     setActiveAlertUID(null);
+    setShowPolicyDetails(false);
   };
 
   const handleShowPolicyDetails = () => {
@@ -393,9 +205,8 @@ export const AgentPolicyPlane = () => {
     return (
       <div
         ref={fadeTransitionRef}
-        className={`tw-transition-opacity tw-duration-150 tw-ease-in-out ${
-          isVisible ? "tw-opacity-100" : "tw-opacity-0"
-        }`}
+        className={`tw-transition-opacity tw-duration-150 tw-ease-in-out ${isVisible ? "tw-opacity-100" : "tw-opacity-0"
+          }`}
       >
         {selectedTab === "Workflow" && (
           <div className="tw-text-white tw-flex tw-h-full tw-overflow-visible">
@@ -417,6 +228,13 @@ export const AgentPolicyPlane = () => {
                 )}
               </div>
               <div className="tw-relative">
+                <WorkflowPlayer
+                  isBlocked={isWorkflowBlocked(sampleControls)}
+                  isPlaying={false} // todo
+                  onPlay={() => null} // todo
+                  onPause={() => null} // todo
+                  onCancel={() => null} // todo
+                />
                 {activeAlertUID && (
                   <AnimationWrapper>
                     <AgentPolicyOverrideDialog

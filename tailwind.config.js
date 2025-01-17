@@ -1,3 +1,4 @@
+// File Path: tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   prefix: "tw-", // Add 'tw-' as the prefix

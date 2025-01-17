@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/Dialogs/PolicyDetails.tsx
 import React from "react";
 
 interface AgentPolicyDetailsDialogProps {
@@ -13,7 +14,7 @@ export const AgentPolicyDetailsDialog: React.FC<
       <div className=" tw-p-6 tw-space-y-6">Hey Im a policy</div>
       <button
         onClick={onClose}
-        className="tw-absolute tw-bottom-2 tw-right-0 tw-left-0 tw-m-auto tw-text-white tw-text-sm tw-p-2 tw-rounded-lg tw-bg-brandred"
+        className="tw-w-32 tw-absolute tw-bottom-2 tw-right-0 tw-left-0 tw-m-auto tw-text-white tw-text-sm tw-p-2 tw-rounded-lg tw-bg-brandred"
       >
         Close
       </button>

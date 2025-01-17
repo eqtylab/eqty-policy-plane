@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/AgentGraph/index.tsx
 import "./index.css";
 import React, { useCallback, useEffect, useState } from "react";
 import {
@@ -99,7 +100,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "reconfirm",
     position: { x: 450, y: 350 },
     data: {
-      title: "Reconfirm action for single source event",
+      title: "Grant AI-driven action in high-risk scenario",
       type: "policy-alert",
       animating: true,
       labelPosition: "right",
@@ -275,7 +276,7 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
       onInit={onInit}
       defaultEdgeOptions={defaultEdgeOptions}
       proOptions={proOptions}
-      // viewport={{ x: 0, y: -120, zoom: 1.05 }}
+    // viewport={{ x: 0, y: -120, zoom: 1.05 }}
     >
       {/* <Controls showInteractive={true} /> */}
       <svg>

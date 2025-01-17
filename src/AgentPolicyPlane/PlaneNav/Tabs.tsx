@@ -1,3 +1,5 @@
+// src/AgentPolicyPlane/PlaneNav/Tabs.tsx
+
 import React, { useState } from "react";
 
 // const tabs = [
@@ -39,9 +41,8 @@ export const PlaneTabs = ({
                 onClick={() => handleTabClick(tab.name)}
               >
                 <span
-                  className={`tw-block tw-px-1 tw-py-2 tw-transition-colors tw-duration-150 tw-cursor-pointer  ${
-                    selectedTab === tab.name ? "tw-text-indigo-400" : ""
-                  }`}
+                  className={`tw-block tw-px-1 tw-py-2 tw-transition-colors tw-duration-150 tw-cursor-pointer  ${selectedTab === tab.name ? "tw-text-indigo-400" : ""
+                    }`}
                 >
                   {tab.name}
                 </span>

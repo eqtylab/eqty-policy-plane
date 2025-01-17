@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/responsive.tsx
 import React, { useEffect, useState } from "react";
 
 const SVGViewportScaler = ({ children }: { children: React.ReactNode }) => {

@@ -1,3 +1,5 @@
+// src/AgentPolicyPlane/PlaneNav/index.tsx
+
 const PlaneNavIcon = () => (
   <svg
     width="32"
