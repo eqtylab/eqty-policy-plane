@@ -37,10 +37,10 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
         <div className="tw-flex tw-items-center tw-gap-2 tw-w-full">
           <div
             className={`tw-min-w-[8px] tw-min-h-[8px] tw-rounded-full ${isBlocked && !hasOverride
-                ? "tw-bg-brandalert"
-                : state.status === 'running'
-                  ? "tw-bg-brandblue tw-animate-pulse"
-                  : "tw-bg-gray-400"
+              ? "tw-bg-brandalert"
+              : state.status === 'running'
+                ? "tw-bg-brandblue tw-animate-pulse"
+                : "tw-bg-gray-400"
               }`}
           />
           <span className="tw-text-white tw-text-xs tw-truncate">
@@ -68,7 +68,7 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
             : (
               <button
                 onClick={onPause}
-                className="tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-bg-yellow-600 tw-text-white tw-text-sm hover:tw-bg-opacity-90"
+                className="tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-bg-yellow-600/2 tw-text-white tw-text-sm hover:tw-bg-opacity-90"
               >
                 Pause
               </button>
