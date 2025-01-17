@@ -28,7 +28,7 @@ or use demo here: [example-app](https://github.com/eqtylab/example-app)
 
 ```jsx
 // import the component AND the styles
-import { AgentPolicyPlane } from "eqty-agent-policy-plane";
+import { AgentPolicyPlaneApplication } from "eqty-agent-policy-plane";
 import "eqty-agent-policy-plane/dist/styles.css";
 
 const ReactComponentDemo = () => {
@@ -36,11 +36,11 @@ const ReactComponentDemo = () => {
     <div
       style={
         {
-          // IMPORTANT: The AgentPolicyPlane will with 100% width and height of the parent container
+          // IMPORTANT: The AgentPolicyPlaneApplication will with 100% width and height of the parent container
         }
       }
     >
-      <AgentPolicyPlane />
+      <AgentPolicyPlaneApplication />
     </div>
   );
 };
