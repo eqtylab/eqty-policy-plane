@@ -21,7 +21,10 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
   onPause,
   onCancel,
 }) => {
-  const { state } = usePipeline(); // Add this
+  const { state } = usePipeline();
+
+  // Add check for override
+  const hasOverride = state.userOverrides.length > 0;
 
   // Add completed nodes count
   const completedNodes = Object.values(state.nodes).filter(
@@ -31,47 +34,45 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
   return (
     <div className="tw-w-[264px] tw-min-w-[264px] tw-rounded-xl tw-bg-branddialogbg tw-p-4">
       <div className="tw-flex tw-flex-col tw-gap-3">
-
-        {/* Status indicator */}
         <div className="tw-flex tw-items-center tw-gap-2 tw-w-full">
           <div
-            className={`tw-min-w-[8px] tw-min-h-[8px] tw-rounded-full ${isBlocked
-              ? "tw-bg-brandalert"
-              : state.status === 'running'
-                ? "tw-bg-brandblue tw-animate-pulse"
-                : "tw-bg-gray-400"
+            className={`tw-min-w-[8px] tw-min-h-[8px] tw-rounded-full ${isBlocked && !hasOverride
+                ? "tw-bg-brandalert"
+                : state.status === 'running'
+                  ? "tw-bg-brandblue tw-animate-pulse"
+                  : "tw-bg-gray-400"
               }`}
           />
           <span className="tw-text-white tw-text-xs tw-truncate">
-            {isBlocked
-              ? "Workflow Blocked"
+            {isBlocked && !hasOverride
+              ? "Override Required"
               : state.status === 'running'
                 ? `Running. Completed: (${completedNodes}/11 Agents)`
                 : "Ready to Run"}
           </span>
         </div>
 
-        {/* Control buttons */}
         <div className="tw-flex tw-gap-2">
           {!isPlaying ? (
             <button
               onClick={onPlay}
-              disabled={isBlocked}
+              disabled={isBlocked && !hasOverride}
               className={`tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-text-white tw-text-sm
-                ${isBlocked
+                ${isBlocked && !hasOverride
                   ? "tw-bg-gray-600 tw-cursor-not-allowed"
                   : "tw-bg-brandblue hover:tw-bg-opacity-90"}`}
             >
               Start
             </button>
-          ) : (
-            <button
-              onClick={onPause}
-              className="tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-bg-yellow-600 tw-text-white tw-text-sm hover:tw-bg-opacity-90"
-            >
-              Pause
-            </button>
-          )}
+          )
+            : (
+              <button
+                onClick={onPause}
+                className="tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-bg-yellow-600 tw-text-white tw-text-sm hover:tw-bg-opacity-90"
+              >
+                Pause
+              </button>
+            )}
 
           {isPlaying && (
             <button

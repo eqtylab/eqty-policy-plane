@@ -125,7 +125,15 @@ const AgentPolicyPlane = () => {
   const [isVisible, setIsVisible] = useState(false);
   const fadeTransitionRef = useRef<HTMLDivElement | null>(null);
 
-  const { state, startPipeline } = usePipeline();
+  const { state, startPipeline, overrideGuardrail } = usePipeline();
+  const [overrideGranted, setOverrideGranted] = useState(false);
+
+  const handleOverride = () => {
+    // Use the overrideGuardrail function from the hook
+    overrideGuardrail("ctrl-3", "Manual override approved");
+    setOverrideGranted(true);
+    setActiveAlertUID(null);
+  };
 
 
   // Track whether content is actually invisible
@@ -245,20 +253,17 @@ const AgentPolicyPlane = () => {
               </div>
               <div className="tw-relative">
                 <WorkflowPlayer
-                  isBlocked={false} // isWorkflowBlocked(sampleControls)} // currently testing the simulation
-                  isPlaying={false} // todo
-                  onPlay={() => {
-                    console.log('debug: about to start')
-                    startPipeline()
-                  }} // todo // currently testing the simulation
-                  // onPlay={() => null} // todo
-                  onPause={() => null} // todo
-                  onCancel={() => null} // todo
+                  isBlocked={!overrideGranted}
+                  isPlaying={state.status === 'running'}
+                  onPlay={startPipeline}
+                  onPause={() => null}
+                  onCancel={() => null}
                 />
                 <div className="tw-w-[264px] tw-relative">
                   {activeAlertUID && (
                     <AnimationWrapper>
                       <AgentPolicyOverrideDialog
+                        onOverride={handleOverride}
                         onCancel={handleDismissAlert}
                         onDetails={handleShowPolicyDetails}
                       />
