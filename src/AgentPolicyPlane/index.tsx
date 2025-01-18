@@ -14,7 +14,7 @@ import { ComplianceLegend } from "./PlaneLegend";
 import { CertApp } from "./CertApp";
 import { WorkflowPlayer } from "./WorkflowPlayer";
 
-
+import { RunLogging } from "./ConsoleLogging";
 
 import { PipelineProvider } from "./context/PipelineContext";
 import { usePipeline } from "./context/PipelineContext";
@@ -107,13 +107,10 @@ const sampleControls = [
   },
 ];
 
-
-
-
 /**
  * This is the main functional application
- * 
- * @returns 
+ *
+ * @returns
  */
 const AgentPolicyPlane = () => {
   const [showCertApp, setShowCertApp] = useState(false);
@@ -135,7 +132,6 @@ const AgentPolicyPlane = () => {
     setActiveAlertUID(null);
   };
 
-
   // Track whether content is actually invisible
   const [isContentInvisible, setIsContentInvisible] = useState(false);
 
@@ -146,9 +142,10 @@ const AgentPolicyPlane = () => {
   ]);
 
   const isWorkflowBlocked = (controls: typeof sampleControls) => {
-    return controls.some(control =>
-      (control.mandatory && !control.implemented) || // Mandatory but not implemented
-      control.isAlert // Has an active alert
+    return controls.some(
+      (control) =>
+        (control.mandatory && !control.implemented) || // Mandatory but not implemented
+        control.isAlert // Has an active alert
     );
   };
 
@@ -229,17 +226,18 @@ const AgentPolicyPlane = () => {
     return (
       <div
         ref={fadeTransitionRef}
-        className={`tw-transition-opacity tw-duration-150 tw-ease-in-out ${isVisible ? "tw-opacity-100" : "tw-opacity-0"
-          }`}
+        className={`tw-transition-opacity tw-duration-150 tw-ease-in-out ${
+          isVisible ? "tw-opacity-100" : "tw-opacity-0"
+        }`}
       >
         {selectedTab === "Workflow" && (
-          <div className="tw-text-white tw-flex tw-h-full tw-overflow-visible">
+          <div className="tw-text-white tw-flex tw-h-full tw-flex-col tw-overflow-visible">
             <div className={`tw-w-full tw-flex tw-overflow-x-visible`}>
               <ActiveControlsList
                 data={sampleControls}
                 onControlClick={handleControlClick}
               />
-              <div className="tw-h-full tw-grow tw-relative tw-flex tw-items-center">
+              <div className=" tw-grow tw-relative tw-flex tw-items-center">
                 <AgentGraph backgroundColor="transparent" textColor="white" />
                 {showPolicyDetails && (
                   <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
@@ -250,11 +248,13 @@ const AgentPolicyPlane = () => {
                     </AnimationWrapper>
                   </div>
                 )}
+
+                <RunLogging />
               </div>
               <div className="tw-relative">
                 <WorkflowPlayer
                   isBlocked={!overrideGranted}
-                  isPlaying={state.status === 'running'}
+                  isPlaying={state.status === "running"}
                   onPlay={startPipeline}
                   onPause={() => null}
                   onCancel={() => null}
@@ -275,7 +275,6 @@ const AgentPolicyPlane = () => {
                     </AnimationWrapper>
                   )}
                 </div>
-
               </div>
             </div>
             {activeAlertUID && activeAlertControlDivId && (
@@ -295,6 +294,9 @@ const AgentPolicyPlane = () => {
                 </DelayedRenderWrapper>
               </>
             )}
+            {/* <div className="tw-relative tw-flex tw-w-full tw-flex-col flex-fill">
+              <ConsoleLogging />
+            </div> */}
             <div className="tw-absolute tw-bottom-1 tw-w-full tw-left-[256px]">
               <ComplianceLegend />
             </div>
@@ -339,11 +341,10 @@ const AgentPolicyPlane = () => {
   );
 };
 
-
 export const AgentPolicyPlaneApplication = () => {
   return (
     <PipelineProvider>
       <AgentPolicyPlane />
     </PipelineProvider>
   );
-}
+};

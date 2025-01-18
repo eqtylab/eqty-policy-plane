@@ -1,3 +1,4 @@
+// tailwind.config.js
 // File Path: tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -34,7 +35,22 @@ module.exports = {
         "cancel-gradient":
           "linear-gradient(90deg, rgba(83, 78, 96, 0.2) 0%, rgba(172, 161, 198, 0.2) 67%, rgba(203, 197, 220, 0.2) 99%)",
       },
+
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        fadeOut: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-in-out",
+        "fade-out": "fadeOut 0.5s ease-in-out",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
