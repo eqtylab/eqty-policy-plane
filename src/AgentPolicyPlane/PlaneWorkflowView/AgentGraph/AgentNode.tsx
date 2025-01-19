@@ -1,9 +1,10 @@
+// src/AgentPolicyPlane/WorkflowView/AgentGraph/AgentNode.tsx
 // src/AgentPolicyPlane/AgentGraph/AgentNode.tsx
 import React, { memo, type ReactNode } from "react";
 
 import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 
-import { NodeStatus } from "../context/types";
+import { NodeStatus } from "../../context/types";
 
 import { AgentIcon } from "./icons/AgentIcon";
 import { NemoIcon } from "./icons/NemoIcon";
@@ -53,37 +54,34 @@ const NodeLabel = ({
 };
 
 export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
-
-
   const getNodeStatusStyles = (status: NodeStatus | undefined) => {
     if (!status) {
       return {};
     }
 
     switch (status) {
-      case 'running':
+      case "running":
         return {
-          background: 'rgba(0, 157, 255, 0.15)',
-          animation: 'node-pulse 2s ease-in-out infinite'
+          background: "rgba(0, 157, 255, 0.15)",
+          animation: "node-pulse 2s ease-in-out infinite",
         };
-      case 'completed':
+      case "completed":
         return {
-          background: 'rgba(39, 174, 96, 0.2)',
-          boxShadow: '0 0 15px rgba(39, 174, 96, 0.5)'
+          background: "rgba(39, 174, 96, 0.2)",
+          boxShadow: "0 0 15px rgba(39, 174, 96, 0.5)",
         };
-      case 'error':
+      case "error":
         return {
-          background: 'rgba(255, 0, 0, 0.2)',
-          boxShadow: '0 0 15px rgba(255, 0, 0, 0.5)'
+          background: "rgba(255, 0, 0, 0.2)",
+          boxShadow: "0 0 15px rgba(255, 0, 0, 0.5)",
         };
       default:
         return {
-          background: 'rgba(255, 255, 255, 0.1)',
-          opacity: 0.5
+          background: "rgba(255, 255, 255, 0.1)",
+          opacity: 0.5,
         };
     }
   };
-
 
   if (data.type && data.type === "policy-alert") {
     return (
@@ -105,7 +103,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             <div
               id={data.animating ? "ripple-point-eq" : ""}
               className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandalertblue"
-            // data-eqalertoverride="false"
+              // data-eqalertoverride="false"
             >
               {/* add custom stylesheet here */}
               <style>
@@ -171,12 +169,18 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   }
   return (
     <>
-      <div className={`${data.parallelVertSize ? "wrapper-half" : "wrapper"} tw-relative`}
-        style={getNodeStatusStyles(data.status)}>
+      <div
+        className={`${
+          data.parallelVertSize ? "wrapper-half" : "wrapper"
+        } tw-relative`}
+        style={getNodeStatusStyles(data.status)}
+      >
         {/* Add rotating ring for running state */}
-        {data.status === 'running' && (
-          <div className="tw-absolute tw-inset-[-2px] tw-rounded-full tw-border-2 tw-border-transparent tw-border-t-blue-400"
-            style={{ animation: 'rotate-ring 1s linear infinite' }} />
+        {data.status === "running" && (
+          <div
+            className="tw-absolute tw-inset-[-2px] tw-rounded-full tw-border-2 tw-border-transparent tw-border-t-blue-400"
+            style={{ animation: "rotate-ring 1s linear infinite" }}
+          />
         )}
         <div className="inner">
           <AgentIcon />

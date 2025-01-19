@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-
 export const AgentPolicyPlaneContainer = ({
   children,
   responsiveRender,
@@ -46,7 +45,7 @@ export const AgentPolicyPlaneContainer = ({
     <div className="component-container">
       {responsiveRender && responsiveRender()}
       {!responsiveRender && (
-        <div className="tw-py-16 tw-px-9 tw-w-full tw-h-full tw-overflow-scroll">
+        <div className="tw-pb-14 tw-pt-12 tw-px-5 tw-w-full tw-h-full tw-overflow-scroll">
           {/* Outer container for centering */}
           <div className="tw-w-full tw-h-full tw-relative tw-flex tw-items-center tw-justify-center">
             {/* Grid container with exact dimensions */}
@@ -71,10 +70,8 @@ export const AgentPolicyPlaneContainer = ({
                   borderBottom: "1px solid rgba(65,66,67,0.2)",
                 }}
               >
-                <div className="tw-relative tw-z-10 tw-w-full tw-max-w-[1736px] tw-h-full tw-p-8">
-
+                <div className="tw-relative tw-z-10 tw-w-full tw-max-w-[1736px] tw-h-full ">
                   {children}
-
                 </div>
               </div>
             </div>

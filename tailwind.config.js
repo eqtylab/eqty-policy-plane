@@ -50,6 +50,83 @@ module.exports = {
         "fade-in": "fadeIn 2.5s ease-in-out",
         "fade-out": "fadeOut 0.5s ease-in-out",
       },
+
+      typography: (theme) => ({
+        // Create our custom "xs" variant
+        xs: {
+          css: {
+            // Base font size + line-height
+            fontSize: theme("fontSize.xs"), // ~0.75rem
+            lineHeight: theme("lineHeight.snug"), // ~1.375
+
+            // Paragraph spacing
+            p: {
+              marginTop: "0.5em",
+              marginBottom: "0.5em",
+            },
+
+            // Headings
+            h1: {
+              fontSize: theme("fontSize.sm"), // ~0.875rem
+              marginTop: "1em",
+              marginBottom: "0.5em",
+              lineHeight: theme("lineHeight.tight"), // ~1.25
+            },
+            h2: {
+              fontSize: theme("fontSize.xs"), // ~0.75rem
+              marginTop: "0.75em",
+              marginBottom: "0.4em",
+              lineHeight: theme("lineHeight.snug"),
+            },
+            h3: {
+              fontSize: theme("fontSize.xs"),
+              marginTop: "0.6em",
+              marginBottom: "0.3em",
+              fontWeight: theme("fontWeight.semibold"),
+            },
+            // ... repeat for h4, h5, h6 if you like
+
+            // Lists
+            ul: {
+              marginTop: "0.5em",
+              marginBottom: "0.5em",
+              paddingLeft: "1.25em",
+            },
+            "ul li": {
+              marginTop: "0.25em",
+              marginBottom: "0.25em",
+            },
+            ol: {
+              marginTop: "0.5em",
+              marginBottom: "0.5em",
+              paddingLeft: "1.25em",
+            },
+            "ol li": {
+              marginTop: "0.25em",
+              marginBottom: "0.25em",
+            },
+
+            // Blockquotes
+            blockquote: {
+              marginTop: "0.6em",
+              marginBottom: "0.6em",
+              paddingLeft: "1em",
+              fontStyle: "italic",
+              borderLeftWidth: "2px",
+            },
+
+            // Code blocks
+            "pre code": {
+              fontSize: theme("fontSize.xs"),
+              lineHeight: theme("lineHeight.snug"),
+            },
+            // Inline code
+            code: {
+              fontSize: theme("fontSize.xs"),
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require("@tailwindcss/typography")],

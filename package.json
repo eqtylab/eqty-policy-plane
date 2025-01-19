@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "dist/styles.css"
+    "dist/styles.css",
+    "dist/assets"
   ],
   "scripts": {
     "build": "rollup -c",
@@ -41,8 +42,11 @@
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "@tailwindcss/typography": "^0.5.16",
+    "dockview": "^3.0.2",
     "gsap": "^3.12.5",
     "lucide-react": "^0.473.0",
+    "react-markdown": "^9.0.3",
+    "rollup-plugin-copy": "^3.5.0",
     "zustand": "^5.0.2"
   }
 }

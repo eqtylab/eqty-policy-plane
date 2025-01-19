@@ -3,21 +3,23 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import { AgentPolicyPlaneContainer } from "./container";
-import { ActiveControlsList } from "./ActiveControlsList";
-import { AgentGraph } from "./AgentGraph";
-import { AgentPolicyOverrideDialog } from "./Dialogs/OverridePolicy";
-import { AgentPolicyDetailsDialog } from "./Dialogs/PolicyDetails";
-import { AgentPolicyWorkflowOverviewDialog } from "./Dialogs/WorkflowOverview";
+import { ActiveControlsList } from "./PlaneWorkflowView/ActiveControlsList";
+import { AgentGraph } from "./PlaneWorkflowView/AgentGraph";
+import { AgentPolicyOverrideDialog } from "./PlaneWorkflowView/Dialogs/OverridePolicy";
+import { AgentPolicyDetailsDialog } from "./PlaneWorkflowView/Dialogs/PolicyDetails";
+import { AgentPolicyWorkflowOverviewDialog } from "./PlaneWorkflowView/Dialogs/WorkflowOverview";
 import { PlaneNav } from "./PlaneNav";
 import { PlaneTabs } from "./PlaneNav/Tabs";
-import { ComplianceLegend } from "./PlaneLegend";
+import { ComplianceLegend } from "./PlaneWorkflowView/ComplianceLegend";
 import { CertApp } from "./CertApp";
-import { WorkflowPlayer } from "./WorkflowPlayer";
+import { WorkflowPlayer } from "./PlaneWorkflowView/WorkflowPlayer";
 
 import { RunLogging } from "./ConsoleLogging";
 
 import { PipelineProvider } from "./context/PipelineContext";
 import { usePipeline } from "./context/PipelineContext";
+
+import { RunDock } from "./PlaneConsoleView";
 
 // import { CertApp } from "./CertApp";
 
@@ -136,8 +138,8 @@ const AgentPolicyPlane = () => {
   const [isContentInvisible, setIsContentInvisible] = useState(false);
 
   const [tabs, setTabs] = React.useState([
-    { name: "Workflow", current: true },
-    { name: "Console", current: false },
+    { name: "Workflow", current: false },
+    { name: "Console", current: true },
     { name: "Audit", current: false },
   ]);
 
@@ -226,12 +228,12 @@ const AgentPolicyPlane = () => {
     return (
       <div
         ref={fadeTransitionRef}
-        className={`tw-transition-opacity tw-duration-150 tw-ease-in-out ${
+        className={`tw-transition-opacity tw-duration-150 tw-ease-in-out tw-h-full ${
           isVisible ? "tw-opacity-100" : "tw-opacity-0"
         }`}
       >
         {selectedTab === "Workflow" && (
-          <div className="tw-text-white tw-flex tw-h-full tw-flex-col tw-overflow-visible">
+          <div className="tw-text-white tw-flex tw-h-full tw-flex-col tw-overflow-visible tw-p-6">
             <div className={`tw-w-full tw-flex tw-overflow-x-visible`}>
               <ActiveControlsList
                 data={sampleControls}
@@ -248,8 +250,6 @@ const AgentPolicyPlane = () => {
                     </AnimationWrapper>
                   </div>
                 )}
-
-                <RunLogging />
               </div>
               <div className="tw-relative">
                 <WorkflowPlayer
@@ -297,12 +297,18 @@ const AgentPolicyPlane = () => {
             {/* <div className="tw-relative tw-flex tw-w-full tw-flex-col flex-fill">
               <ConsoleLogging />
             </div> */}
-            <div className="tw-absolute tw-bottom-1 tw-w-full tw-left-[256px]">
+            <div className="tw-absolute tw-bottom-2 tw-w-full tw-left-[256px]">
               <ComplianceLegend />
             </div>
           </div>
         )}
-        {selectedTab === "Console" && <div>Console Content</div>}
+        {selectedTab === "Console" && (
+          <div className="tw-relative tw-flex tw-w-full tw-flex-col tw-h-full tw-p-6">
+            <div className="tw-h-full tw-w-full">
+              <RunDock />
+            </div>
+          </div>
+        )}
         {selectedTab === "Audit" && <div>Audit Content</div>}
       </div>
     );
@@ -337,6 +343,7 @@ const AgentPolicyPlane = () => {
         <PlaneNav showCertApp={showCertApp} setShowCertApp={setShowCertApp} />
         <PlaneTabs tabs={tabs} onTabChange={handleTabChange} />
       </div>
+      <RunLogging />
     </AgentPolicyPlaneContainer>
   );
 };

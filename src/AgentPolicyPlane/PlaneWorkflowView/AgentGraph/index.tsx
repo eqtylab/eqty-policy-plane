@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/WorkflowView/AgentGraph/index.tsx
 // src/AgentPolicyPlane/AgentGraph/index.tsx
 import "./index.css";
 import React, { useCallback, useEffect, useState } from "react";
@@ -11,10 +12,9 @@ import {
   type Edge,
   type OnConnect,
   type ReactFlowInstance,
-
 } from "@xyflow/react";
 
-import { usePipeline } from "../context/PipelineContext";
+import { usePipeline } from "../../context/PipelineContext";
 
 import AgentNode, { type AgentNodeData } from "./AgentNode";
 import AgentEdge from "./AgentEdge";
@@ -229,35 +229,36 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   useEffect(() => {
-    setNodes(nodes =>
-      nodes.map(node => ({
+    setNodes((nodes) =>
+      nodes.map((node) => ({
         ...node,
         data: {
           ...node.data,
-          status: pipelineState.nodes[node.id]?.status || 'idle'
-        }
+          status: pipelineState.nodes[node.id]?.status || "idle",
+        },
       }))
     );
   }, [pipelineState, setNodes]);
 
   useEffect(() => {
-    setEdges(edges =>
-      edges.map(edge => {
+    setEdges((edges) =>
+      edges.map((edge) => {
         const sourceNode = pipelineState.nodes[edge.source];
         const targetNode = pipelineState.nodes[edge.target];
 
         // Edge should be animated if source is running
-        const animated = sourceNode?.status === 'running';
+        const animated = sourceNode?.status === "running";
 
         // Edge should be dimmed if target hasn't started yet
-        const style = targetNode?.status === 'idle' ?
-          { opacity: 0.2, stroke: 'rgb(222, 222, 222)' } :
-          { opacity: 1, stroke: 'rgb(222, 222, 222)' };
+        const style =
+          targetNode?.status === "idle"
+            ? { opacity: 0.2, stroke: "rgb(222, 222, 222)" }
+            : { opacity: 1, stroke: "rgb(222, 222, 222)" };
 
         return {
           ...edge,
           animated,
-          style
+          style,
         };
       })
     );
@@ -313,7 +314,7 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
       onInit={onInit}
       defaultEdgeOptions={defaultEdgeOptions}
       proOptions={proOptions}
-    // viewport={{ x: 0, y: -120, zoom: 1.05 }}
+      // viewport={{ x: 0, y: -120, zoom: 1.05 }}
     >
       {/* <Controls showInteractive={true} /> */}
       <svg>
