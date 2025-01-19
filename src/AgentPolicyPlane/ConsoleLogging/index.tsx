@@ -2,22 +2,22 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 
 import {
-  FileCode,
   Terminal,
   CircleAlert,
   Clock,
   Database,
-  ChevronRight,
-  ChevronDown,
   ExternalLink,
   Shield,
   UserCheck,
   CheckCircle,
 } from "lucide-react";
 
-import { LogEntry, LogLevel, AgentType } from "./types";
+import { LogEntry } from "../context/types.logs";
+import { LogLevel } from "../context/types.logs";
 
-const agentColorMap: Record<AgentType, string> = {
+import { usePipeline } from "../context/PipelineContext";
+
+const agentColorMap: Record<string, string> = {
   "video-collector": "tw-text-blue-400",
   "video-analyzer": "tw-text-purple-400",
   "partner-analyzer": "tw-text-green-400",
@@ -474,338 +474,21 @@ function ExpandedDetails({ entry }: { entry: LogEntry }) {
   }
 }
 
-// const simulatedLogs: Omit<LogEntry, "id" | "timestamp" | "hash">[] = [
-//   {
-//     content: "Video Feed Collector established connection with city cameras",
-//     details:
-//       "Successfully streaming from 12 surveillance points in flood-risk areas",
-//     type: "info",
-//     agent: {
-//       id: "video-1",
-//       name: "Video Collector",
-//       type: "video-collector",
-//     },
-//     metrics: {
-//       executionTime: 234,
-//       apiCalls: [{ service: "surveillance-api", duration: 123, status: 200 }],
-//     },
-//     expandable: true,
-//   },
-//   {
-//     content: "Social Media Monitor detected spike in flooding hashtags",
-//     details:
-//       "Multiple distress calls identified on Twitter and Facebook in downtown area",
-//     type: "warning",
-//     agent: {
-//       id: "social-1",
-//       name: "Social Monitor",
-//       type: "social-monitor",
-//     },
-//     expandable: true,
-//   },
-//   {
-//     content: "Service Call Analyzer detected anomaly in emergency calls",
-//     details:
-//       "400% increase in water-related emergency calls in past 30 minutes",
-//     type: "critical",
-//     agent: {
-//       id: "calls-1",
-//       name: "Service Call Analyzer",
-//       type: "service-call-analyzer",
-//     },
-//     output: {
-//       type: "chart",
-//       id: "anomaly-001",
-//       location: "/outputs/anomaly-001",
-//     },
-//     expandable: true,
-//   },
-//   {
-//     content: "NEMO Guardrail Analysis Complete",
-//     details: "Risk assessment passed - Emergency response authorized",
-//     type: "guardrail-pass",
-//     agent: {
-//       id: "nemo-1",
-//       name: "NEMO Guardrail",
-//       type: "nemo-guardrail",
-//     },
-//     metrics: {
-//       executionTime: 456,
-//     },
-//     expandable: true,
-//   },
-//   {
-//     content: "Response Plan Generated",
-//     details: "Emergency response plan created and validated",
-//     type: "agent-complete",
-//     agent: {
-//       id: "plan-1",
-//       name: "Plan Creator",
-//       type: "plan-creator",
-//     },
-//     output: {
-//       type: "report",
-//       id: "plan-001",
-//       location: "/outputs/plan-001",
-//     },
-//     expandable: true,
-//   },
-// ];
-
-export const FullLogOut: LogEntry[] = [
-  {
-    id: 1,
-    content: "Pipeline execution started",
-    details: "Initializing concurrent data collection paths",
-    timestamp: "14:00:00",
-    type: "info",
-    hash: "a1b2c3d4e5f6g7h8",
-    expandable: true,
-  },
-  {
-    id: 2,
-    content: "Video Feed Collector established connection",
-    details:
-      "Successfully connected to surveillance network - streaming from 8 critical flood zone cameras",
-    timestamp: "14:00:02",
-    type: "info",
-    agent: {
-      id: "video-1",
-      name: "Video Feed Collector",
-      type: "video-collector",
-    },
-    metrics: {
-      executionTime: 1850,
-      apiCalls: [
-        {
-          service: "surveillance-api",
-          duration: 1200,
-          status: 200,
-        },
-      ],
-    },
-    expandable: true,
-  },
-  {
-    id: 3,
-    content: "Video Analysis Complete",
-    details:
-      "NVIDIA mixed-modal LLM analysis detected rising water levels in zones A3 and B2",
-    timestamp: "14:00:45",
-    type: "agent-complete",
-    agent: {
-      id: "analyze-1",
-      name: "Video Analyzer",
-      type: "video-analyzer",
-    },
-    output: {
-      type: "report",
-      id: "video-analysis-001",
-      location: "/outputs/video/001",
-    },
-    expandable: true,
-  },
-  {
-    id: 4,
-    content: "Partner Report Collection Started",
-    details: "Retrieving reports from 5 local EMS stations",
-    timestamp: "14:00:03",
-    type: "info",
-    agent: {
-      id: "partner-1",
-      name: "Partner Report Analyzer",
-      type: "partner-analyzer",
-    },
-    expandable: true,
-  },
-  {
-    id: 5,
-    content: "Service Call Analysis Alert",
-    details:
-      "Detected 300% increase in water-related emergency calls in past 15 minutes",
-    timestamp: "14:00:15",
-    type: "warning",
-    agent: {
-      id: "calls-1",
-      name: "Service Call Analyzer",
-      type: "service-call-analyzer",
-    },
-    output: {
-      type: "chart",
-      id: "call-pattern-001",
-      location: "/outputs/calls/patterns/001",
-    },
-    expandable: true,
-  },
-  {
-    id: 6,
-    content: "Social Media Monitor Alert",
-    details:
-      "Multiple verified distress calls detected on Twitter and Telegram in downtown area",
-    timestamp: "14:00:20",
-    type: "warning",
-    agent: {
-      id: "social-1",
-      name: "Social Media Monitor",
-      type: "social-monitor",
-    },
-    expandable: true,
-  },
-  {
-    id: 7,
-    content: "OSINT Summary Generated",
-    details: "Compiled emergency situation report from all OSINT sources",
-    timestamp: "14:01:00",
-    type: "agent-output",
-    agent: {
-      id: "summary-1",
-      name: "Information Summarizer",
-      type: "summarizer",
-    },
-    output: {
-      type: "markdown",
-      id: "osint-summary-001",
-      location: "/outputs/summary/001",
-    },
-    expandable: true,
-  },
-  {
-    id: 8,
-    content: "Nemo Guardrail Check Initiated",
-    details: "Analyzing risk factors and validating response necessity",
-    timestamp: "14:01:15",
-    type: "info",
-    agent: {
-      id: "nemo-1",
-      name: "Nemo Guardrail",
-      type: "nemo-guardrail",
-    },
-    expandable: true,
-  },
-  {
-    id: 9,
-    content: "Human Override Required",
-    details: "High-risk scenario detected - requires manual authorization",
-    timestamp: "14:01:30",
-    type: "warning",
-    agent: {
-      id: "policy-1",
-      name: "Policy Override Validator",
-      type: "policy-validator",
-    },
-    expandable: true,
-  },
-  {
-    id: 10,
-    content: "Human Override Granted",
-    details: "Emergency response protocol override approved by operator",
-    timestamp: "14:02:00",
-    type: "human-override",
-    metrics: {
-      executionTime: 500,
-    },
-    expandable: true,
-  },
-  {
-    id: 11,
-    content: "Response Plan Generated",
-    details: "Comprehensive emergency response plan created",
-    timestamp: "14:02:30",
-    type: "agent-complete",
-    agent: {
-      id: "plan-1",
-      name: "Response Plan Creator",
-      type: "plan-creator",
-    },
-    output: {
-      type: "report",
-      id: "response-plan-001",
-      location: "/outputs/plans/001",
-    },
-    expandable: true,
-  },
-  {
-    id: 12,
-    content: "First Responder Notification Complete",
-    details:
-      "Successfully notified all emergency response units via Twilio and Apptek",
-    timestamp: "14:03:00",
-    type: "success",
-    agent: {
-      id: "notify-1",
-      name: "First Responder Notifier",
-      type: "responder-notifier",
-    },
-    metrics: {
-      apiCalls: [
-        {
-          service: "twilio-api",
-          duration: 800,
-          status: 200,
-        },
-        {
-          service: "apptek-api",
-          duration: 600,
-          status: 200,
-        },
-      ],
-    },
-    expandable: true,
-  },
-];
-
 export function RunLogging() {
   const [isOpen, setIsOpen] = useState(false);
   const [logEntries, setLogEntries] = useState<LogEntry[]>([]);
-  const [lastId, setLastId] = useState(0);
-  const [addedEntriesCount, setAddedEntriesCount] = useState(0);
 
-  // Generate hash for audit
-  const generateHash = async (entry: LogEntry) => {
-    const data = JSON.stringify({
-      timestamp: entry.timestamp,
-      content: entry.content,
-      agent: entry.agent?.id,
-    });
-    const hashBuffer = await crypto.subtle.digest(
-      "SHA-256",
-      new TextEncoder().encode(data)
-    );
-    const h = Array.from(new Uint8Array(hashBuffer))
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
-
-    // replace first 3 chars with bak
-    return `bak${h.slice(3)}`;
-  };
+  const { state: pipelineState } = usePipeline();
 
   useEffect(() => {
-    if (addedEntriesCount >= FullLogOut.length) {
-      return;
-    }
-
-    const randomInterval = Math.floor(Math.random() * 13) + 4;
-
-    const intervalId = setInterval(async () => {
-      const baseEntry = FullLogOut[addedEntriesCount];
-      const newEntry: LogEntry = {
-        ...baseEntry,
-        id: lastId + 1,
-        timestamp: new Date().toISOString().substr(11, 8),
-        hash: await generateHash({
-          ...baseEntry,
-          id: lastId + 1,
-          timestamp: new Date().toISOString().substr(11, 8),
-        } as LogEntry),
-      };
-
-      setLogEntries((prev) => [...prev, newEntry].slice(-100));
-      setLastId((prev) => prev + 1);
-      setAddedEntriesCount((prev) => prev + 1);
-    }, randomInterval * 150);
-
-    return () => clearInterval(intervalId);
-  }, [lastId, addedEntriesCount]);
+    // nodes: Record<string, NodeState>;
+    // aggregate all nodes.logs into single array
+    const allLogs = Object.values(pipelineState.nodes).reduce(
+      (acc, node) => acc.concat(node.logs),
+      [] as LogEntry[]
+    );
+    setLogEntries(allLogs);
+  }, [pipelineState.nodes]);
 
   return (
     <ConsoleDrawer

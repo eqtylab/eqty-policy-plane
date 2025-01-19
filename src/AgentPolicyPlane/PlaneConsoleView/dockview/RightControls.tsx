@@ -1,4 +1,4 @@
-// src/AgentPolicyPlane/PlaneConsoleView/dock/RightControls.tsx
+// src/AgentPolicyPlane/PlaneConsoleView/dockview/RightControls.tsx
 import * as React from "react";
 import {
   Download,

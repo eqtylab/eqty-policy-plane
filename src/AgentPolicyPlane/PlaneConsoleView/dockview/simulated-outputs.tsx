@@ -1,6 +1,4 @@
-// src/AgentPolicyPlane/PlaneConsoleView/dock/sim.tsx
-// src/AgentPolicyPlane/sample-outputs.ts
-
+// src/AgentPolicyPlane/PlaneConsoleView/dockview/simulated-outputs.tsx
 export const OUTPUT_1 = `## Video Analysis Report
 **Timestamp:** 2025-01-19 14:30 EST
 **Location:** Downtown River District

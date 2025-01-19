@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/PlaneWorkflowView/WorkflowPlayer/index.tsx
 // src/AgentPolicyPlane/WorkflowView/WorkflowPlayer/index.tsx
 // src/AgentPolicyPlane/WorkflowPlayer/index.tsx
 import React from "react";
@@ -5,7 +6,7 @@ import React from "react";
 // import { usePipeline } from "../redux/state/PipelineContext";
 import { usePipeline } from "../../context/PipelineContext";
 
-import { pipelineConfig } from "../../context/demo-simulation-pipeline";
+import { pipelineConfig } from "../../context/simulation/demo-simulation-pipeline";
 
 interface WorkflowPlayerProps {
   isBlocked?: boolean; // Changed from isDisabled to be more semantic

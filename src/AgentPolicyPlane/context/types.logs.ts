@@ -1,18 +1,4 @@
-// src/AgentPolicyPlane/ConsoleLogging/types.ts
-
-export type AgentType =
-  | "video-collector"
-  | "video-analyzer"
-  | "partner-analyzer"
-  | "service-call-analyzer"
-  | "social-monitor"
-  | "summarizer"
-  | "nemo-guardrail"
-  | "event-prioritizer"
-  | "policy-validator"
-  | "plan-creator"
-  | "responder-notifier";
-
+// src/AgentPolicyPlane/context/types.logs.ts
 export type LogLevel =
   | "info"
   | "success"
@@ -49,11 +35,11 @@ export interface LogEntry {
   agent?: {
     id: string;
     name: string;
-    type: AgentType;
+    type: string;
   };
   output?: OutputReference;
   metrics?: MetricData;
-  hash?: string; // Cryptographic hash for audit
+  hash: string; // Cryptographic hash for audit
   expandable?: boolean;
   expanded?: boolean;
 }

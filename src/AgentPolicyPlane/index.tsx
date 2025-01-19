@@ -138,8 +138,8 @@ const AgentPolicyPlane = () => {
   const [isContentInvisible, setIsContentInvisible] = useState(false);
 
   const [tabs, setTabs] = React.useState([
-    { name: "Workflow", current: false },
-    { name: "Console", current: true },
+    { name: "Workflow", current: true },
+    { name: "Console", current: false },
     { name: "Audit", current: false },
   ]);
 

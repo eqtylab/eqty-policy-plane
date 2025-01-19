@@ -1,11 +1,11 @@
+// src/AgentPolicyPlane/PlaneWorkflowView/AgentGraph/AgentNode.tsx
 // src/AgentPolicyPlane/WorkflowView/AgentGraph/AgentNode.tsx
 // src/AgentPolicyPlane/AgentGraph/AgentNode.tsx
 import React, { memo, type ReactNode } from "react";
 
 import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 
-import { NodeStatus } from "../../context/types";
-
+import { NodeStatus } from "../../context/types.nodes";
 import { AgentIcon } from "./icons/AgentIcon";
 import { NemoIcon } from "./icons/NemoIcon";
 
