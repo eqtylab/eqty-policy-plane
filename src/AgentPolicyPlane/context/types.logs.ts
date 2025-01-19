@@ -39,7 +39,7 @@ export interface LogEntry {
   };
   output?: OutputReference;
   metrics?: MetricData;
-  hash: string; // Cryptographic hash for audit
+  hash: string;
   expandable?: boolean;
   expanded?: boolean;
 }

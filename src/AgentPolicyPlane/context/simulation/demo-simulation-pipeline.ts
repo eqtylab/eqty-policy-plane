@@ -24,7 +24,6 @@ const nodes: Record<string, NodeConfig> = {
           type: "policy-validator",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bakY7wf3b4a2",
       },
       {
@@ -37,7 +36,6 @@ const nodes: Record<string, NodeConfig> = {
           executionTime: 500,
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak6f2Y7e3a4",
       },
       {
@@ -82,7 +80,6 @@ const nodes: Record<string, NodeConfig> = {
           ],
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak1a2k3e4d5",
       },
     ],
@@ -132,7 +129,6 @@ const nodes: Record<string, NodeConfig> = {
           location: "/outputs/video/001",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "baklf7600a2r",
       },
     ],
@@ -174,7 +170,6 @@ const nodes: Record<string, NodeConfig> = {
           type: "partner-analyzer",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak3a4k5e88q",
       },
     ],
@@ -215,7 +210,6 @@ const nodes: Record<string, NodeConfig> = {
           location: "/outputs/calls/patterns/001",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak5a6k7e8d9",
       },
     ],
@@ -256,7 +250,6 @@ const nodes: Record<string, NodeConfig> = {
           type: "social-monitor",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak0a1k2e3d4",
       },
     ],
@@ -303,7 +296,6 @@ const nodes: Record<string, NodeConfig> = {
           location: "/outputs/summary/001",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak4a5k6e7d8",
       },
     ],
@@ -347,7 +339,6 @@ const nodes: Record<string, NodeConfig> = {
           type: "nemo-guardrail",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak9a0k1e2d3",
       },
     ],
@@ -410,7 +401,6 @@ const nodes: Record<string, NodeConfig> = {
           location: "/outputs/priorities/001",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak2a3k4e5d6",
       },
     ],
@@ -475,7 +465,6 @@ const nodes: Record<string, NodeConfig> = {
           location: "/outputs/plans/001",
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak2a3k4e5d6",
       },
     ],
@@ -526,7 +515,6 @@ const nodes: Record<string, NodeConfig> = {
           ],
         },
         expandable: true,
-        // Random CID blake3 (starts with "bak") - len(12)
         hash: "bak7a8k9e0d1",
       },
     ],
@@ -545,6 +533,4 @@ const nodes: Record<string, NodeConfig> = {
 
 export const pipelineConfig: PipelineConfig = {
   nodes,
-  logFrequency: 1000,
-  guardrailCheckFrequency: 2000,
 };

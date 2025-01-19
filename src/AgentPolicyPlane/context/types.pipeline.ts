@@ -38,6 +38,4 @@ export interface PipelineState {
 
 export interface PipelineConfig {
   nodes: Record<string, NodeConfig>;
-  logFrequency?: number; // How often to emit logs (ms)
-  guardrailCheckFrequency?: number; // How often to check guardrails (ms)
 }

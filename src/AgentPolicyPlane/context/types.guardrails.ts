@@ -4,8 +4,8 @@ export interface GuardrailAlert {
   message: string;
   timestamp: number;
   severity: "warning" | "error";
-  nodeId: string; // Reference to the node that triggered the guardrail
-  controlId: string; // Reference to the control that was violated
+  nodeId: string;
+  controlId: string;
   context?: {
     riskFactors: string[];
     evidenceSnippets: string[];

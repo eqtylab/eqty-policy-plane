@@ -11,7 +11,6 @@ import { PipelineState, PipelineStatus } from "./types.pipeline";
 import { pipelineReducer, PipelineAction } from "./pipelineReducer";
 import { PipelineOrchestrator } from "./PipelineOrchestrator";
 import { pipelineConfig } from "./simulation/demo-simulation-pipeline";
-import { LogEntry } from "./types.logs";
 
 interface PipelineContextValue {
   state: PipelineState;
@@ -19,7 +18,6 @@ interface PipelineContextValue {
   pausePipeline: () => void;
   cancelPipeline: () => void;
   overrideGuardrail: (alertId: string, reason: string) => void;
-  getAllCompletedLogOutputs: () => LogEntry[];
 }
 
 const initialState: PipelineState = {
@@ -105,12 +103,6 @@ export function PipelineProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const getAllCompletedLogOutputs = useCallback(() => {
-    return Object.values(state.nodes)
-      .filter((node) => node.status === "completed")
-      .flatMap((node) => node.logs);
-  }, [state.nodes]);
-
   const value = useMemo(
     () => ({
       state,
@@ -118,16 +110,8 @@ export function PipelineProvider({ children }: { children: React.ReactNode }) {
       pausePipeline,
       cancelPipeline,
       overrideGuardrail,
-      getAllCompletedLogOutputs,
     }),
-    [
-      state,
-      startPipeline,
-      pausePipeline,
-      cancelPipeline,
-      overrideGuardrail,
-      getAllCompletedLogOutputs,
-    ]
+    [state, startPipeline, pausePipeline, cancelPipeline, overrideGuardrail]
   );
 
   return (
