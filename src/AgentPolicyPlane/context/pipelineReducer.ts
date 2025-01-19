@@ -22,7 +22,7 @@ export type PipelineAction =
     }
   | {
       type: "COMPLETE_NODE";
-      payload: { nodeId: string; outputs: OutputTemplate[] };
+      payload: { nodeId: string; outputs?: OutputTemplate[] };
     }
   | {
       type: "OVERRIDE_GUARDRAIL";
@@ -61,7 +61,9 @@ const logStateChange = (
       console.log("Node Completion:", {
         nodeId: action.payload.nodeId,
         completionTime: new Date(),
-        outputTypes: action.payload.outputs.map((o) => o.type),
+        outputTypes: action.payload.outputs
+          ? action.payload.outputs.map((o) => o.component)
+          : [],
         totalCompletedNodes: nextState.stats?.completedNodes,
       });
       break;
@@ -164,7 +166,7 @@ export function pipelineReducer(
             ...state.nodes[action.payload.nodeId],
             status: "completed",
             endTime: Date.now(),
-            outputs: action.payload.outputs,
+            outputs: action.payload.outputs || [],
           },
         },
         stats: {

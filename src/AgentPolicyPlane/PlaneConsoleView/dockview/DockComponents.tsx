@@ -82,7 +82,7 @@ export const dockviewComponents = {
     );
   },
   riskAssesment: (props: any) => {
-    const assessment = props.params?.assessment;
+    const assessment = props.params?.content;
     if (!assessment)
       return <div className="tw-text-white">No assessment data</div>;
 
@@ -143,7 +143,7 @@ export const dockviewComponents = {
   audio: (props: any) => {
     return (
       <div className={commonTWStyles}>
-        <AudioPlayerStack audioFiles={props.params.audioFiles} />
+        <AudioPlayerStack audioFiles={props.params.content} />
       </div>
     );
   },
@@ -151,11 +151,11 @@ export const dockviewComponents = {
     return (
       <div className={commonTWStyles}>
         {/* Assuming we're using a charting library like recharts */}
-        {props.params?.chartData ? (
+        {props.params?.content ? (
           <div className="tw-bg-gray-800/50 tw-rounded-lg tw-p-4 tw-h-full">
             {/* Chart component would go here */}
             <div className="tw-text-white">
-              {JSON.stringify(props.params.chartData, null, 2)}
+              {JSON.stringify(props.params.content, null, 2)}
             </div>
           </div>
         ) : (
@@ -189,15 +189,15 @@ export const dockviewComponents = {
     return (
       <div className={commonTWStyles}>
         <Markdown className="tw-prose-xs tw-h-full tw-w-full tw-overflow-auto tw-rounded tw-bg-transparent tw-p-4 tw-text-white">
-          {props.params && props.params.markdown
-            ? props.params.markdown
+          {props.params && props.params.content
+            ? props.params.content
             : "# no markdown"}
         </Markdown>
       </div>
     );
   },
   toolNotify: (props: any) => {
-    const notifications = props.params?.notifications;
+    const notifications = props.params?.content;
     if (!notifications)
       return <div className="tw-text-white">No notifications</div>;
 

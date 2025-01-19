@@ -145,10 +145,11 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "markdown",
-        content: OUTPUT_1,
+        id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+        title: "Video Feed Analysis",
+        component: "markdown",
+        params: { content: OUTPUT_1 },
         metadata: {
-          title: "Video Feed Analysis",
           description: "Detailed analysis of visual content and events",
         },
       },
@@ -187,11 +188,10 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "markdown",
-        content: OUTPUT_2,
-        metadata: {
-          title: "Partner Reports (EMS/Fire)",
-        },
+        id: "e817b187-aba3-4b0d-a34e-a1d82319627c",
+        title: "Partner Reports (EMS/Fire)",
+        component: "markdown",
+        params: { content: OUTPUT_2 },
       },
     ],
     tooling: {
@@ -230,11 +230,10 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "jsonChart",
-        content: OUTPUT_3,
-        metadata: {
-          title: "Emergency Call Analysis",
-        },
+        id: "ce3b39d8-1bae-4ed3-b4db-2a74658f0d85",
+        title: "Emergency Call Analysis",
+        component: "jsonChart",
+        params: { content: OUTPUT_3 },
       },
     ],
     alertConditions: {
@@ -273,11 +272,10 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "markdown",
-        content: OUTPUT_4,
-        metadata: {
-          title: "Social Media Distress Signals",
-        },
+        id: "14c18af1-a352-45e6-976e-3c194bdc6ee8",
+        title: "Social Media Distress Signals",
+        component: "markdown",
+        params: { content: OUTPUT_4 },
       },
     ],
     tooling: {
@@ -322,11 +320,10 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "markdown",
-        content: OUTPUT_5,
-        metadata: {
-          title: "Situation Summary",
-        },
+        id: "f303866d-d08a-48a7-81c3-c30486149d87",
+        title: "Situation Summary",
+        component: "markdown",
+        params: { content: OUTPUT_5 },
       },
     ],
     tooling: {
@@ -399,11 +396,10 @@ const nodes: Record<string, NodeConfig> = {
     inputMergeStrategy: "prioritize",
     outputs: [
       {
-        type: "riskAssesment",
-        content: OUTPUT_6,
-        metadata: {
-          title: "Priority Risk Assessment",
-        },
+        id: "e5836695-f2d0-47f4-86e8-d0dbaae4031a",
+        title: "Priority Risk Assessment",
+        component: "riskAssesment",
+        params: { content: OUTPUT_6 },
       },
     ],
     tooling: {
@@ -466,11 +462,10 @@ const nodes: Record<string, NodeConfig> = {
     dependencies: [{ nodeId: "reconfirm", required: true }],
     outputs: [
       {
-        type: "markdown",
-        content: OUTPUT_7,
-        metadata: {
-          title: "Response Plan",
-        },
+        id: "d22ec671-806a-4db2-8c60-f0f8754f9b7b",
+        title: "Response Plan",
+        component: "markdown",
+        params: { content: OUTPUT_7 },
       },
     ],
     tooling: {
@@ -509,8 +504,10 @@ const nodes: Record<string, NodeConfig> = {
     dependencies: [{ nodeId: "plan", required: true }],
     outputs: [
       {
-        type: "toolNotify",
-        content: OUTPUT_8,
+        id: "108eb93a-071e-4407-8b78-a73aabd9e803",
+        title: "First Responder Notifications",
+        component: "toolNotify",
+        params: { content: OUTPUT_8 },
       },
     ],
     tooling: {

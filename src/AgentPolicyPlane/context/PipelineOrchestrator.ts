@@ -137,18 +137,9 @@ export class PipelineOrchestrator {
       });
     });
 
-    // Generate simulated outputs
-    const outputs =
-      config.outputs?.map((output) => ({
-        type: output.type,
-        content: `Simulated ${output.type} content for ${nodeId}`,
-        timestamp: Date.now(),
-        metadata: output.metadata,
-      })) || [];
-
     this.dispatch({
       type: "COMPLETE_NODE",
-      payload: { nodeId, outputs },
+      payload: { nodeId, outputs: config.outputs },
     });
   }
 

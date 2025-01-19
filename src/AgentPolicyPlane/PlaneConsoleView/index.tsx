@@ -33,29 +33,26 @@ const headerComponents = {
 export const RunDock = (props: any) => {
   const [api, setApi] = React.useState<any>();
   const [panelCount, setPanelCount] = useState(0);
-  const [allPanels, setAllPanels] = useState<any>([]);
 
   const [syncedPanels, setSyncedPanels] = useState<any>([]);
   const { state: pipelineState } = usePipeline();
-  useEffect(() => {
-    // nodes: Record<string, NodeState>;
-    // nodes.outputs
-    // outputs: PipelineOutput[];
-    // export interface PipelineOutput {
-    //   type: OutputType;
-    //   content: string;
-    //   timestamp: number;
-    //   metadata?: {
-    //     title?: string;
-    //     description?: string;
-    //     severity?: "info" | "warning" | "error";
-    //   };
-    // }
+  const initialOutputs = Object.values(pipelineState.nodes).reduce(
+    (acc, node) => acc.concat(node.outputs),
+    [] as OutputTemplate[]
+  );
 
+  const [allPanels, setAllPanels] = useState<any>(initialOutputs);
+  useEffect(() => {
     const allOutputs = Object.values(pipelineState.nodes).reduce(
       (acc, node) => acc.concat(node.outputs),
       [] as OutputTemplate[]
     );
+    allOutputs.forEach((output) => {
+      const existingPanel = api?.getPanel(output.id);
+      if (!existingPanel) {
+        api?.addPanel(output);
+      }
+    });
   }, [pipelineState.nodes]);
 
   const addNewPanel = () => {
@@ -75,7 +72,7 @@ export const RunDock = (props: any) => {
           renderer: "always",
           title: "Video Feed Analysis",
           params: {
-            markdown: OUTPUT_1, // NVIDIA mixed-modal LLM analysis of footage
+            content: OUTPUT_1, // NVIDIA mixed-modal LLM analysis of footage
           },
         };
         break;
@@ -87,7 +84,7 @@ export const RunDock = (props: any) => {
           renderer: "always",
           title: "Partner Reports (EMS/Fire)",
           params: {
-            markdown: OUTPUT_2, // Structured report from emergency services
+            content: OUTPUT_2, // Structured report from emergency services
           },
         };
         break;
@@ -99,7 +96,7 @@ export const RunDock = (props: any) => {
           renderer: "always",
           title: "Emergency Call Analysis",
           params: {
-            chartData: OUTPUT_3, // JSON data for call frequency visualization
+            content: OUTPUT_3, // JSON data for call frequency visualization
           },
         };
         break;
@@ -111,7 +108,7 @@ export const RunDock = (props: any) => {
           renderer: "always",
           title: "Social Media Distress Signals",
           params: {
-            markdown: OUTPUT_4, // Filtered and verified social media reports
+            content: OUTPUT_4, // Filtered and verified social media reports
           },
         };
         break;
@@ -123,7 +120,7 @@ export const RunDock = (props: any) => {
           renderer: "always",
           title: "Situation Summary",
           params: {
-            markdown: OUTPUT_5, // Comprehensive event summary
+            content: OUTPUT_5, // Comprehensive event summary
           },
         };
         break;
@@ -135,7 +132,7 @@ export const RunDock = (props: any) => {
           renderer: "always",
           title: "Risk Assessment",
           params: {
-            assessment: OUTPUT_6, // Nemo guardrail analysis results
+            content: OUTPUT_6, // Nemo guardrail analysis results
           },
         };
         break;
@@ -147,7 +144,7 @@ export const RunDock = (props: any) => {
           renderer: "always",
           title: "Response Plan",
           params: {
-            markdown: OUTPUT_7, // Final tactical response plan
+            content: OUTPUT_7, // Final tactical response plan
           },
         };
         break;
@@ -159,7 +156,7 @@ export const RunDock = (props: any) => {
           renderer: "always",
           title: "First Responder Notifications",
           params: {
-            notifications: OUTPUT_8, // Twilio/Apptek notification status
+            content: OUTPUT_8, // Twilio/Apptek notification status
           },
         };
         break;
@@ -183,21 +180,30 @@ export const RunDock = (props: any) => {
     }
 
     const newPanel = api.addPanel(panelConfig);
+
     setAllPanels((prevPanels: any) => [...prevPanels, newPanel]);
     setPanelCount((prevCount) => prevCount + 1);
   };
 
-  //   simulator
-  useEffect(() => {
-    const randomInterval = Math.floor(Math.random() * 18) + 6;
-    const interval = setInterval(() => {
-      addNewPanel();
-    }, randomInterval * 100); // MARK: simulator
-    return () => clearInterval(interval);
-  }, [api, panelCount, allPanels]);
+  // //   simulator
+  // useEffect(() => {
+  //   const randomInterval = Math.floor(Math.random() * 18) + 6;
+  //   const interval = setInterval(() => {
+  //     addNewPanel();
+  //   }, randomInterval * 100); // MARK: simulator
+  //   return () => clearInterval(interval);
+  // }, [api, panelCount, allPanels]);
 
   const onReady = (event: any) => {
     setApi(event.api);
+    // LOOK HERE:
+    console.log("Dockview ready"); // chrome says: AlertLines.tsx:126 Dockview ready
+    console.log(initialOutputs); // chrome says:  AlertLines.tsx:127 (3) [{…}, {…}, {…}]
+
+    // add any initial panels here
+    initialOutputs.forEach((output, index) => {
+      event.api.addPanel(output);
+    });
     // event.api.onDidAddPanel((event: any) => {});
     // event.api.onDidActivePanelChange((event: any) => {});
     // event.api.onDidRemovePanel((event: any) => {});

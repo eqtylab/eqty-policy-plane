@@ -14,11 +14,14 @@ export type OutputType =
   | "toolNotify";
 
 export interface OutputTemplate {
-  type: OutputType;
-  content: any;
-  timestamp?: number;
+  id: string;
+  component: OutputType;
+  title: string;
+  params: {
+    content: any;
+  };
   metadata?: {
-    title?: string;
     description?: string;
+    timestamp?: number;
   };
 }
