@@ -3,6 +3,17 @@
 import { PipelineConfig } from "../types.pipeline";
 import { NodeConfig } from "../types.nodes";
 
+import {
+  OUTPUT_1,
+  OUTPUT_2,
+  OUTPUT_3,
+  OUTPUT_4,
+  OUTPUT_5,
+  OUTPUT_6,
+  OUTPUT_7,
+  OUTPUT_8,
+} from "./simulated-outputs";
+
 const nodes: Record<string, NodeConfig> = {
   start: {
     id: "start",
@@ -84,13 +95,13 @@ const nodes: Record<string, NodeConfig> = {
       },
     ],
     outputs: [
-      {
-        type: "video-analysis",
-        template: "Raw video feed data",
-        metadata: {
-          title: "Surveillance Feed Analysis",
-        },
-      },
+      // {
+      //   type: "video-analysis",
+      //   content: "Raw video feed data",
+      //   metadata: {
+      //     title: "Surveillance Feed Analysis",
+      //   },
+      // },
     ],
     tooling: {
       type: "vision",
@@ -134,9 +145,10 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "video-analysis",
-        template: "Video analysis report",
+        type: "markdown",
+        content: OUTPUT_1,
         metadata: {
+          title: "Video Feed Analysis",
           description: "Detailed analysis of visual content and events",
         },
       },
@@ -175,8 +187,11 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "osint-report",
-        template: "EMS station report compilation",
+        type: "markdown",
+        content: OUTPUT_2,
+        metadata: {
+          title: "Partner Reports (EMS/Fire)",
+        },
       },
     ],
     tooling: {
@@ -215,8 +230,11 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "json-chart",
-        template: "Call frequency analysis",
+        type: "jsonChart",
+        content: OUTPUT_3,
+        metadata: {
+          title: "Emergency Call Analysis",
+        },
       },
     ],
     alertConditions: {
@@ -255,8 +273,11 @@ const nodes: Record<string, NodeConfig> = {
     ],
     outputs: [
       {
-        type: "osint-report",
-        template: "Social media distress signals report",
+        type: "markdown",
+        content: OUTPUT_4,
+        metadata: {
+          title: "Social Media Distress Signals",
+        },
       },
     ],
     tooling: {
@@ -302,7 +323,10 @@ const nodes: Record<string, NodeConfig> = {
     outputs: [
       {
         type: "markdown",
-        template: "Comprehensive situation summary",
+        content: OUTPUT_5,
+        metadata: {
+          title: "Situation Summary",
+        },
       },
     ],
     tooling: {
@@ -352,13 +376,13 @@ const nodes: Record<string, NodeConfig> = {
       ],
     },
     outputs: [
-      {
-        type: "alert",
-        template: "guardrail-assessment",
-        metadata: {
-          title: "Risk Assessment Report",
-        },
-      },
+      // {
+      //   type: "alert",
+      //   content: "guardrail-assessment",
+      //   metadata: {
+      //     title: "Risk Assessment Report",
+      //   },
+      // },
     ],
   },
 
@@ -375,8 +399,11 @@ const nodes: Record<string, NodeConfig> = {
     inputMergeStrategy: "prioritize",
     outputs: [
       {
-        type: "priority-report",
-        template: "Event prioritization and tactical approach",
+        type: "riskAssesment",
+        content: OUTPUT_6,
+        metadata: {
+          title: "Priority Risk Assessment",
+        },
       },
     ],
     tooling: {
@@ -439,8 +466,11 @@ const nodes: Record<string, NodeConfig> = {
     dependencies: [{ nodeId: "reconfirm", required: true }],
     outputs: [
       {
-        type: "response-plan",
-        template: "Formal response plan document",
+        type: "markdown",
+        content: OUTPUT_7,
+        metadata: {
+          title: "Response Plan",
+        },
       },
     ],
     tooling: {
@@ -479,8 +509,8 @@ const nodes: Record<string, NodeConfig> = {
     dependencies: [{ nodeId: "plan", required: true }],
     outputs: [
       {
-        type: "tool-call",
-        template: "notification-dispatch",
+        type: "toolNotify",
+        content: OUTPUT_8,
       },
     ],
     tooling: {

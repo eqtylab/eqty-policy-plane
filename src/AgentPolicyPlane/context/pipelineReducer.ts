@@ -2,7 +2,7 @@
 
 import { PipelineState } from "./types.pipeline";
 import { NodeStatus } from "./types.nodes";
-import { PipelineOutput } from "./types.outputs";
+import { OutputTemplate } from "./types.outputs";
 import { LogEntry } from "./types.logs";
 
 export type PipelineAction =
@@ -22,7 +22,7 @@ export type PipelineAction =
     }
   | {
       type: "COMPLETE_NODE";
-      payload: { nodeId: string; outputs: PipelineOutput[] };
+      payload: { nodeId: string; outputs: OutputTemplate[] };
     }
   | {
       type: "OVERRIDE_GUARDRAIL";

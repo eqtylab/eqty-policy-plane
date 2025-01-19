@@ -1,6 +1,6 @@
 // src/AgentPolicyPlane/context/types.nodes.ts
 
-import { PipelineOutput, OutputTemplate } from "./types.outputs";
+import { OutputTemplate } from "./types.outputs";
 import { LogEntry } from "./types.logs";
 
 export type NodeStatus =
@@ -15,7 +15,7 @@ export type NodeStatus =
 export interface NodeState {
   status: NodeStatus;
   logs: LogEntry[];
-  outputs: PipelineOutput[];
+  outputs: OutputTemplate[];
   completedInputs?: string[];
   startTime?: number;
   endTime?: number;

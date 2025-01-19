@@ -81,7 +81,7 @@ export const dockviewComponents = {
       />
     );
   },
-  alert: (props: any) => {
+  riskAssesment: (props: any) => {
     const assessment = props.params?.assessment;
     if (!assessment)
       return <div className="tw-text-white">No assessment data</div>;
@@ -147,7 +147,7 @@ export const dockviewComponents = {
       </div>
     );
   },
-  chart: (props: any) => {
+  jsonChart: (props: any) => {
     return (
       <div className={commonTWStyles}>
         {/* Assuming we're using a charting library like recharts */}
@@ -196,7 +196,7 @@ export const dockviewComponents = {
       </div>
     );
   },
-  notification: (props: any) => {
+  toolNotify: (props: any) => {
     const notifications = props.params?.notifications;
     if (!notifications)
       return <div className="tw-text-white">No notifications</div>;
@@ -231,24 +231,6 @@ export const dockviewComponents = {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-    );
-  },
-  video: (props: any) => {
-    return (
-      <div className={commonTWStyles}>
-        <div className="tw-flex tw-flex-col tw-gap-4">
-          {/* Video Analysis Results Display */}
-          <div className="tw-bg-gray-800/50 tw-rounded-lg tw-p-4">
-            <h3 className="tw-text-white tw-text-sm tw-font-medium tw-mb-2">
-              Analysis Results
-            </h3>
-            <Markdown className="tw-prose-xs tw-text-white">
-              {props.params?.videoAnalysis || "No analysis available"}
-            </Markdown>
-          </div>
-          {/* Could add actual video player if needed */}
         </div>
       </div>
     );

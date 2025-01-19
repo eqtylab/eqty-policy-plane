@@ -5,28 +5,18 @@ export type OutputType =
   | "pdf"
   | "report"
   | "alert"
-  | "json-chart"
-  | "tool-call"
-  | "video-analysis"
-  | "osint-report"
-  | "priority-report"
-  | "response-plan"
-  | "notification";
-
-export interface PipelineOutput {
-  type: OutputType;
-  content: string;
-  timestamp: number;
-  metadata?: {
-    title?: string;
-    description?: string;
-    severity?: "info" | "warning" | "error";
-  };
-}
+  | "jsonChart"
+  | "toolCall"
+  | "videoAnalysis"
+  | "osintReport"
+  | "riskAssesment"
+  | "responsePlan"
+  | "toolNotify";
 
 export interface OutputTemplate {
   type: OutputType;
-  template: string;
+  content: any;
+  timestamp?: number;
   metadata?: {
     title?: string;
     description?: string;
