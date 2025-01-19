@@ -47,7 +47,7 @@ module.exports = {
         },
       },
       animation: {
-        "fade-in": "fadeIn 0.5s ease-in-out",
+        "fade-in": "fadeIn 2.5s ease-in-out",
         "fade-out": "fadeOut 0.5s ease-in-out",
       },
     },
