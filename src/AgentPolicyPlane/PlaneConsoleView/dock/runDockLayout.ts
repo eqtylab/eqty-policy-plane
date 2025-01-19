@@ -157,31 +157,3 @@ The converging evidence from various intelligence sources strongly suggests that
 
 This comprehensive dataset supports the allegations made in social media and by local officials regarding the attack on civilian infrastructure, providing critical insights into the military operations that led to the reported airstrike. The compiled evidence will be crucial for further analysis by human analysts and may serve as foundational information for international investigations into potential violations of international humanitarian law.
 `;
-
-export function defaultConfig(api: any) {
-  const panel1 = api.addPanel({
-    id: "panel_1",
-    component: "markdown",
-    renderer: "always",
-    title: "Asset 1 Main",
-    params: {
-      markdown: EXAMPLE_MARKDOWN,
-    },
-  });
-
-  const panel2 = api.addPanel({
-    id: "panel_2",
-    component: "default",
-    title: "Asset 2",
-    position: { referencePanel: panel1, direction: "right" },
-  });
-
-  const panel3 = api.addPanel({
-    id: "panel_3",
-    component: "default",
-    title: "Asset 3",
-    position: { referencePanel: panel2, direction: "below" },
-  });
-
-  panel1.api.setActive();
-}

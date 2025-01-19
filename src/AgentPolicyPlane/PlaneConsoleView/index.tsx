@@ -4,38 +4,37 @@ import * as React from "react";
 
 import { useEffect, useState } from "react";
 
-import firmsImage from "./assets/firms.png";
-import firmsImage2 from "./assets/firms2.jpg";
-import rainbowImage from "./assets/rainbow.png";
-import rainbowImage2 from "./assets/rainbow2.jpg";
+// import firmsImage from "./assets/firms.png";
+// import firmsImage2 from "./assets/firms2.jpg";
+// import rainbowImage from "./assets/rainbow.png";
+// import rainbowImage2 from "./assets/rainbow2.jpg";
 
-import a1 from "./assets/a1.mp3";
-import a2 from "./assets/a2.mp3";
-import a3 from "./assets/a3.mp3";
-import c1 from "./assets/c1.png";
-import c2 from "./assets/c2.png";
-import c3 from "./assets/c3.png";
-import c4 from "./assets/c4.png";
+// import a1 from "./assets/a1.mp3";
+// import a2 from "./assets/a2.mp3";
+// import a3 from "./assets/a3.mp3";
+// import c1 from "./assets/c1.png";
+// import c2 from "./assets/c2.png";
+// import c3 from "./assets/c3.png";
+// import c4 from "./assets/c4.png";
 
-// images must be imported as : URL, e.g.  new URL('./assets/image.png', import.meta.url).href;
-// const firmsImage2 = new URL("./assets/firms2.jpg", import.meta.url).href;
-// const rainbowImage2 = new URL("./assets/rainbow2.jpg", import.meta.url).href;
-
-// const a1 = new URL("./assets/a1.mp3", import.meta.url).href;
-// const a2 = new URL("./assets/a2.mp3", import.meta.url).href;
-// const a3 = new URL("./assets/a3.mp3", import.meta.url).href;
-// const c1 = new URL("./assets/c1.png", import.meta.url).href;
-// const c2 = new URL("./assets/c2.png", import.meta.url).href;
-// const c3 = new URL("./assets/c3.png", import.meta.url).href;
-// const c4 = new URL("./assets/c4.png", import.meta.url).href;
+// import {
+//   EXAMPLE_MARKDOWN,
+//   EXAMPLE_MARKDOWN_2,
+//   EXAMPLE_MARKDOWN_3,
+//   EXAMPLE_MARKDOWN_4,
+// } from "./dock/runDockLayout";
+// import { LeftControls, PrefixHeaderControls, RightControls } from "./controls";
 
 import {
-  EXAMPLE_MARKDOWN,
-  EXAMPLE_MARKDOWN_2,
-  EXAMPLE_MARKDOWN_3,
-  EXAMPLE_MARKDOWN_4,
-} from "./dock/runDockLayout";
-// import { LeftControls, PrefixHeaderControls, RightControls } from "./controls";
+  OUTPUT_1,
+  OUTPUT_2,
+  OUTPUT_3,
+  OUTPUT_4,
+  OUTPUT_5,
+  OUTPUT_6,
+  OUTPUT_7,
+  OUTPUT_8,
+} from "./dock/sim";
 
 import { RightControls } from "./dock/RightControls";
 
@@ -45,10 +44,10 @@ import Markdown from "react-markdown";
 
 const AudioPlayerStack = ({ audioFiles }: any) => {
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="tw-flex tw-flex-col tw-space-y-4">
       {audioFiles.slice(0, 3).map((file: any, index: number) => (
-        <div key={index} className="w-full max-w-md">
-          <audio controls className="w-full" src={file}>
+        <div key={index} className="tw-w-full tw-max-w-md">
+          <audio controls className="tw-w-full" src={file}>
             Your browser does not support the audio element.
           </audio>
         </div>
@@ -200,6 +199,143 @@ const components = {
       </div>
     );
   },
+
+  video: (props: any) => {
+    return (
+      <div className="tw-h-full tw-w-full tw-p-4 tw-overflow-auto">
+        <div className="tw-flex tw-flex-col tw-gap-4">
+          {/* Video Analysis Results Display */}
+          <div className="tw-bg-gray-800/50 tw-rounded-lg tw-p-4">
+            <h3 className="tw-text-white tw-text-sm tw-font-medium tw-mb-2">
+              Analysis Results
+            </h3>
+            <Markdown className="tw-prose-xs tw-text-white">
+              {props.params?.videoAnalysis || "No analysis available"}
+            </Markdown>
+          </div>
+          {/* Could add actual video player if needed */}
+        </div>
+      </div>
+    );
+  },
+
+  chart: (props: any) => {
+    return (
+      <div className="tw-h-full tw-w-full tw-p-4 tw-overflow-auto">
+        {/* Assuming we're using a charting library like recharts */}
+        {props.params?.chartData ? (
+          <div className="tw-bg-gray-800/50 tw-rounded-lg tw-p-4 tw-h-full">
+            {/* Chart component would go here */}
+            <div className="tw-text-white">
+              {JSON.stringify(props.params.chartData, null, 2)}
+            </div>
+          </div>
+        ) : (
+          <div className="tw-text-white">No chart data available</div>
+        )}
+      </div>
+    );
+  },
+
+  alert: (props: any) => {
+    const assessment = props.params?.assessment;
+    if (!assessment)
+      return <div className="tw-text-white">No assessment data</div>;
+
+    return (
+      <div className="tw-h-full tw-w-full tw-p-4 tw-overflow-auto">
+        <div className="tw-flex tw-flex-col tw-gap-4">
+          {/* Risk Level Banner */}
+          <div className={`tw-bg-brandreddark/20 tw-rounded-lg tw-p-4`}>
+            <div className="tw-flex tw-justify-between tw-items-center tw-mb-4">
+              <h3 className="tw-text-white tw-text-lg tw-font-medium">
+                Risk Level: {assessment.riskLevel}
+              </h3>
+              {assessment.requiresOverride && (
+                <span className="tw-bg-brandreddark tw-px-2 tw-py-1 tw-rounded tw-text-sm">
+                  Requires Override
+                </span>
+              )}
+            </div>
+
+            {/* Risk Factors */}
+            <div className="tw-space-y-3">
+              {assessment.factors.map((factor: any, index: number) => (
+                <div
+                  key={index}
+                  className="tw-bg-gray-800/50 tw-rounded tw-p-3"
+                >
+                  <div className="tw-flex tw-justify-between tw-mb-1">
+                    <span className="tw-text-white/80">{factor.category}</span>
+                    <span className="tw-text-white">{factor.level}</span>
+                  </div>
+                  <p className="tw-text-white/60 tw-text-sm">
+                    {factor.details}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Recommendations */}
+            <div className="tw-mt-4">
+              <h4 className="tw-text-white tw-text-sm tw-font-medium tw-mb-2">
+                Recommendations
+              </h4>
+              <ul className="tw-space-y-1">
+                {assessment.recommendations.map(
+                  (rec: string, index: number) => (
+                    <li key={index} className="tw-text-white/80 tw-text-sm">
+                      • {rec}
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  },
+
+  notification: (props: any) => {
+    const notifications = props.params?.notifications;
+    if (!notifications)
+      return <div className="tw-text-white">No notifications</div>;
+
+    return (
+      <div className="tw-h-full tw-w-full tw-p-4 tw-overflow-auto">
+        <div className="tw-flex tw-flex-col tw-gap-2">
+          {notifications.map((notification: any, index: number) => (
+            <div
+              key={index}
+              className="tw-bg-gray-800/50 tw-rounded-lg tw-p-4 tw-border-l-4 tw-border-l-blue-500"
+            >
+              <div className="tw-flex tw-justify-between tw-items-center tw-mb-2">
+                <span className="tw-text-white/60 tw-text-xs">
+                  {notification.timestamp}
+                </span>
+                <span
+                  className={`tw-px-2 tw-py-1 tw-rounded tw-text-xs tw-bg-green-500/20 tw-text-green-300`}
+                >
+                  {notification.status}
+                </span>
+              </div>
+
+              <div className="tw-flex tw-flex-col tw-gap-1">
+                <span className="tw-text-white tw-font-medium">
+                  To: {notification.recipient}
+                </span>
+                <p className="tw-text-white/80">{notification.message}</p>
+                <p className="tw-text-white/60 tw-text-sm tw-italic">
+                  Response: {notification.response}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  },
 };
 
 const headerComponents = {
@@ -253,11 +389,11 @@ export const RunDock = (props: any) => {
       case 0:
         panelConfig = {
           id: newPanelId,
-          component: "markdown",
+          component: "video",
           renderer: "always",
-          title: `Social Media Analyst - Curation`,
+          title: "Video Feed Analysis",
           params: {
-            markdown: EXAMPLE_MARKDOWN,
+            videoAnalysis: OUTPUT_1, // NVIDIA mixed-modal LLM analysis of footage
           },
         };
         break;
@@ -267,75 +403,81 @@ export const RunDock = (props: any) => {
           id: newPanelId,
           component: "markdown",
           renderer: "always",
-          title: `Humanitarian Analyst - Report`,
+          title: "Partner Reports (EMS/Fire)",
           params: {
-            markdown: EXAMPLE_MARKDOWN_2,
+            markdown: OUTPUT_2, // Structured report from emergency services
           },
         };
         break;
+
       case 2:
         panelConfig = {
           id: newPanelId,
-          component: "markdown",
+          component: "chart",
           renderer: "always",
-          title: `OSINT Manager - AI SOW`,
+          title: "Emergency Call Analysis",
           params: {
-            markdown: EXAMPLE_MARKDOWN_3,
+            chartData: OUTPUT_3, // JSON data for call frequency visualization
           },
         };
         break;
+
       case 3:
         panelConfig = {
           id: newPanelId,
-          component: "image",
+          component: "markdown",
           renderer: "always",
-          title: `FIRMS Analyst - Map`,
+          title: "Social Media Distress Signals",
           params: {
-            image: firmsImage2,
+            markdown: OUTPUT_4, // Filtered and verified social media reports
           },
         };
         break;
+
       case 4:
-        panelConfig = {
-          id: newPanelId,
-          component: "image",
-          renderer: "always",
-          title: `Satellite Analyst - Image`,
-          params: {
-            image: rainbowImage2,
-          },
-        };
-        break;
-      case 5:
-        panelConfig = {
-          id: newPanelId,
-          component: "audio",
-          renderer: "always",
-          title: `Comms Analyst - Audio`,
-          params: {
-            audioFiles: [a1, a2, a3],
-          },
-        };
-        break;
-      case 6:
-        panelConfig = {
-          id: newPanelId,
-          component: "imageGrid",
-          renderer: "always",
-          title: `AdTech Analyst - Map Grid`,
-          params: {
-            images: [c1, c2, c3, c4],
-          },
-        };
-        break;
-      case 7:
         panelConfig = {
           id: newPanelId,
           component: "markdown",
           renderer: "always",
-          title: `Evidence Reporting Analyst - Human Handoff`,
+          title: "Situation Summary",
           params: {
-            markdown: EXAMPLE_MARKDOWN_4,
+            markdown: OUTPUT_5, // Comprehensive event summary
+          },
+        };
+        break;
+
+      case 5:
+        panelConfig = {
+          id: newPanelId,
+          component: "alert",
+          renderer: "always",
+          title: "Risk Assessment",
+          params: {
+            assessment: OUTPUT_6, // Nemo guardrail analysis results
+          },
+        };
+        break;
+
+      case 6:
+        panelConfig = {
+          id: newPanelId,
+          component: "markdown",
+          renderer: "always",
+          title: "Response Plan",
+          params: {
+            markdown: OUTPUT_7, // Final tactical response plan
+          },
+        };
+        break;
+
+      case 7:
+        panelConfig = {
+          id: newPanelId,
+          component: "notification",
+          renderer: "always",
+          title: "First Responder Notifications",
+          params: {
+            notifications: OUTPUT_8, // Twilio/Apptek notification status
           },
         };
         break;
