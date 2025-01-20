@@ -139,7 +139,7 @@ import React from "react";
 
 const Title = () => {
   return (
-    <div className="tw-flex tw-items-center tw-gap-1 tw-h-[48px] tw-px-2 tw-bg-[rgb(223,246,246)] tw-rounded-xl">
+    <div className="tw-flex tw-items-center tw-gap-1 tw-h-[40px] tw-px-2 tw-bg-[rgb(223,246,246)] tw-rounded-xl">
       <div className="tw-w-8 tw-h-8 tw-bg-black tw-rounded-full tw-flex tw-items-center tw-justify-center">
         <PlaneNavIcon />
       </div>

@@ -54,7 +54,7 @@ function ConsoleDrawer({
 
   return (
     <div
-      className={`tw-fixed tw-bottom-0 tw-left-0 tw-right-0 tw-z-50 
+      className={`tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-z-50 
                       tw-transition-transform tw-duration-300 tw-ease-in-out 
                       ${
                         isOpen

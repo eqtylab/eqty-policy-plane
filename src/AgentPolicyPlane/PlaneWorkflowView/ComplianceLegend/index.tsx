@@ -1,9 +1,10 @@
+// src/AgentPolicyPlane/PlaneWorkflowView/ComplianceLegend/index.tsx
 // src/AgentPolicyPlane/PlaneLegend/index.tsx
 import React from "react";
 
 export const ComplianceLegend = () => {
   return (
-    <div className="tw-flex  tw-items-end tw-gap-4 tw-w-[800px]">
+    <div className="tw-flex  tw-items-end tw-gap-4 ">
       <div className="tw-flex tw-items-center tw-gap-2">
         <div
           className="tw-min-h-[11px] tw-min-w-[21px] tw-rounded-full"

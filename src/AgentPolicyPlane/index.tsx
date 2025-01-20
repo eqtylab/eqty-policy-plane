@@ -247,6 +247,16 @@ const AgentPolicyPlane = () => {
                     </AnimationWrapper>
                   </div>
                 )}
+                <div className="tw-absolute tw--top-16 tw-left-16 tw-transform tw--translate-y-[32px]  tw-flex tw-z-10">
+                  <PlaneNav
+                    showCertApp={showCertApp}
+                    setShowCertApp={setShowCertApp}
+                  />
+                  <PlaneTabs tabs={tabs} onTabChange={handleTabChange} />
+                </div>
+                <div className="tw-absolute tw-bottom-2 tw-left-16">
+                  <ComplianceLegend />
+                </div>
               </div>
               <div className="tw-relative">
                 <WorkflowPlayer
@@ -291,12 +301,6 @@ const AgentPolicyPlane = () => {
                 </DelayedRenderWrapper>
               </>
             )}
-            {/* <div className="tw-relative tw-flex tw-w-full tw-flex-col flex-fill">
-              <ConsoleLogging />
-            </div> */}
-            <div className="tw-absolute tw-bottom-2 tw-w-full tw-left-[256px]">
-              <ComplianceLegend />
-            </div>
           </div>
         )}
         {selectedTab === "Console" && (
@@ -334,13 +338,8 @@ const AgentPolicyPlane = () => {
   }
 
   return (
-    <AgentPolicyPlaneContainer>
+    <AgentPolicyPlaneContainer outsideGridRender={() => <RunLogging />}>
       {renderTabContent()}
-      <div className="tw-absolute tw--top-12 tw-left-[256px] tw-transform tw--translate-y-[32px] tw-w-full tw-flex tw-z-10">
-        <PlaneNav showCertApp={showCertApp} setShowCertApp={setShowCertApp} />
-        <PlaneTabs tabs={tabs} onTabChange={handleTabChange} />
-      </div>
-      <RunLogging />
     </AgentPolicyPlaneContainer>
   );
 };
@@ -348,6 +347,13 @@ const AgentPolicyPlane = () => {
 export const AgentPolicyPlaneApplication = () => {
   return (
     <PipelineProvider>
+      {/* hack style */}
+      <style>
+        {`
+        .modal-body {
+        padding: 0;}
+      `}
+      </style>
       <AgentPolicyPlane />
     </PipelineProvider>
   );

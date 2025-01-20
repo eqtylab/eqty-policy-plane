@@ -154,7 +154,7 @@ export const AgentProvisionCertificate = () => {
 
   return (
     <div className="component-container ">
-      <div className="tw-p-6 tw-px-32 tw-bg-[#09090B]  tw-flex tw-flex-col">
+      <div className="tw-p-6 tw-px-32 tw-bg-[#09090B] tw-flex tw-flex-col">
         {/* header */}
         <div className="tw-h-[126px] tw-pl-24 tw-flex tw-items-center">
           <CertIcon />

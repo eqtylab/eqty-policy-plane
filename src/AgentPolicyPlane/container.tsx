@@ -5,9 +5,11 @@ import React, { useEffect, useRef, useState } from "react";
 export const AgentPolicyPlaneContainer = ({
   children,
   responsiveRender,
+  outsideGridRender,
 }: {
   children: React.ReactNode;
   responsiveRender?: () => React.ReactNode;
+  outsideGridRender?: () => React.ReactNode;
 }) => {
   const gridContainerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -45,11 +47,8 @@ export const AgentPolicyPlaneContainer = ({
     <div className="component-container">
       {responsiveRender && responsiveRender()}
       {!responsiveRender && (
-        <div className="tw-pb-14 tw-pt-12 tw-px-5 tw-w-full tw-h-full tw-overflow-scroll">
-          {/* Outer container for centering */}
+        <div className="tw-pb-14 tw-pt-12 tw-px-5 tw-w-full tw-h-full tw-overflow-hidden tw-relative">
           <div className="tw-w-full tw-h-full tw-relative tw-flex tw-items-center tw-justify-center">
-            {/* Grid container with exact dimensions */}
-
             <div
               ref={gridContainerRef}
               className="tw-absolute tw-inset-0 tw-z-50 tw-flex tw-justify-center"
@@ -76,6 +75,7 @@ export const AgentPolicyPlaneContainer = ({
               </div>
             </div>
           </div>
+          {outsideGridRender && outsideGridRender()}
         </div>
       )}
     </div>
