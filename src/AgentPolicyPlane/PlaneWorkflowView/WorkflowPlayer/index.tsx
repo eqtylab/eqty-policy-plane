@@ -43,6 +43,8 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
                 ? "tw-bg-brandalert tw-animate-pulse-glow-alert"
                 : state.status === "running"
                 ? "tw-bg-brandblue tw-animate-pulse-glow-blue"
+                : state.status === "completed"
+                ? "tw-bg-brandgreen tw-animate-pulse-glow-green"
                 : "tw-bg-gray-400 tw-animate-none"
             }`}
           />
@@ -51,27 +53,41 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
               ? "Override Required"
               : state.status === "running"
               ? `Running. Completed: (${Math.min(
-                  completedNodes,
+                  Math.max(completedNodes - 1, 0),
                   11
                 )}/11 Agents)`
+              : state.status === "completed"
+              ? "Completed"
               : "Ready to Run"}
           </span>
         </div>
 
         <div className="tw-flex tw-gap-2">
           {!isPlaying ? (
-            <button
-              onClick={onPlay}
-              disabled={isBlocked && !hasOverride}
-              className={`tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-text-white tw-text-sm
+            state.status !== "completed" ? (
+              <button
+                onClick={onPlay}
+                disabled={isBlocked && !hasOverride}
+                className={`tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-text-white tw-text-sm
                 ${
                   isBlocked && !hasOverride
                     ? "tw-bg-gray-600 tw-cursor-not-allowed"
                     : "tw-bg-brandblue hover:tw-bg-opacity-90"
                 }`}
-            >
-              Start
-            </button>
+              >
+                Start
+              </button>
+            ) : (
+              state.status == "completed" && (
+                //  brandgreen button, "View Final Report"
+                <button
+                  onClick={onPlay}
+                  className="tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-bg-brandgreen tw-text-branddialogbg tw-text-sm hover:tw-bg-opacity-90"
+                >
+                  View Final Report
+                </button>
+              )
+            )
           ) : (
             <button
               onClick={onPause}

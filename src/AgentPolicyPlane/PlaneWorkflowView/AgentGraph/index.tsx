@@ -397,6 +397,10 @@ export const AgentGraph = ({
         data: {
           ...node.data,
           status: pipelineState.nodes[node.id]?.status || "idle",
+          animating:
+            node.id === "reconfirm" && pipelineState.userOverrides.length === 0,
+          resolved:
+            node.id === "reconfirm" && pipelineState.userOverrides.length > 0,
         },
       }))
     );

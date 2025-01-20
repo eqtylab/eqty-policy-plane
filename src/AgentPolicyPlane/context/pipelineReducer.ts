@@ -9,6 +9,7 @@ export type PipelineAction =
   | { type: "START_PIPELINE" }
   | { type: "PAUSE_PIPELINE" }
   | { type: "CANCEL_PIPELINE" }
+  | { type: "COMPLETE_PIPELINE" }
   | {
       type: "UPDATE_NODE_STATUS";
       payload: { nodeId: string; status: NodeStatus };
@@ -120,6 +121,14 @@ export function pipelineReducer(
       nextState = {
         ...state,
         status: "cancelled",
+        endTime: Date.now(),
+      };
+      break;
+
+    case "COMPLETE_PIPELINE":
+      nextState = {
+        ...state,
+        status: "completed",
         endTime: Date.now(),
       };
       break;

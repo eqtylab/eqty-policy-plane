@@ -141,6 +141,15 @@ export class PipelineOrchestrator {
       type: "COMPLETE_NODE",
       payload: { nodeId, outputs: config.outputs },
     });
+
+    // if last node, complete pipeline
+    if (
+      Array.from(this.nodeMetrics.values()).every(
+        (m) => m.phase === "completed"
+      )
+    ) {
+      this.dispatch({ type: "COMPLETE_PIPELINE" });
+    }
   }
 
   private cleanup() {

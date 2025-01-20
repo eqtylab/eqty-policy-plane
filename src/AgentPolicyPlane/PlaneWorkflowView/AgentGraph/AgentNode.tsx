@@ -21,6 +21,7 @@ export type AgentNodeData = {
   role?: string;
   backstory?: string;
   goal?: string;
+  resolved?: boolean;
 };
 
 const NodeLabel = ({
@@ -28,11 +29,13 @@ const NodeLabel = ({
   subline,
   position = "top",
   type = "default",
+  resolved = false,
 }: {
   title: string;
   subline?: string;
   position?: "top" | "right" | "left" | "bottom";
   type?: "default" | "alert" | "nemo";
+  resolved?: boolean;
 }) => {
   const positionClasses = {
     top: "tw--top-10 tw-left-1/2 tw--translate-x-1/2",
@@ -42,16 +45,20 @@ const NodeLabel = ({
   };
   let classes = `tw-absolute tw-whitespace-nowrap ${positionClasses[position]} !tw-border-brandbordergray tw-border tw-rounded-xl tw-p-1`;
 
-  if (type === "alert") {
-    classes += " tw-bg-brandred !tw-border-brandred";
-  } else if (type === "nemo") {
-    classes += " tw-bg-nvidiagreen !tw-border-nvidiagreen";
+  if (type === "alert" && !resolved) {
+    classes += " tw-bg-brandred !tw-border-brandred tw-text-white";
+  } else if (type === "alert" && resolved) {
+    classes += " tw-bg-brandgreen !tw-border-brandgreen tw-text-black";
+    // } else if (type === "nemo") {
+    // classes += " tw-bg-nvidiagreen !tw-border-nvidiagreen tw-text-white";
+  } else {
+    classes += " tw-text-white";
   }
 
   return (
     <div className={`${classes}`}>
-      <div className="tw-text-white tw-text-[14px]">{title}</div>
-      {subline && <div className="tw-text-white tw-text-[10px]">{subline}</div>}
+      <div className="tw-text-[14px]">{title}</div>
+      {subline && <div className=" tw-text-[10px]">{subline}</div>}
     </div>
   );
 };
@@ -94,7 +101,9 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
           <div
             className="tw-absolute tw-w-full tw-h-px "
             style={{
-              background: `repeating-linear-gradient(to right, rgba(208, 86, 89, 1) 0, rgba(208, 86, 89, 1) 4px, transparent 4px, transparent 8px)`,
+              background: !data.resolved
+                ? `repeating-linear-gradient(to right, rgba(208, 86, 89, 1) 0, rgba(208, 86, 89, 1) 4px, transparent 4px, transparent 8px)`
+                : `repeating-linear-gradient(to right, rgb(206, 255, 220) 0, rgb(206, 255, 220) 4px, transparent 4px, transparent 8px)`,
               backgroundSize: "8px 100%",
               backgroundPosition: "6px 0", // Offsets the pattern by half its width to center it
             }}
@@ -105,17 +114,9 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             {/* Base circle */}
             <div
               id={data.animating ? "ripple-point-eq" : ""}
-              className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandalertblue"
+              className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandgreen"
               // data-eqalertoverride="false"
             >
-              {/* add custom stylesheet here */}
-              <style>
-                {`
-                [data-eqalertoverride='true'] * {
-                  background-color: rgba(0,157,255,1) !important;
-                }
-              `}
-              </style>
               {/* Ripple rings - only shown when animating */}
               {data.animating && (
                 <>
@@ -141,6 +142,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             title={data.title}
             subline={data.subline}
             position={data.labelPosition}
+            resolved={data.resolved}
             type="alert"
           />
         )}
@@ -150,8 +152,11 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
 
   if (data.type && data.type === "nemo-guardrail") {
     return (
-      <div className="wrapper tw-justify-center tw-items-center">
-        <div className="tw-bg-nvidiagreen tw-w-9 tw-h-9 tw-rounded-full">
+      <div
+        className="wrapper tw-justify-center tw-items-center"
+        style={getNodeStatusStyles(data.status)}
+      >
+        <div className=" tw-w-9 tw-h-9 tw-rounded-full">
           <NemoIcon />
           <Handle type="target" position={Position.Left} />
           <Handle type="source" position={Position.Right} />
@@ -164,7 +169,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             title={data.title}
             subline={data.subline}
             position={data.labelPosition}
-            type="nemo"
+            // type="default"
           />
         )}
       </div>
