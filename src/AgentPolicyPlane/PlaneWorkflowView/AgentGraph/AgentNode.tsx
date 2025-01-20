@@ -48,7 +48,7 @@ const NodeLabel = ({
   if (type === "alert" && !resolved) {
     classes += " tw-bg-brandred !tw-border-brandred tw-text-white";
   } else if (type === "alert" && resolved) {
-    classes += " tw-bg-brandgreen !tw-border-brandgreen tw-text-black";
+    classes += " tw-bg-brandgreen !tw-border-brandgreen tw-text-branddialogbg";
     // } else if (type === "nemo") {
     // classes += " tw-bg-nvidiagreen !tw-border-nvidiagreen tw-text-white";
   } else {

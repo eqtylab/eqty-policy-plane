@@ -1,5 +1,7 @@
+// src/AgentPolicyPlane/PlaneWorkflowView/ActiveControlsList/index.tsx
 // src/AgentPolicyPlane/ActiveControlsList/index.tsx
 import React from "react";
+import { usePipeline } from "../../context/PipelineContext";
 
 /** Define the structure of each control object */
 type Control = {
@@ -23,13 +25,18 @@ const AlertList = ({
   data: Control[];
   onControlClick: (id: string, divId?: string | null) => void;
 }) => {
+  const { state } = usePipeline();
+  const noOverrides = state.userOverrides.length === 0;
   return (
     <>
       {data.map((control) => {
         let classes = `tw-px-2 tw-py-1 tw-rounded-lg tw-cursor-pointer tw-transition-colors tw-max-w-[153px] tw-flex tw-items-center tw-relative`;
 
-        if (control.isAlert) {
+        if (control.isAlert && noOverrides) {
           classes += " tw-border !tw-border-brandreddark tw-bg-brandred";
+        } else if (control.isAlert && !noOverrides) {
+          classes +=
+            " tw-border !tw-border-brandgreen tw-bg-brandgreen tw-text-branddialogbg";
         } else if (control.mandatory && control.implemented) {
           classes += " tw-border !tw-border-brandblue ";
         } else if (!control.mandatory) {
@@ -55,7 +62,7 @@ const AlertList = ({
             </div>
 
             {/* Sonar animations - only shown for alert items */}
-            {control.isAlert && (
+            {control.isAlert && noOverrides && (
               <div
                 id={`${control.id}-item-wrapper`}
                 className="tw-absolute tw-inset-0 tw-z-0 tw-pointer-events-none"
