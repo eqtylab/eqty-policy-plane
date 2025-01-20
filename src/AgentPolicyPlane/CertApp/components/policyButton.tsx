@@ -1,3 +1,5 @@
+// src/AgentPolicyPlane/CertApp/components/policyButton.tsx
+// src/AgentPolicyPlane/CertApp/components/policyButton.tsx
 import React from "react";
 import { forwardRef, HTMLAttributes } from "react";
 import { useButtonsStore } from "../stores/buttonsStore";
@@ -19,28 +21,28 @@ const PolicyButton = forwardRef<HTMLDivElement, Props>(
     let colorClass = "";
     switch (color) {
       case white:
-        colorClass = "hover:bg-white hover:text-black";
+        colorClass = "hover:tw-bg-white hover:tw-text-black";
         break;
       case blue:
-        colorClass = "hover:bg-btn-blue hover:border-btn-blue";
+        colorClass = "hover:tw-bg-btn-blue hover:tw-border-btn-blue";
         break;
       case red:
-        colorClass = "hover:bg-btn-red hover:border-btn-red";
+        colorClass = "hover:tw-bg-btn-red hover:tw-border-btn-red";
         break;
       case grey:
-        colorClass = "hover:bg-btn-grey hover:border-btn-grey";
+        colorClass = "hover:tw-bg-btn-grey hover:tw-border-btn-grey";
     }
 
     return (
-      <div className="flex items-center justify-stretch gap-x-2">
+      <div className="tw-flex tw-items-center tw-justify-stretch tw-gap-x-2">
         <div
-          className={`p-2 border font-semibold border-gray-400 rounded-lg cursor-pointer grow ${colorClass}`}
+          className={`tw-p-2 tw-border tw-font-semibold tw-border-gray-400 tw-rounded-lg tw-cursor-pointer tw-grow ${colorClass}`}
           {...props}
           ref={ref}
         >
           {title}
         </div>
-        <p className="mr-4 text-lg font-bold">10</p>
+        <p className="tw-mr-4 tw-text-lg tw-font-bold">10</p>
       </div>
     );
   }

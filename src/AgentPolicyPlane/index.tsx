@@ -21,8 +21,6 @@ import { usePipeline } from "./context/PipelineContext";
 
 import { RunDock } from "./PlaneConsoleView";
 
-// import { CertApp } from "./CertApp";
-
 import { AnimationWrapper } from "./Interactive/AnimationWrapper";
 import { DrawLine } from "./Interactive/AlertLines";
 import { DelayedRenderWrapper } from "./Interactive/DelayedRenderWrapper";
@@ -220,10 +218,9 @@ const AgentPolicyPlane = () => {
   const handleShowPolicyDetails = () => {
     setShowPolicyDetails(true);
   };
-
+  const selectedTab = getSelectedTab();
   const renderTabContent = () => {
     // console.log('debug: renderTabContent')
-    const selectedTab = getSelectedTab();
 
     return (
       <div
@@ -314,7 +311,7 @@ const AgentPolicyPlane = () => {
     );
   };
 
-  if (showCertApp) {
+  if (selectedTab === "Audit") {
     return (
       <AgentPolicyPlaneContainer
         responsiveRender={() => (

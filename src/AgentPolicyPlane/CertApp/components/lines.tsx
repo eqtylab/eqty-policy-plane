@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/CertApp/components/lines.tsx
 import React, {
   ReactNode,
   useEffect,
@@ -76,9 +77,9 @@ const Lines = () => {
   const last = buttons[buttons.length - 1]?.getBoundingClientRect() || 0;
 
   return (
-    <div className="w-full h-screen " ref={ref}>
+    <div className="tw-w-full tw-h-screen " ref={ref}>
       <svg
-        className="w-full h-full "
+        className="tw-w-full tw-h-full "
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >

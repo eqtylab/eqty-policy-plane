@@ -1,3 +1,5 @@
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 import React from "react";
 import Card from "./card";
 
@@ -57,17 +59,17 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col p-3 rounded-lg bg-sidebar gap-y-2 backdrop-blur-[14px]">
-      <div className="flex align-center gap-x-2">
+    <div className="tw-flex tw-flex-col tw-p-3 tw-rounded-lg tw-bg-sidebar tw-gap-y-2 tw-backdrop-blur-[14px]">
+      <div className="tw-flex tw-align-center tw-gap-x-2">
         <CertIcon />
-        <h1 className="text-xl">Audit Certificate</h1>
+        <h1 className="tw-text-xl">Audit Certificate</h1>
       </div>
 
       {renderCards()}
-      <div className="flex flex-col m-2 gap-y-2">
-        <div className="flex justify-end align-center gap-x-2">
+      <div className="tw-flex tw-flex-col tw-m-2 tw-gap-y-2">
+        <div className="tw-flex tw-justify-end tw-align-center tw-gap-x-2">
           <ExportIcon />
-          <p className="text-sm">Export</p>
+          <p className="tw-text-sm">Export</p>
         </div>
         <div>
           <LogoIcon />

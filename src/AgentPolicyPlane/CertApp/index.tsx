@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/CertApp/index.tsx
 import React from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -45,21 +46,21 @@ export const CertApp = () => {
   return (
     // add background image to the div
     <div
-      className="h-screen bg-transparent flex justify-center items-center text-white 
+      className="tw-h-screen tw-bg-transparent tw-flex tw-justify-center tw-items-center tw-text-white 
     "
     >
-      <div className="grid items-center grid-cols-12 px-24">
-        <div className="col-span-2 policies">
+      <div className="tw-grid tw-items-center tw-grid-cols-12 tw-px-24">
+        <div className="tw-col-span-2 tw-policies">
           <Policies />
         </div>
-        <div className="col-span-4">
+        <div className="tw-col-span-4">
           <Lines />
         </div>
-        <div className="col-span-4 server-card">
+        <div className="tw-col-span-4 tw-server-card">
           <ServerCard />
         </div>
         {/* <div className='col-span-1'></div> */}
-        <div className="col-span-2 sidebar">
+        <div className="tw-col-span-2 tw-sidebar">
           <Sidebar />
         </div>
       </div>

@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/CertApp/components/card.tsx
 import React from "react";
 
 interface Props {
@@ -8,12 +9,12 @@ interface Props {
 
 const Card = ({ title, content, IconRR }: Props) => {
   return (
-    <article className="flex flex-col p-4 text-white divide-y rounded-lg gap-y-3 divide-sidebar/100 bg-sidebar backdrop-blur-sm">
-      <div className="flex align-center gap-x-3">
+    <article className="tw-flex tw-flex-col tw-p-4 tw-text-white tw-divide-y tw-rounded-lg tw-gap-y-3 tw-divide-sidebar/100 tw-bg-sidebar tw-backdrop-blur-sm">
+      <div className="tw-flex tw-align-center tw-gap-x-3">
         {IconRR}
-        <h2 className="text-lg">{title}</h2>
+        <h2 className="tw-text-lg">{title}</h2>
       </div>
-      <div className="pt-2">{content}</div>
+      <div className="tw-pt-2">{content}</div>
     </article>
   );
 };
