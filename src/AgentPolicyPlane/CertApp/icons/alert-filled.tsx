@@ -1,10 +1,12 @@
+// src/AgentPolicyPlane/CertApp/icons/alert-filled.tsx
+// src/AgentPolicyPlane/CertApp/icons/alert-filled.tsx
 import React from "react";
 
 export default function AlertFilled() {
   return (
     <svg
-      width="23"
-      height="24"
+      width="12"
+      height="12"
       viewBox="0 0 23 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

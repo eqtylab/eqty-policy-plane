@@ -1,4 +1,5 @@
 // src/AgentPolicyPlane/CertApp/components/policies.tsx
+// src/AgentPolicyPlane/CertApp/components/policies.tsx
 import React from "react";
 import { useGSAP } from "@gsap/react";
 import { animateLine, pulsateLine } from "../utils/anims";
@@ -58,7 +59,7 @@ const Policies = () => {
   return (
     <div>
       <h2 className="tw-mb-2 tw-text-lg tw-font-semibold">Active Controls</h2>
-      <div className="tw-flex tw-flex-col tw-gap-y-6">{renderPolicies()}</div>
+      <div className="tw-flex tw-flex-col tw-gap-y-3">{renderPolicies()}</div>
     </div>
   );
 };

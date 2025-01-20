@@ -46,14 +46,14 @@ export const CertApp = () => {
   return (
     // add background image to the div
     <div
-      className="tw-h-screen tw-bg-transparent tw-flex tw-justify-center tw-items-center tw-text-white 
+      className="tw-h-full tw-bg-transparent tw-flex tw-justify-center tw-items-center tw-text-white tw-overflow-hidden
     "
     >
       <div className="tw-grid tw-items-center tw-grid-cols-12 tw-px-24">
         <div className="tw-col-span-2 tw-policies">
           <Policies />
         </div>
-        <div className="tw-col-span-4">
+        <div className="tw-col-span-4 tw-h-full">
           <Lines />
         </div>
         <div className="tw-col-span-4 tw-server-card">
