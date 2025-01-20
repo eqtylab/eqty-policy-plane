@@ -1,5 +1,6 @@
 // src/AgentPolicyPlane/PlaneWorkflowView/Dialogs/WorkflowOverview.tsx
 import React from "react";
+import { usePipeline } from "../../context/PipelineContext";
 
 interface WorkflowMetric {
   value: number;
@@ -24,8 +25,8 @@ const metrics: WorkflowMetric[] = [
     color: "tw-text-cyan-400/80",
   },
   {
-    value: 2,
-    label: "Nemo Guards",
+    value: 1,
+    label: "Nemo Guard",
     icon: (
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path
@@ -71,11 +72,11 @@ const metrics: WorkflowMetric[] = [
 ];
 
 const stages = [
-  {
-    name: "Parallel Input Processing",
-    details: "Video Analysis & OSINT Collection",
-    color: "tw-border-blue-500/30",
-  },
+  // {
+  //   name: "Parallel Input Processing",
+  //   details: "Video Analysis & OSINT Collection",
+  //   color: "tw-border-blue-500/30",
+  // },
   {
     name: "Information Fusion",
     details: "NVIDIA LLM & OSINT Summary",
@@ -94,8 +95,20 @@ const stages = [
 ];
 
 export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
+  const { state } = usePipeline();
+  const compliant = state.userOverrides.length > 0;
   return (
     <div className="tw-w-[264px] tw-flex tw-flex-col tw-bg-branddialogbg tw-rounded-xl tw-p-4 mt-3">
+      {/* compliant or not banner */}
+      <div
+        className={`tw-w-full tw-text-center tw-py-1 tw-mb-4 tw-rounded-lg tw-text-sm tw-font-medium ${
+          compliant
+            ? "tw-bg-brandgreen tw-text-branddialogbg"
+            : "tw-bg-brandred tw-text-white"
+        }`}
+      >
+        {compliant ? "Compliant" : "Non-Compliant"}
+      </div>
       {/* Header */}
       <div className="tw-flex tw-items-center tw-gap-2 tw-mb-4">
         <div>
