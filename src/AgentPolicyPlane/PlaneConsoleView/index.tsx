@@ -19,6 +19,42 @@ const headerComponents = {
   },
 };
 
+const calculatePanelPosition = (index: number, existingPanels: any[]) => {
+  // Early return for first panel - defaults to top-left
+  if (index === 0) return {};
+
+  const column = index % 4;
+  const row = Math.floor(index / 4);
+
+  // Validate we have required panels
+  if (!Array.isArray(existingPanels) || !existingPanels.length) return {};
+
+  // First row (panels 1-3): position to right of previous panel
+  if (row === 0) {
+    const previousPanel = existingPanels[index - 1];
+    if (!previousPanel?.id) return {};
+
+    return {
+      position: {
+        referencePanel: previousPanel.id,
+        direction: "right",
+      },
+    };
+  }
+
+  // Second row (panels 4-7): position below corresponding panel in first row
+  const referencePanelIndex = (row - 1) * 4 + column;
+  const referencePanel = existingPanels[referencePanelIndex];
+  if (!referencePanel?.id) return {};
+
+  return {
+    position: {
+      referencePanel: referencePanel.id,
+      direction: "below",
+    },
+  };
+};
+
 export const RunDock = (props: any) => {
   const [api, setApi] = React.useState<any>();
   const [panelCount, setPanelCount] = useState(0);
@@ -32,166 +68,46 @@ export const RunDock = (props: any) => {
 
   const [allPanels, setAllPanels] = useState<any>(initialOutputs);
   useEffect(() => {
+    if (!api) return;
+
     const allOutputs = Object.values(pipelineState.nodes).reduce(
       (acc, node) => acc.concat(node.outputs),
       [] as OutputTemplate[]
     );
-    allOutputs.forEach((output) => {
-      const existingPanel = api?.getPanel(output.id);
-      if (!existingPanel) {
-        api?.addPanel(output);
+
+    // Keep track of all panels we've added
+    const currentPanels: any[] = [];
+
+    allOutputs.forEach((output, index) => {
+      const existingPanel = api.getPanel(output.id);
+      if (!existingPanel && output.id) {
+        const panelConfig = {
+          ...output,
+          ...calculatePanelPosition(index, currentPanels),
+        };
+        const newPanel = api.addPanel(panelConfig);
+        currentPanels.push(newPanel);
       }
     });
   }, [pipelineState.nodes]);
 
-  // const addNewPanel = () => {
-  //   if (!api) return;
-  //   if (panelCount > 7) return;
-
-  //   const newPanelId = `panel_${panelCount + 1}`;
-  //   const column = panelCount % 4;
-  //   const row = Math.floor(panelCount / 4);
-
-  //   let panelConfig: any;
-  //   switch (panelCount) {
-  //     case 0:
-  //       panelConfig = {
-  //         id: newPanelId,
-  //         component: "markdown",
-  //         renderer: "always",
-  //         title: "Video Feed Analysis",
-  //         params: {
-  //           content: OUTPUT_1, // NVIDIA mixed-modal LLM analysis of footage
-  //         },
-  //       };
-  //       break;
-
-  //     case 1:
-  //       panelConfig = {
-  //         id: newPanelId,
-  //         component: "markdown",
-  //         renderer: "always",
-  //         title: "Partner Reports (EMS/Fire)",
-  //         params: {
-  //           content: OUTPUT_2, // Structured report from emergency services
-  //         },
-  //       };
-  //       break;
-
-  //     case 2:
-  //       panelConfig = {
-  //         id: newPanelId,
-  //         component: "jsonChart",
-  //         renderer: "always",
-  //         title: "Emergency Call Analysis",
-  //         params: {
-  //           content: OUTPUT_3, // JSON data for call frequency visualization
-  //         },
-  //       };
-  //       break;
-
-  //     case 3:
-  //       panelConfig = {
-  //         id: newPanelId,
-  //         component: "markdown",
-  //         renderer: "always",
-  //         title: "Social Media Distress Signals",
-  //         params: {
-  //           content: OUTPUT_4, // Filtered and verified social media reports
-  //         },
-  //       };
-  //       break;
-
-  //     case 4:
-  //       panelConfig = {
-  //         id: newPanelId,
-  //         component: "markdown",
-  //         renderer: "always",
-  //         title: "Situation Summary",
-  //         params: {
-  //           content: OUTPUT_5, // Comprehensive event summary
-  //         },
-  //       };
-  //       break;
-
-  //     case 5:
-  //       panelConfig = {
-  //         id: newPanelId,
-  //         component: "riskAssesment",
-  //         renderer: "always",
-  //         title: "Risk Assessment",
-  //         params: {
-  //           content: OUTPUT_6, // Nemo guardrail analysis results
-  //         },
-  //       };
-  //       break;
-
-  //     case 6:
-  //       panelConfig = {
-  //         id: newPanelId,
-  //         component: "markdown",
-  //         renderer: "always",
-  //         title: "Response Plan",
-  //         params: {
-  //           content: OUTPUT_7, // Final tactical response plan
-  //         },
-  //       };
-  //       break;
-
-  //     case 7:
-  //       panelConfig = {
-  //         id: newPanelId,
-  //         component: "toolNotify",
-  //         renderer: "always",
-  //         title: "First Responder Notifications",
-  //         params: {
-  //           content: OUTPUT_8, // Twilio/Apptek notification status
-  //         },
-  //       };
-  //       break;
-  //   }
-
-  //   if (panelCount > 0 && panelConfig) {
-  //     if (row === 0) {
-  //       // First row, position to the right of the previous panel
-  //       panelConfig.position = {
-  //         referencePanel: allPanels[panelCount - 1].id,
-  //         direction: "right",
-  //       };
-  //     } else {
-  //       // Other rows, position under the corresponding panel in the previous row
-  //       const referencePanelIndex = (row - 1) * 4 + column;
-  //       panelConfig.position = {
-  //         referencePanel: allPanels[referencePanelIndex].id,
-  //         direction: "below",
-  //       };
-  //     }
-  //   }
-
-  //   const newPanel = api.addPanel(panelConfig);
-
-  //   setAllPanels((prevPanels: any) => [...prevPanels, newPanel]);
-  //   setPanelCount((prevCount) => prevCount + 1);
-  // };
-
   const onReady = (event: any) => {
+    if (!event?.api) return;
     setApi(event.api);
 
-    // console.log("Dockview ready");
-    // console.log(initialOutputs);
+    // Keep track of panels as we add them
+    const currentPanels: any[] = [];
 
-    // add any initial panels here
     initialOutputs.forEach((output, index) => {
-      event.api.addPanel(output);
+      if (output.id) {
+        const panelConfig = {
+          ...output,
+          ...calculatePanelPosition(index, currentPanels),
+        };
+        const newPanel = event.api.addPanel(panelConfig);
+        currentPanels.push(newPanel);
+      }
     });
-    // event.api.onDidAddPanel((event: any) => {});
-    // event.api.onDidActivePanelChange((event: any) => {});
-    // event.api.onDidRemovePanel((event: any) => {});
-    // event.api.onDidMovePanel((event: any) => {});
-    // event.api.onDidAddGroup((event: any) => {});
-    // event.api.onDidRemoveGroup((event: any) => {});
-    // event.api.onDidActiveGroupChange((event: any) => {});
-    // defaultConfig(event.api);
   };
 
   return (
