@@ -143,10 +143,10 @@ const initialNodes: Node<AgentNodeData>[] = [
       type: "policy-alert",
       animating: true,
       labelPosition: "right",
-      role: "Policy Override Validator",
+      role: "Sourcing Protocol - Human Authorization",
       backstory:
-        "You are a critical checkpoint for high-risk scenarios, ensuring that AI-driven actions in emergency situations have proper authorization and oversight.",
-      goal: "Validate and authorize AI-driven actions in high-risk scenarios, ensuring proper protocols are followed",
+        "Mandatory authorization checkpoint for AI systems making life-critical prioritization decisions in disaster response, particularly when influenced by social media signals. Flagged due to algorithmic triage of human rescue priorities.",
+      goal: "Ensure human oversight of AI emergency response systems through explicit authorization protocols before deployment of rescue resources",
     },
     type: "turbo",
   },
@@ -274,6 +274,7 @@ interface DialogState {
     role?: string;
     backstory?: string;
     goal?: string;
+    isAlert?: boolean;
   };
   position: {
     x: number;
@@ -287,7 +288,88 @@ const AgentInfoDialog: React.FC<{
   position: DialogState["position"];
 }> = ({ visible, content, position }) => {
   if (!visible) return null;
+  if (content.isAlert) {
+    return (
+      <div
+        style={{
+          position: "absolute",
+          left: position.x,
+          top: position.y,
+          zIndex: 99999,
+        }}
+        className="tw-animate-fadeIn"
+      >
+        <div className="tw-bg-[#09090B]/95 tw-backdrop-blur-sm tw-border !tw-border-white/10 tw-rounded-lg tw-p-4 tw-w-[320px]">
+          {/* Header */}
+          <div className="tw-flex tw-items-start tw-gap-3 tw-mb-3">
+            <div>
+              <h3 className="tw-text-white tw-text-sm tw-font-medium">
+                Authorization Required
+              </h3>
+              <div className="tw-flex tw-gap-2 tw-mt-1">
+                <span className="tw-px-1.5 tw-py-0.5 tw-text-[10px] tw-bg-amber-500/10 tw-text-amber-400 tw-rounded">
+                  Auth Gate
+                </span>
+                <span className="tw-px-1.5 tw-py-0.5 tw-text-[10px] tw-bg-red-500/10 tw-text-red-400 tw-rounded">
+                  Pending
+                </span>
+                <span className="tw-px-1.5 tw-py-0.5 tw-text-[10px] tw-bg-white/5 tw-text-white/60 tw-font-mono tw-rounded">
+                  GATE_ID: bak3f...a92d
+                </span>
+              </div>
+            </div>
+          </div>
 
+          {/* Content Sections */}
+          <div className="tw-space-y-3">
+            {/* System Alert */}
+            <div className="tw-p-2 tw-rounded-lg tw-bg-amber-500/[0.03] tw-border !tw-border-amber-500/10">
+              <div className="tw-text-xs tw-text-amber-400 tw-mb-1">
+                Critical System Notice
+              </div>
+              <div className="tw-text-sm tw-text-white/90">
+                AI system requires authorization for emergency response
+                prioritization. Social media data integration may influence
+                rescue priority decisions.
+              </div>
+            </div>
+
+            {/* Authorization Requirements */}
+            <div className="tw-p-2 tw-rounded-lg tw-bg-white/[0.03] tw-border !tw-border-white/10">
+              <div className="tw-text-xs tw-text-white/60 tw-mb-1">
+                Authorization Protocol
+              </div>
+              <div className="tw-text-sm tw-text-white/90">
+                Human verification required for AI-driven emergency response
+                system. Confirm implementation of safety controls before
+                authorizing deployment.
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            {/* <div className="tw-flex tw-gap-2">
+              <button className="tw-flex-1 tw-px-3 tw-py-2 tw-text-sm tw-rounded-md tw-bg-amber-500/10 tw-text-amber-400/70 tw-border tw-border-amber-500/20">
+                Review Controls
+              </button>
+              <button className="tw-flex-1 tw-px-3 tw-py-2 tw-text-sm tw-rounded-md tw-bg-brandblue/10 tw-text-brandblue tw-border tw-border-brandblue/20">
+                Authorize
+              </button>
+            </div> */}
+          </div>
+        </div>
+
+        <style>{`
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(-8px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            .tw-animate-fadeIn {
+              animation: fadeIn 0.2s ease-out forwards;
+            }
+          `}</style>
+      </div>
+    );
+  }
   return (
     <div
       style={{
@@ -480,6 +562,7 @@ export const AgentGraph = ({
           role: node.data.role,
           backstory: node.data.backstory,
           goal: node.data.goal,
+          isAlert: node.id === "reconfirm",
         },
         position: { x, y },
       });
@@ -521,6 +604,12 @@ export const AgentGraph = ({
   // Call once on init and/or whenever nodes or instance change
   useEffect(() => {
     fitAndCenter();
+    // remove any dialogs
+    setDialogState((prev) => ({
+      visible: false,
+      content: {},
+      position: { x: 0, y: 0 },
+    }));
   }, [fitAndCenter]);
 
   // Call on window resize
