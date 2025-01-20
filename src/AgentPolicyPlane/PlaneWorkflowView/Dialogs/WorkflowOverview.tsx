@@ -23,7 +23,7 @@ const metrics: WorkflowMetric[] = [
         />
       </svg>
     ),
-    color: "tw-text-cyan-400",
+    color: "tw-text-cyan-400/80",
   },
   {
     value: 2,
@@ -38,7 +38,7 @@ const metrics: WorkflowMetric[] = [
         />
       </svg>
     ),
-    color: "tw-text-green-400",
+    color: "tw-text-green-400/80",
   },
   {
     value: 3,
@@ -52,7 +52,7 @@ const metrics: WorkflowMetric[] = [
         />
       </svg>
     ),
-    color: "tw-text-purple-400",
+    color: "tw-text-purple-400/80",
   },
   {
     value: 2,
@@ -68,7 +68,7 @@ const metrics: WorkflowMetric[] = [
         />
       </svg>
     ),
-    color: "tw-text-orange-400",
+    color: "tw-text-orange-400/80",
   },
 ];
 

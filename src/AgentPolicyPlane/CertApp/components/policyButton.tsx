@@ -1,5 +1,8 @@
 // src/AgentPolicyPlane/CertApp/components/policyButton.tsx
 // src/AgentPolicyPlane/CertApp/components/policyButton.tsx
+// src/AgentPolicyPlane/CertApp/components/policyButton.tsx
+// src/AgentPolicyPlane/CertApp/components/policyButton.tsx
+// src/AgentPolicyPlane/CertApp/components/policyButton.tsx
 import React from "react";
 import { forwardRef, HTMLAttributes } from "react";
 import { useButtonsStore } from "../stores/buttonsStore";
@@ -36,7 +39,7 @@ const PolicyButton = forwardRef<HTMLDivElement, Props>(
     return (
       <div className="tw-flex tw-items-center tw-justify-stretch tw-gap-x-2">
         <div
-          className={`tw-p-2 tw-border tw-font-semibold tw-border-gray-400 tw-rounded-lg tw-cursor-pointer tw-grow ${colorClass}`}
+          className={`tw-p-2 tw-border tw-font-medium tw-text-sm tw-border-gray-400 tw-rounded-lg tw-cursor-pointer tw-grow ${colorClass}`}
           {...props}
           ref={ref}
         >

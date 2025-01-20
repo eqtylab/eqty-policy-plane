@@ -1,6 +1,7 @@
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -45,7 +46,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Policy 3",
+    title: "Bias Detection in Emergency Prioritization",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 1,
@@ -53,7 +54,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Policy 4",
+    title: "Social Media Input Verification",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -61,7 +62,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Policy 5",
+    title: "Decision Logging for Emergency Response",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -69,7 +70,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Policy 6",
+    title: "Health and Safety Risk Analysis",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -77,7 +78,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Policy 7",
+    title: "Feedback Loop Detection",
     color: "#3c3d3d",
     width: Widths.THICK,
     count: 1,
@@ -85,26 +86,10 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Policy 8",
+    title: "Post-Incident Analysis System",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
-    hovered: false,
-    animation: null,
-  },
-  {
-    title: "Policy 9",
-    color: "#3c3d3d",
-    width: Widths.THIN,
-    count: 1,
-    hovered: false,
-    animation: null,
-  },
-  {
-    title: "Policy 10",
-    color: "#3c3d3d",
-    width: Widths.THIN,
-    count: 1,
     hovered: false,
     animation: null,
   },
