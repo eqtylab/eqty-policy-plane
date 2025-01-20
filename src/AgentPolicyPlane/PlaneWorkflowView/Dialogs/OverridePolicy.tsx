@@ -1,5 +1,4 @@
 // src/AgentPolicyPlane/PlaneWorkflowView/Dialogs/OverridePolicy.tsx
-// src/AgentPolicyPlane/Dialogs/OverridePolicy.tsx
 import React from "react";
 
 interface AgentPolicyOverrideDialogProps {

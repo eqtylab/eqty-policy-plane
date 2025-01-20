@@ -1,6 +1,4 @@
 // src/AgentPolicyPlane/PlaneWorkflowView/Dialogs/WorkflowOverview.tsx
-// src/AgentPolicyPlane/Dialogs/WorkflowOverview.tsx
-
 import React from "react";
 
 interface WorkflowMetric {

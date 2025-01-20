@@ -1,6 +1,4 @@
 // src/AgentPolicyPlane/PlaneWorkflowView/AgentGraph/index.tsx
-// src/AgentPolicyPlane/WorkflowView/AgentGraph/index.tsx
-// src/AgentPolicyPlane/AgentGraph/index.tsx
 import "./index.css";
 import React, { useCallback, useEffect, useState } from "react";
 import {

@@ -1,5 +1,4 @@
 // src/AgentPolicyPlane/PlaneWorkflowView/ActiveControlsList/index.tsx
-// src/AgentPolicyPlane/ActiveControlsList/index.tsx
 import React from "react";
 import { usePipeline } from "../../context/PipelineContext";
 

@@ -328,28 +328,6 @@ const AgentPolicyPlane = () => {
     );
   };
 
-  // if (selectedTab === "Audit") {
-  //   return (
-  //     <AgentPolicyPlaneContainer
-  //       responsiveRender={() => (
-  //         <ResponsiveContainer>
-  //           <CertApp />
-  //           <button
-  //             onClick={() => {
-  //               setShowCertApp(false);
-  //             }}
-  //             className="tw-absolute tw--bottom-10 tw-left-0 tw-right-0 tw-m-auto tw-w-24 tw-bg-brandred tw-text-white tw-p-2 tw-rounded-lg"
-  //           >
-  //             Close
-  //           </button>
-  //         </ResponsiveContainer>
-  //       )}
-  //     >
-  //       {null}
-  //     </AgentPolicyPlaneContainer>
-  //   );
-  // }
-
   return (
     <AgentPolicyPlaneContainer outsideGridRender={() => <RunLogging />}>
       {renderTabContent()}

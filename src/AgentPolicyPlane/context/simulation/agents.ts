@@ -1,4 +1,4 @@
-// src/AgentPolicyPlane/context/agents.ts
+// src/AgentPolicyPlane/context/simulation/agents.ts
 export const contextPipelineAgentsOverviews = [
   {
     role: "Video Feed Collector",

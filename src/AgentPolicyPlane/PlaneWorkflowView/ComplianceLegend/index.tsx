@@ -1,5 +1,4 @@
 // src/AgentPolicyPlane/PlaneWorkflowView/ComplianceLegend/index.tsx
-// src/AgentPolicyPlane/PlaneLegend/index.tsx
 import React from "react";
 
 export const ComplianceLegend = () => {

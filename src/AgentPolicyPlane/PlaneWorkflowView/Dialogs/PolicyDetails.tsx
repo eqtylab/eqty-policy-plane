@@ -1,13 +1,13 @@
-// src/AgentPolicyPlane/Dialogs/PolicyDetails.tsx
+// src/AgentPolicyPlane/PlaneWorkflowView/Dialogs/PolicyDetails.tsx
 import React from "react";
 
 interface AgentPolicyDetailsDialogProps {
   onClose?: () => void;
 }
 
-export const AgentPolicyDetailsDialog: React.FC<AgentPolicyDetailsDialogProps> = ({
-  onClose
-}) => {
+export const AgentPolicyDetailsDialog: React.FC<
+  AgentPolicyDetailsDialogProps
+> = ({ onClose }) => {
   return (
     <div className="tw-flex tw-items-center tw-justify-center tw-h-full tw-bg-branddialogbg_full tw-rounded-xl">
       <div className="tw-w-[600px] tw-p-6">
@@ -17,7 +17,9 @@ export const AgentPolicyDetailsDialog: React.FC<AgentPolicyDetailsDialogProps> =
             <div className="tw-px-2 tw-py-1 tw-bg-brandreddark tw-rounded-md tw-text-xs tw-text-white">
               CTRL-003
             </div>
-            <h2 className="tw-text-lg tw-text-white">Sourcing Protocol: AI Action</h2>
+            <h2 className="tw-text-lg tw-text-white">
+              Sourcing Protocol: AI Action
+            </h2>
           </div>
           <div className="tw-flex tw-items-center tw-gap-2">
             <div className="tw-w-2 tw-h-2 tw-bg-brandreddark tw-rounded-full tw-animate-pulse"></div>
@@ -32,19 +34,25 @@ export const AgentPolicyDetailsDialog: React.FC<AgentPolicyDetailsDialogProps> =
             <div className="tw-bg-white/5 tw-rounded-lg tw-p-3">
               <div className="tw-text-xs tw-text-white/60 tw-mb-1">Purpose</div>
               <div className="tw-text-sm tw-text-white">
-                Governs AI decision-making in emergency response when processing social media and life-safety data
+                Governs AI decision-making in emergency response when processing
+                social media and life-safety data
               </div>
             </div>
 
             <div className="tw-bg-gradient-to-br tw-from-brandreddark/20 tw-to-brandreddark/10 tw-rounded-lg tw-p-3">
-              <div className="tw-text-xs tw-text-white/60 tw-mb-2">Critical Triggers</div>
+              <div className="tw-text-xs tw-text-white/60 tw-mb-2">
+                Critical Triggers
+              </div>
               <ul className="tw-space-y-2">
                 {[
                   "Life-threat detection",
                   "Unverified social data",
-                  "Direct response actions"
+                  "Direct response actions",
                 ].map((item, i) => (
-                  <li key={i} className="tw-flex tw-items-center tw-gap-2 tw-text-sm tw-text-white">
+                  <li
+                    key={i}
+                    className="tw-flex tw-items-center tw-gap-2 tw-text-sm tw-text-white"
+                  >
                     <div className="tw-w-1 tw-h-1 tw-bg-brandreddark tw-rounded-full"></div>
                     {item}
                   </li>
@@ -55,15 +63,20 @@ export const AgentPolicyDetailsDialog: React.FC<AgentPolicyDetailsDialogProps> =
 
           {/* Right Column */}
           <div className="tw-bg-white/5 tw-rounded-lg tw-p-3">
-            <div className="tw-text-xs tw-text-white/60 tw-mb-2">Requirements</div>
+            <div className="tw-text-xs tw-text-white/60 tw-mb-2">
+              Requirements
+            </div>
             <ul className="tw-space-y-2">
               {[
                 "Human authorization required",
                 "Social media verification",
                 "Cross-validation with EMS",
-                "Override documentation"
+                "Override documentation",
               ].map((req, i) => (
-                <li key={i} className="tw-flex tw-items-center tw-gap-2 tw-text-sm tw-text-white/80">
+                <li
+                  key={i}
+                  className="tw-flex tw-items-center tw-gap-2 tw-text-sm tw-text-white/80"
+                >
                   <div className="tw-text-brandreddark">•</div>
                   {req}
                 </li>
