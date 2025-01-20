@@ -50,7 +50,7 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
           />
           <span className="tw-text-white tw-text-xs tw-truncate">
             {isBlocked && !hasOverride
-              ? "Override Required"
+              ? "Human Authorization Required"
               : state.status === "running"
               ? `Running. Completed: (${Math.min(
                   Math.max(completedNodes - 1, 0),

@@ -31,7 +31,7 @@ import { AgentNodeData } from "./PlaneWorkflowView/AgentGraph/AgentNode";
 const sampleControls = [
   {
     id: "ctrl-1",
-    title: "FEMA Control Protocol",
+    title: "Garda Control Protocol",
     isAlert: false,
     mandatory: true,
     implemented: true,
@@ -50,61 +50,61 @@ const sampleControls = [
     mandatory: true,
     implemented: true,
   },
+
   {
     id: "ctrl-4",
-    title: "Policy 3",
+    title: "Bias Detection in Emergency Prioritization",
+    description:
+      "Detecting and preventing biased outputs in emergency response prioritization decisions, especially regarding demographic and geographic factors",
     isAlert: false,
     mandatory: false,
-    implemented: false,
+    implemented: true,
   },
   {
     id: "ctrl-5",
-    title: "Policy 4",
+    title: "Social Media Input Verification",
+    description:
+      "Analyzing and validating social media distress signals to prevent misinformation or manipulation of response priorities",
     isAlert: false,
     mandatory: false,
-    implemented: false,
+    implemented: true,
   },
   {
     id: "ctrl-6",
-    title: "Policy 5",
+    title: "Decision Logging for Emergency Response",
+    description:
+      "Automatically logging all prioritization decisions and the reasoning behind emergency response dispatches",
     isAlert: false,
     mandatory: false,
-    implemented: false,
+    implemented: true,
   },
   {
     id: "ctrl-7",
-    title: "Policy 6",
+    title: "Health and Safety Risk Analysis",
+    description:
+      "Real-time analysis of health and safety risks for both victims and first responders",
     isAlert: false,
     mandatory: false,
-    implemented: false,
+    implemented: true,
   },
-  {
-    id: "ctrl-8",
-    title: "Policy 7",
-    isAlert: false,
-    mandatory: false,
-    implemented: false,
-  },
+
   {
     id: "ctrl-9",
-    title: "Policy 8",
+    title: "Feedback Loop Detection",
+    description:
+      "Detecting and mitigating potential feedback loops in the prioritization algorithm",
     isAlert: false,
     mandatory: false,
-    implemented: false,
+    implemented: true,
   },
   {
     id: "ctrl-10",
-    title: "Policy 9",
+    title: "Post-Incident Analysis System",
+    description:
+      "Systematic analysis of decision outcomes and response effectiveness",
     isAlert: false,
     mandatory: false,
-    implemented: false,
-  },
-  {
-    id: "ctrl-11",
-    title: "Policy 10",
-    isAlert: false,
-    mandatory: false,
-    implemented: false,
+    implemented: true,
   },
 ];
 

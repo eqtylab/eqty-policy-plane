@@ -1,5 +1,6 @@
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -20,7 +21,7 @@ type Prop = {
 
 const props: Prop[] = [
   {
-    title: "FEMA Control Protocol",
+    title: "Garda Control Protocol",
     color: "#5db0c8",
     width: Widths.NORMAL,
     count: 2,

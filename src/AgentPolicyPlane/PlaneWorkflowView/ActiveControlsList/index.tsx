@@ -93,7 +93,7 @@ export const ActiveControlsList: React.FC<ActiveControlsListProps> = ({
         Active Controls
       </h2>
       <div
-        className="tw-flex tw-flex-col tw-gap-3 tw-font-[400] tw-text-[16px]  tw-h-[90%] tw-pb-14 tw-scroll-smooth	tw-scrollbar-hidden" // removed 0verflow-y-auto
+        className="tw-flex tw-flex-col tw-gap-3 tw-font-[400] tw-text-[14.5px]  tw-h-[90%] tw-pb-14 tw-scroll-smooth	tw-scrollbar-hidden" // removed 0verflow-y-auto
         style={{
           // maskImage: "linear-gradient(to bottom, black 80%, transparent 99%)",
           overflowX: "visible",

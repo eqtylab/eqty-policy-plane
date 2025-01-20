@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/PlaneWorkflowView/Dialogs/OverridePolicy.tsx
 // src/AgentPolicyPlane/Dialogs/OverridePolicy.tsx
 import React from "react";
 
@@ -23,8 +24,8 @@ export const AgentPolicyOverrideDialog: React.FC<
 
         {/* Message text */}
         <p className="tw-text-white tw-text-base">
-          You action was halted because it flagged the Sourcing Protocol Control
-          #234 which is mandatory.
+          You action was halted because it flagged a Sourcing Protocol Control
+          which is mandatory.
         </p>
 
         {/* Buttons container */}
@@ -42,7 +43,7 @@ export const AgentPolicyOverrideDialog: React.FC<
             }}
             className="tw-w-full tw-py-3 tw-px-4 tw-rounded-xl tw-bg-override-gradient tw-text-white tw-text-sm hover:tw-opacity-90 tw-transition-opacity"
           >
-            Override
+            Grant Authorization{" "}
           </button>
 
           {/* Cancel button */}

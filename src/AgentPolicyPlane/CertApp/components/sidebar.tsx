@@ -1,5 +1,6 @@
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 import React from "react";
 import Card from "./card";
 
@@ -26,7 +27,7 @@ const cardsData = [
   },
   {
     title: "Agent Authority",
-    content: <p>Provisioned by FEMA</p>,
+    content: <p>Provisioned by Garda</p>,
     icon: <ShieldIcon />,
   },
   {
