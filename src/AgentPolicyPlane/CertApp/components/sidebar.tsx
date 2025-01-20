@@ -1,6 +1,10 @@
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 import React from "react";
 import Card from "./card";
 
@@ -17,12 +21,25 @@ import LogoIcon from "../icons/logo";
 const cardsData = [
   {
     title: "Controls Failed",
-    content: <p className="text-red-400">5 Controls</p>,
+    content: <p className="text-red-400">0 Controls</p>,
     icon: <AlertIcon />,
   },
   {
     title: "Controls Passed",
-    content: <p>500 Controls</p>,
+    content: (
+      <p
+        className="tw-cursor-pointer"
+        onClick={() => {
+          // open url in new tab
+          window.open(
+            "https://governance-studio.eqtylab.io/EU%20AI%20Act%20-%20Energy%20Provider/gov-studio/workspaces/27/dashboard",
+            "_blank"
+          );
+        }}
+      >
+        45 Controls
+      </p>
+    ),
     icon: <CheckIcon />,
   },
   {
