@@ -299,13 +299,13 @@ const AgentPolicyPlane = () => {
             </div>
             {activeAlertUID && activeAlertControlDivId && (
               <>
-                <DelayedRenderWrapper t={120}>
+                <DelayedRenderWrapper t={380}>
                   <DrawLine
                     startId={activeAlertControlDivId}
                     endId="ripple-point-eq"
                   />
                 </DelayedRenderWrapper>
-                <DelayedRenderWrapper t={480}>
+                <DelayedRenderWrapper t={380}>
                   <DrawLine
                     startId="ripple-point-eq"
                     endId="eq-control-dialog"
