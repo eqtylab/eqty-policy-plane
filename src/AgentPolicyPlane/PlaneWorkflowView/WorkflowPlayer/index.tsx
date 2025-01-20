@@ -40,17 +40,20 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
           <div
             className={`tw-min-w-[8px] tw-min-h-[8px] tw-rounded-full ${
               isBlocked && !hasOverride
-                ? "tw-bg-brandalert"
+                ? "tw-bg-brandalert tw-animate-pulse-glow-alert"
                 : state.status === "running"
-                ? "tw-bg-brandblue tw-animate-pulse"
-                : "tw-bg-gray-400"
+                ? "tw-bg-brandblue tw-animate-pulse-glow-blue"
+                : "tw-bg-gray-400 tw-animate-none"
             }`}
           />
           <span className="tw-text-white tw-text-xs tw-truncate">
             {isBlocked && !hasOverride
               ? "Override Required"
               : state.status === "running"
-              ? `Running. Completed: (${completedNodes}/11 Agents)`
+              ? `Running. Completed: (${Math.min(
+                  completedNodes,
+                  11
+                )}/11 Agents)`
               : "Ready to Run"}
           </span>
         </div>

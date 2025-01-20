@@ -222,3 +222,35 @@ custom css for the AgentGraph component (react flow overriden styles)
     stroke-dashoffset: 10;
   }
 }
+/* Glow animations */
+@keyframes pulseGlowBlue {
+  0%,
+  100% {
+    box-shadow: 0 0 4px 0 rgba(0, 112, 244, 0.6),
+      0 0 8px 2px rgba(0, 112, 244, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 8px 2px rgba(0, 112, 244, 0.8),
+      0 0 12px 4px rgba(0, 112, 244, 0.6);
+  }
+}
+
+@keyframes pulseGlowAlert {
+  0%,
+  100% {
+    box-shadow: 0 0 4px 0 rgba(255, 0, 0, 0.6), 0 0 8px 2px rgba(255, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 8px 2px rgba(255, 0, 0, 0.8),
+      0 0 12px 4px rgba(255, 0, 0, 0.6);
+  }
+}
+
+/* Classes for the animations */
+.tw-animate-pulse-glow-blue {
+  animation: pulseGlowBlue 1.5s infinite;
+}
+
+.tw-animate-pulse-glow-alert {
+  animation: pulseGlowAlert 1.5s infinite;
+}
