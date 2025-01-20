@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/PlaneWorkflowView/Dialogs/WorkflowOverview.tsx
 // src/AgentPolicyPlane/Dialogs/WorkflowOverview.tsx
 
 import React from "react";
@@ -99,15 +100,6 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
     <div className="tw-w-[264px] tw-flex tw-flex-col tw-bg-branddialogbg tw-rounded-xl tw-p-4 mt-3">
       {/* Header */}
       <div className="tw-flex tw-items-center tw-gap-2 tw-mb-4">
-        <div className="tw-w-8 tw-h-8 tw-rounded-full tw-bg-gradient-to-br tw-from-blue-500/20 tw-to-purple-500/20 tw-flex tw-items-center tw-justify-center">
-          {/* <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path
-              d="M8 2L14 5V11L8 14L2 11V5L8 2Z"
-              stroke="white"
-              strokeWidth="1.2"
-            />
-          </svg> */}
-        </div>
         <div>
           <h3 className="tw-text-white tw-text-sm tw-font-medium">
             Notify First Responders
@@ -123,11 +115,12 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
             key={idx}
             className="tw-bg-white/[0.03] tw-rounded-lg tw-p-2 tw-border !tw-border-white/10"
           >
-            <div className={`tw-flex tw-items-center tw-gap-1.5 ${metric.color}`}>
+            <div
+              className={`tw-flex tw-items-center tw-gap-1.5 ${metric.color}`}
+            >
               {metric.value}
               <span className="tw-text-xs">{metric.label}</span>
             </div>
-
           </div>
         ))}
       </div>
@@ -138,11 +131,16 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
           Input Sources
         </div>
         <div className="tw-flex tw-flex-wrap tw-gap-1">
-          {["Video Feed", "EMS Reports", "Dispatch Logs", "Social Media"].map((source) => (
-            <span key={source} className="tw-px-2 tw-py-0.5 tw-rounded-full tw-text-[10px] tw-bg-white/[0.03] tw-border !tw-border-white/10 tw-text-white/80">
-              {source}
-            </span>
-          ))}
+          {["Video Feed", "EMS Reports", "Dispatch Logs", "Social Media"].map(
+            (source) => (
+              <span
+                key={source}
+                className="tw-px-2 tw-py-0.5 tw-rounded-full tw-text-[10px] tw-bg-white/[0.03] tw-border !tw-border-white/10 tw-text-white/80"
+              >
+                {source}
+              </span>
+            )
+          )}
         </div>
       </div>
 

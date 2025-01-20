@@ -18,6 +18,9 @@ export type AgentNodeData = {
   parallelVertSize?: boolean;
   labelPosition?: "top" | "bottom" | "left" | "right";
   status?: NodeStatus;
+  role?: string;
+  backstory?: string;
+  goal?: string;
 };
 
 const NodeLabel = ({

@@ -260,13 +260,13 @@ const AgentPolicyPlane = () => {
                     </AnimationWrapper>
                   </div>
                 )}
-                <div className="tw-absolute tw--top-16 tw-left-16 tw-transform tw--translate-y-[32px]  tw-flex tw-z-10">
+                {/* <div className="tw-absolute tw--top-16 tw-left-16 tw-transform tw--translate-y-[32px]  tw-flex tw-z-10">
                   <PlaneNav
                     showCertApp={showCertApp}
                     setShowCertApp={setShowCertApp}
                   />
                   <PlaneTabs tabs={tabs} onTabChange={handleTabChange} />
-                </div>
+                </div> */}
                 <div className="tw-absolute tw-bottom-0 tw-left-16">
                   <ComplianceLegend />
                 </div>
@@ -353,6 +353,10 @@ const AgentPolicyPlane = () => {
   return (
     <AgentPolicyPlaneContainer outsideGridRender={() => <RunLogging />}>
       {renderTabContent()}
+      <div className="tw-absolute tw--top-10 tw-left-56 tw-transform tw--translate-y-[32px]  tw-flex tw-z-10">
+        <PlaneNav showCertApp={showCertApp} setShowCertApp={setShowCertApp} />
+        <PlaneTabs tabs={tabs} onTabChange={handleTabChange} />
+      </div>
     </AgentPolicyPlaneContainer>
   );
 };
