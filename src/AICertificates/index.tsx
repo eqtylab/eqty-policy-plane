@@ -63,54 +63,94 @@ export const AgentProvisionCertificate = () => {
     {
       category: "1. Risk Management",
       checks: [
-        "Image quality metrics passed",
-        "Stable satellite feed confirmed",
-        "Metadata integrity verified",
-        "Sensor calibration current",
-        "Environmental conditions suitable",
+        // Analyzing group
+        "Analyzing known health and safety risks",
+        "Analyzing known fundamental rights risks",
+        "Analyzing foreseeable health and safety risks",
+        "Analyzing foreseeable fundamental rights risks",
+        // Evaluating group
+        "Evaluating emerging risks",
+        "Evaluating emerging risks from misuse",
+        "Evaluating risks from monitoring system",
+        // Identifying group
+        "Identifying known health and safety risks",
+        "Identifying known fundamental rights risks",
+        "Identifying foreseeable health and safety risks",
+        "Identifying foreseeable fundamental rights risks",
+        // Implementation
+        "Implementing health and safety measures",
       ],
     },
     {
       category: "2. Data Governance",
       checks: [
-        "Input/output logging active",
-        "Geographic coverage complete",
-        "Alert response times nominal",
-        "System state stable",
-        "Audit trail current",
+        // Detecting group
+        "Detecting discriminatory outputs",
+        "Detecting biased health and safety outputs",
+        "Detecting biased fundamental rights outputs",
+        // Mitigating group
+        "Mitigating discriminatory outputs",
+        "Mitigating biased health and safety outputs",
+        "Mitigating biased fundamental rights outputs",
+        // Preventing group
+        "Preventing discriminatory outputs",
+        "Preventing biased health and safety outputs",
+        "Preventing biased fundamental rights outputs",
       ],
     },
     {
-      category: "3. Quality Management",
+      category: "3. System Monitoring",
       checks: [
-        "Image quality metrics passed",
-        "Stable satellite feed confirmed",
-        "Metadata integrity verified",
-        "Sensor calibration current",
-        "Environmental conditions suitable",
+        // Analyzing group
+        "Analyzing compliance data",
+        "Analyzing performance data",
+        "Analyzing system interactions",
+        // Collecting/Documenting group
+        "Collecting performance data",
+        "Documenting deployer performance data",
+        "Documenting performance data",
+        // Feedback loops group
+        "Detecting feedback loops",
+        "Implementing feedback loop mitigation measures",
       ],
     },
     {
-      category: "4. Monitoring",
+      category: "4. Quality Management",
       checks: [
-        "Input/output logging active",
-        "Geographic coverage complete",
-        "Alert response times nominal",
-        "System state stable",
-        "Audit trail current",
+        // Primary actions
+        "Conducting post-development examination procedures",
+        "Executing systematic quality assurance actions",
+        "Implementing quality control techniques",
+        "Implementing serious incident reporting procedures",
+        "Maintaining written quality management policies",
+        "Managing security of supply measures",
+        "Performing post-development test procedures",
       ],
     },
     {
       category: "5. Record Keeping",
       checks: [
-        "Precision/recall rates within threshold (last 15min)",
-        "False positive/negative rates acceptable",
-        "Confidence scores above baseline",
-        "Detection accuracy > 98%",
-        "No anomaly patterns detected",
+        // Automatic logs group
+        "Automatically generating logs",
+        "Generating automatic logs",
+        // Implementing group
+        "Implementing record-keeping documentation systems",
+        "Implementing record-keeping information systems",
+        // Logging group
+        "Logging product risk identification",
+        "Logging relevant events",
+        "Logging substantial modifications",
+        // Maintaining group
+        "Maintaining record-keeping documentation procedures",
+        "Maintaining record-keeping information procedures",
       ],
     },
   ];
+
+  const totalChecks = certificationChecks.reduce(
+    (acc, category) => acc + category.checks.length,
+    0
+  );
 
   return (
     <div className="component-container ">
@@ -163,7 +203,9 @@ export const AgentProvisionCertificate = () => {
                 </div>
 
                 <div>
-                  <div className="tw-text-[56px]  tw-text-blue-500">41</div>
+                  <div className="tw-text-[56px]  tw-text-blue-500">
+                    {totalChecks}
+                  </div>
                 </div>
               </div>
             </div>
@@ -258,7 +300,7 @@ export const AgentProvisionCertificate = () => {
             {certificationChecks.map((category, idx) => (
               <div
                 key={idx}
-                className="tw-p-4 tw-h-fit tw-rounded-lg tw-border tw-border-[#27272A] tw-bg-[#D9D9D9]/5"
+                className="tw-p-4 tw-rounded-lg tw-border tw-border-[#27272A] tw-bg-[#D9D9D9]/5"
               >
                 <div className="tw-h-[40px]  tw-text-[#fafafa] tw-border-b tw-border-[#27272A]">
                   {category.category}
