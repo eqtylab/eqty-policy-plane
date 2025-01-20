@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { AgentPolicyPlaneContainer } from "./container";
 import { ActiveControlsList } from "./PlaneWorkflowView/ActiveControlsList";
-import { AgentGraph } from "./PlaneWorkflowView/AgentGraph";
+import { AgentGraph, WrappedNode } from "./PlaneWorkflowView/AgentGraph";
 import { AgentPolicyOverrideDialog } from "./PlaneWorkflowView/Dialogs/OverridePolicy";
 import { AgentPolicyDetailsDialog } from "./PlaneWorkflowView/Dialogs/PolicyDetails";
 import { AgentPolicyWorkflowOverviewDialog } from "./PlaneWorkflowView/Dialogs/WorkflowOverview";
@@ -26,6 +26,7 @@ import { DrawLine } from "./Interactive/AlertLines";
 import { DelayedRenderWrapper } from "./Interactive/DelayedRenderWrapper";
 
 import ResponsiveContainer from "./responsive";
+import { AgentNodeData } from "./PlaneWorkflowView/AgentGraph/AgentNode";
 
 const sampleControls = [
   {
@@ -132,9 +133,6 @@ const AgentPolicyPlane = () => {
     setActiveAlertUID(null);
   };
 
-  // Track whether content is actually invisible
-  const [isContentInvisible, setIsContentInvisible] = useState(false);
-
   const [tabs, setTabs] = React.useState([
     { name: "Workflow", current: true },
     { name: "Console", current: false },
@@ -201,13 +199,22 @@ const AgentPolicyPlane = () => {
 
   const handleControlClick = (controlId: string, fromDivId?: string | null) => {
     if (activeAlertUID && activeAlertUID !== controlId) {
-      alert("ho");
+      // todo: this is clicking on another control while an alert is active
       setActiveAlertUID(null);
       setShowPolicyDetails(false);
+    } else if (activeAlertUID && activeAlertUID === controlId) {
+      setActiveAlertUID(null);
+      setShowPolicyDetails(false);
+    } else {
+      setActiveAlertUID(controlId);
+      setActiveAlertControlDivId(fromDivId || null);
     }
-    console.log("Clicked on:", controlId);
-    setActiveAlertUID(controlId);
-    setActiveAlertControlDivId(fromDivId || null);
+  };
+
+  const onNodeClick = (node: WrappedNode) => {
+    if (node.id === "reconfirm") {
+      handleControlClick("ctrl-3", "ctrl-3-item-wrapper");
+    }
   };
 
   const handleDismissAlert = () => {
@@ -231,13 +238,19 @@ const AgentPolicyPlane = () => {
       >
         {selectedTab === "Workflow" && (
           <div className="tw-text-white tw-flex tw-h-full tw-flex-col tw-overflow-visible tw-p-6">
-            <div className={`tw-w-full tw-flex tw-overflow-x-visible`}>
+            <div
+              className={`tw-w-full tw-flex tw-overflow-x-visible tw-h-full`}
+            >
               <ActiveControlsList
                 data={sampleControls}
                 onControlClick={handleControlClick}
               />
               <div className=" tw-grow tw-relative tw-flex tw-items-center">
-                <AgentGraph backgroundColor="transparent" textColor="white" />
+                <AgentGraph
+                  backgroundColor="transparent"
+                  textColor="white"
+                  onNodeClick={onNodeClick}
+                />
                 {showPolicyDetails && (
                   <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
                     <AnimationWrapper>
@@ -254,11 +267,11 @@ const AgentPolicyPlane = () => {
                   />
                   <PlaneTabs tabs={tabs} onTabChange={handleTabChange} />
                 </div>
-                <div className="tw-absolute tw-bottom-2 tw-left-16">
+                <div className="tw-absolute tw-bottom-0 tw-left-16">
                   <ComplianceLegend />
                 </div>
               </div>
-              <div className="tw-relative">
+              <div className="tw-relative tw-h-full">
                 <WorkflowPlayer
                   isBlocked={!overrideGranted}
                   isPlaying={state.status === "running"}
@@ -347,7 +360,7 @@ const AgentPolicyPlane = () => {
 export const AgentPolicyPlaneApplication = () => {
   return (
     <PipelineProvider>
-      {/* hack style */}
+      {/* hack bootstrap style */}
       <style>
         {`
         .modal-body {

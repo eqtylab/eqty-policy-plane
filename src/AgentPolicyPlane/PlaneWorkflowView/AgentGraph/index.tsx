@@ -1,3 +1,4 @@
+// src/AgentPolicyPlane/PlaneWorkflowView/AgentGraph/index.tsx
 // src/AgentPolicyPlane/WorkflowView/AgentGraph/index.tsx
 // src/AgentPolicyPlane/AgentGraph/index.tsx
 import "./index.css";
@@ -215,12 +216,19 @@ const defaultEdgeOptions = {
   markerEnd: "edge-circle",
 };
 
+export type WrappedNode = Node<AgentNodeData>;
+
 interface FlowProps {
   backgroundColor?: string;
   textColor?: string;
+  onNodeClick?: (node: WrappedNode) => void;
 }
 
-export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
+export const AgentGraph = ({
+  backgroundColor,
+  textColor,
+  onNodeClick = () => {},
+}: FlowProps) => {
   const stylesFlowBg = backgroundColor || "transparent";
   const stylesTextColor = textColor || "rgb(243, 244, 246)";
 
@@ -278,24 +286,75 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
     setReactFlowInstance(rf);
   };
 
+  // const fitAndCenter = useCallback(() => {
+  //   if (!reactFlowInstance || !nodes?.length) return;
+
+  //   reactFlowInstance.fitView({ padding: 0.22 });
+
+  //   const { x, y, zoom } = reactFlowInstance.getViewport();
+  //   reactFlowInstance.setViewport({ x: x - 50, y: y + 10, zoom });
+  // }, [reactFlowInstance, nodes]);
+
+  // useEffect(() => {
+  //   fitAndCenter();
+  // }, [fitAndCenter]);
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     fitAndCenter();
+  //   };
+
+  //   window.addEventListener("resize", handleResize);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [fitAndCenter]);
+
+  // useEffect(() => {
+  //   const fitAndCenter = async () => {
+  //     if (reactFlowInstance && nodes?.length) {
+  //       // this might be async, so we can await it if needed
+  //       await reactFlowInstance.fitView({
+  //         padding: 0.22,
+  //       });
+
+  //       // // 2. Then shift it over
+  //       const { x, y, zoom } = reactFlowInstance.getViewport();
+
+  //       // const newX = -275 * zoom + 270.5;
+  //       reactFlowInstance.setViewport({ x: x - 50, y: y + 10, zoom });
+  //     }
+  //   };
+
+  //   fitAndCenter();
+  // }, [reactFlowInstance, nodes?.length]);
+
+  const fitAndCenter = useCallback(() => {
+    if (!reactFlowInstance || !nodes?.length) return;
+
+    // 1. Fit view
+    reactFlowInstance.fitView({ padding: 0.22 });
+
+    // 2. Then shift the viewport
+    const { x, y, zoom } = reactFlowInstance.getViewport();
+    reactFlowInstance.setViewport({ x: x - 50, y: y + 10, zoom });
+  }, [reactFlowInstance, nodes]);
+
+  // Call once on init and/or whenever nodes or instance change
   useEffect(() => {
-    const fitAndCenter = async () => {
-      if (reactFlowInstance && nodes?.length) {
-        // this might be async, so we can await it if needed
-        await reactFlowInstance.fitView({
-          padding: 0.22,
-        });
-
-        // // 2. Then shift it over
-        const { x, y, zoom } = reactFlowInstance.getViewport();
-
-        // const newX = -275 * zoom + 270.5;
-        reactFlowInstance.setViewport({ x: x - 50, y: y + 10, zoom });
-      }
-    };
-
     fitAndCenter();
-  }, [reactFlowInstance, nodes?.length]);
+  }, [fitAndCenter]);
+
+  // Call on window resize
+  useEffect(() => {
+    const handleResize = () => fitAndCenter();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [fitAndCenter]);
+
   const proOptions = { hideAttribution: true };
 
   return (
@@ -314,6 +373,10 @@ export const AgentGraph = ({ backgroundColor, textColor }: FlowProps) => {
       onInit={onInit}
       defaultEdgeOptions={defaultEdgeOptions}
       proOptions={proOptions}
+      onNodeClick={(event, node) => {
+        onNodeClick(node);
+      }}
+
       // viewport={{ x: 0, y: -120, zoom: 1.05 }}
     >
       {/* <Controls showInteractive={true} /> */}
