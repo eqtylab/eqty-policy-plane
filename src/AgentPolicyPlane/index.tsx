@@ -3,10 +3,16 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import { AgentPolicyPlaneContainer } from "./container";
-import { ActiveControlsList } from "./PlaneWorkflowView/ActiveControlsList";
+import {
+  ActiveControlsList,
+  Control,
+} from "./PlaneWorkflowView/ActiveControlsList";
 import { AgentGraph, WrappedNode } from "./PlaneWorkflowView/AgentGraph";
 import { AgentPolicyOverrideDialog } from "./PlaneWorkflowView/Dialogs/OverridePolicy";
-import { AgentPolicyDetailsDialog } from "./PlaneWorkflowView/Dialogs/PolicyDetails";
+import {
+  AgentPolicyDetailsDialog,
+  AgentPolicyDetailsRemediateDialog,
+} from "./PlaneWorkflowView/Dialogs/PolicyDetails";
 import { AgentPolicyWorkflowOverviewDialog } from "./PlaneWorkflowView/Dialogs/WorkflowOverview";
 import { PlaneNav } from "./PlaneNav";
 import { PlaneTabs } from "./PlaneNav/Tabs";
@@ -31,14 +37,14 @@ import { AgentNodeData } from "./PlaneWorkflowView/AgentGraph/AgentNode";
 const sampleControls = [
   {
     id: "ctrl-1",
-    title: "Garda Control Protocol",
+    title: "Major Emergency Management (MEM)",
     isAlert: false,
     mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-2",
-    title: "Privacy Protocol",
+    title: "Local Government Act",
     isAlert: false,
     mandatory: false,
     implemented: false,
@@ -49,40 +55,33 @@ const sampleControls = [
     isAlert: true,
     mandatory: true,
     implemented: true,
+    alertType: "authorize",
   },
 
   {
     id: "ctrl-4",
-    title: "Bias Detection in Emergency Prioritization",
-    description:
-      "Detecting and preventing biased outputs in emergency response prioritization decisions, especially regarding demographic and geographic factors",
+    title: "Severe Weather and Flooding Plans",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-5",
-    title: "Social Media Input Verification",
-    description:
-      "Analyzing and validating social media distress signals to prevent misinformation or manipulation of response priorities",
+    title: "Civil Defence Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-6",
-    title: "Decision Logging for Emergency Response",
-    description:
-      "Automatically logging all prioritization decisions and the reasoning behind emergency response dispatches",
+    title: "Emergency Powers Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-7",
-    title: "Health and Safety Risk Analysis",
-    description:
-      "Real-time analysis of health and safety risks for both victims and first responders",
+    title: "Roads Acts",
     isAlert: false,
     mandatory: false,
     implemented: true,
@@ -90,18 +89,22 @@ const sampleControls = [
 
   {
     id: "ctrl-9",
-    title: "Feedback Loop Detection",
-    description:
-      "Detecting and mitigating potential feedback loops in the prioritization algorithm",
+    title: "GDPR",
+    isAlert: true,
+    mandatory: false,
+    implemented: true,
+    alertType: "remediate",
+  },
+  {
+    id: "ctrl-10",
+    title: "Public Order Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
-    id: "ctrl-10",
-    title: "Post-Incident Analysis System",
-    description:
-      "Systematic analysis of decision outcomes and response effectiveness",
+    id: "ctrl-11",
+    title: "Safety, Health and Welfare at Work",
     isAlert: false,
     mandatory: false,
     implemented: true,
@@ -123,8 +126,13 @@ const AgentPolicyPlane = () => {
   const [isVisible, setIsVisible] = useState(false);
   const fadeTransitionRef = useRef<HTMLDivElement | null>(null);
 
-  const { state, startPipeline, overrideGuardrail } = usePipeline();
+  const { state, startPipeline, overrideGuardrail, remediateGuardrail } =
+    usePipeline();
   const [overrideGranted, setOverrideGranted] = useState(false);
+  const [remediateGranted, setRemediateGranted] = useState(false);
+
+  const [currentActiveControl, setCurrentActiveControl] =
+    useState<Control | null>();
 
   const handleOverride = () => {
     // Use the overrideGuardrail function from the hook
@@ -133,19 +141,33 @@ const AgentPolicyPlane = () => {
     setActiveAlertUID(null);
   };
 
+  const handleRemediate = () => {
+    // Use the remediateGuardrail function from the hook
+    remediateGuardrail("ctrl-9", "Manual remediation approved");
+    setActiveAlertUID(null);
+    setShowPolicyDetails(false);
+    setRemediateGranted(true);
+  };
+
+  useEffect(() => {
+    setActiveAlertUID("ctrl-3");
+    setActiveAlertControlDivId("ctrl-3-item-wrapper");
+    setCurrentActiveControl(sampleControls[2]);
+  }, []);
+
   const [tabs, setTabs] = React.useState([
-    { name: "Workflow", current: true },
+    { name: "Agentic Workflow", current: true },
     { name: "Console", current: false },
-    { name: "Audit", current: false },
+    { name: "Policy Audit", current: false },
   ]);
 
-  const isWorkflowBlocked = (controls: typeof sampleControls) => {
-    return controls.some(
-      (control) =>
-        (control.mandatory && !control.implemented) || // Mandatory but not implemented
-        control.isAlert // Has an active alert
-    );
-  };
+  // const isWorkflowBlocked = (controls: typeof sampleControls) => {
+  //   return controls.some(
+  //     (control) =>
+  //       (control.mandatory && !control.implemented) || // Mandatory but not implemented
+  //       control.isAlert // Has an active alert
+  //   );
+  // };
 
   useEffect(() => {
     // Initial fade in
@@ -197,23 +219,37 @@ const AgentPolicyPlane = () => {
     );
   };
 
-  const handleControlClick = (controlId: string, fromDivId?: string | null) => {
-    if (activeAlertUID && activeAlertUID !== controlId) {
-      // todo: this is clicking on another control while an alert is active
-      setActiveAlertUID(null);
-      setShowPolicyDetails(false);
-    } else if (activeAlertUID && activeAlertUID === controlId) {
-      setActiveAlertUID(null);
-      setShowPolicyDetails(false);
+  const handleControlClick = (control: Control) => {
+    // .id, `${control.id}-item-wrapper`, control.isAlert
+    setCurrentActiveControl(control);
+
+    if (control.isAlert) {
+      const fromDivId = `${control.id}-item-wrapper`;
+
+      console.log("debug: handleControlClick", control.id, fromDivId);
+
+      if (activeAlertUID && activeAlertUID !== control.id) {
+        // todo: this is clicking on another control while an alert is active
+        setActiveAlertUID(control.id);
+        setActiveAlertControlDivId(fromDivId);
+      } else if (activeAlertUID && activeAlertUID === control.id) {
+        setActiveAlertUID(null);
+        setShowPolicyDetails(false);
+      } else {
+        setActiveAlertUID(control.id);
+        setActiveAlertControlDivId(fromDivId);
+      }
     } else {
-      setActiveAlertUID(controlId);
-      setActiveAlertControlDivId(fromDivId || null);
+      setActiveAlertUID(null);
+      setShowPolicyDetails(false);
     }
   };
 
   const onNodeClick = (node: WrappedNode) => {
     if (node.id === "reconfirm") {
-      handleControlClick("ctrl-3", "ctrl-3-item-wrapper");
+      // handleControlClick("ctrl-3", "ctrl-3-item-wrapper");
+      setActiveAlertUID("ctrl-3");
+      setActiveAlertControlDivId("ctrl-3-item-wrapper");
     }
   };
 
@@ -236,7 +272,7 @@ const AgentPolicyPlane = () => {
           isVisible ? "tw-opacity-100" : "tw-opacity-0"
         }`}
       >
-        {selectedTab === "Workflow" && (
+        {selectedTab === "Agentic Workflow" && (
           <div className="tw-text-white tw-flex tw-h-full tw-flex-col tw-overflow-visible tw-p-6">
             <div
               className={`tw-w-full tw-flex tw-overflow-x-visible tw-h-full`}
@@ -251,11 +287,21 @@ const AgentPolicyPlane = () => {
                   textColor="white"
                   onNodeClick={onNodeClick}
                 />
-                {showPolicyDetails && (
+                {showPolicyDetails && currentActiveControl?.id === "ctrl-3" && (
                   <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
                     <AnimationWrapper>
                       <AgentPolicyDetailsDialog
                         onClose={() => setShowPolicyDetails(false)}
+                      />
+                    </AnimationWrapper>
+                  </div>
+                )}
+                {showPolicyDetails && currentActiveControl?.id === "ctrl-9" && (
+                  <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
+                    <AnimationWrapper>
+                      <AgentPolicyDetailsRemediateDialog
+                        onClose={() => setShowPolicyDetails(false)}
+                        onClick={() => handleRemediate()}
                       />
                     </AnimationWrapper>
                   </div>
@@ -273,19 +319,20 @@ const AgentPolicyPlane = () => {
               </div>
               <div className="tw-relative tw-h-full">
                 <WorkflowPlayer
-                  isBlocked={!overrideGranted}
+                  isBlocked={!overrideGranted || !remediateGranted}
                   isPlaying={state.status === "running"}
                   onPlay={startPipeline}
                   onPause={() => null}
                   onCancel={() => null}
                 />
                 <div className="tw-w-[264px] tw-relative">
-                  {activeAlertUID && (
+                  {activeAlertUID && currentActiveControl?.isAlert && (
                     <AnimationWrapper>
                       <AgentPolicyOverrideDialog
                         onOverride={handleOverride}
                         onCancel={handleDismissAlert}
                         onDetails={handleShowPolicyDetails}
+                        control={currentActiveControl}
                       />
                     </AnimationWrapper>
                   )}
@@ -302,12 +349,12 @@ const AgentPolicyPlane = () => {
                 <DelayedRenderWrapper t={380}>
                   <DrawLine
                     startId={activeAlertControlDivId}
-                    endId="ripple-point-eq"
+                    endId={`ripple-point-eq-${currentActiveControl?.id}`}
                   />
                 </DelayedRenderWrapper>
                 <DelayedRenderWrapper t={380}>
                   <DrawLine
-                    startId="ripple-point-eq"
+                    startId={`ripple-point-eq-${currentActiveControl?.id}`}
                     endId="eq-control-dialog"
                     isEndpointInFlow={false}
                   />
@@ -323,7 +370,7 @@ const AgentPolicyPlane = () => {
             </div>
           </div>
         )}
-        {selectedTab === "Audit" && <CertApp />}
+        {selectedTab === "Policy Audit" && <CertApp />}
       </div>
     );
   };

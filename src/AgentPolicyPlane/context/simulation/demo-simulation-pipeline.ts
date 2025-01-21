@@ -332,6 +332,32 @@ const nodes: Record<string, NodeConfig> = {
     },
   },
 
+  remediate: {
+    id: "remediate",
+    label: "Validate PII protection measures",
+    description: "GDPR Article 25 compliance checkpoint for data protection",
+    minDuration: 2000,
+    maxDuration: 4000,
+    dependencies: [{ nodeId: "prioritize", required: true }],
+    guardrails: {
+      controlIds: ["ctrl-9"], // Maps to the "Data Protection Protocol" control
+      checkOnStart: true,
+      checkOnComplete: true,
+    },
+    alertConditions: {
+      type: "data-protection",
+      triggers: [
+        "unprotected-pii-detected",
+        "sensitive-data-exposure",
+        "insufficient-encryption",
+        "missing-data-minimization",
+        "unauthorized-data-access",
+      ],
+    },
+
+    logsToOutput: [],
+  },
+
   "nemo-guardrail1": {
     id: "nemo-guardrail1",
     label: "Nemo Guardrail",

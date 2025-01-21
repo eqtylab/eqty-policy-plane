@@ -57,7 +57,7 @@ export interface NodeConfig {
   };
 
   alertConditions?: {
-    type: "anomaly" | "risk-level" | "content-warning";
+    type: "anomaly" | "risk-level" | "content-warning" | "data-protection";
     threshold?: number;
     triggers?: string[]; // What conditions trigger alerts
   };

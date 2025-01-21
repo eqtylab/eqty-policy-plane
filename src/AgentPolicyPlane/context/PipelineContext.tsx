@@ -18,6 +18,7 @@ interface PipelineContextValue {
   pausePipeline: () => void;
   cancelPipeline: () => void;
   overrideGuardrail: (alertId: string, reason: string) => void;
+  remediateGuardrail: (alertId: string, reason: string) => void;
 }
 
 const initialState: PipelineState = {
@@ -35,6 +36,7 @@ const initialState: PipelineState = {
   ),
   activeGuardrail: null,
   userOverrides: [],
+  userRemediations: [],
   metrics: {
     responseTime: 0,
     riskLevel: "low",
@@ -103,6 +105,17 @@ export function PipelineProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  const remediateGuardrail = useCallback((alertId: string, reason: string) => {
+    dispatch({
+      type: "REMEDIATE_GUARDRAIL",
+      payload: {
+        alertId,
+        reason,
+        timestamp: Date.now(),
+      },
+    });
+  }, []);
+
   const value = useMemo(
     () => ({
       state,
@@ -110,8 +123,16 @@ export function PipelineProvider({ children }: { children: React.ReactNode }) {
       pausePipeline,
       cancelPipeline,
       overrideGuardrail,
+      remediateGuardrail,
     }),
-    [state, startPipeline, pausePipeline, cancelPipeline, overrideGuardrail]
+    [
+      state,
+      startPipeline,
+      pausePipeline,
+      cancelPipeline,
+      overrideGuardrail,
+      remediateGuardrail,
+    ]
   );
 
   return (

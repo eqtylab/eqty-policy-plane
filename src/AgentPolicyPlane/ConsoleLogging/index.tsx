@@ -77,7 +77,7 @@ function ConsoleDrawer({
       >
         <div className="tw-flex tw-items-center tw-gap-4">
           <div className="tw-flex tw-items-center tw-gap-2 ">
-            <Terminal className="tw-w-4 tw-h-4 tw-text-brandblue" />
+            <Terminal className="tw-w-4 tw-h-4 tw-text-brandblue  " />
             <span className="tw-text-white tw-text-sm tw-font-medium">
               Console Output
             </span>

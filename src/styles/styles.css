@@ -53,3 +53,12 @@ body {
   --dv-paneview-header-border-color: #2b2b4a8f;
   --dv-paneview-active-outline-color: #596f9996;
 }
+
+@keyframes tw-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.tw-animate-spin {
+  animation: tw-spin 1s linear infinite;
+}

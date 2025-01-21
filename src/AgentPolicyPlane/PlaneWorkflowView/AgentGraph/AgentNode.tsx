@@ -8,6 +8,8 @@ import { AgentIcon } from "./icons/AgentIcon";
 import { NemoIcon } from "./icons/NemoIcon";
 
 export type AgentNodeData = {
+  controlId?: string;
+  hide?: boolean;
   title?: string;
   icon?: ReactNode;
   subline?: string;
@@ -91,6 +93,10 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
     }
   };
 
+  if (data.hide) {
+    return;
+  }
+
   if (data.type && data.type === "policy-alert") {
     return (
       <div className="wrapper wrapper-alert">
@@ -111,7 +117,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
           <div className="tw-absolute ripple-wrapper">
             {/* Base circle */}
             <div
-              id={data.animating ? "ripple-point-eq" : ""}
+              id={data.animating ? `ripple-point-eq-${data.controlId}` : ""}
               className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandgreen"
               // data-eqalertoverride="false"
             >

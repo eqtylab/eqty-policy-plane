@@ -28,6 +28,10 @@ export type PipelineAction =
   | {
       type: "OVERRIDE_GUARDRAIL";
       payload: { alertId: string; reason: string; timestamp: number };
+    }
+  | {
+      type: "REMEDIATE_GUARDRAIL";
+      payload: { alertId: string; reason: string; timestamp: number };
     };
 
 const logStateChange = (
@@ -190,6 +194,21 @@ export function pipelineReducer(
         ...state,
         userOverrides: [
           ...state.userOverrides,
+          {
+            nodeId: state.activeGuardrail?.nodeId || "",
+            timestamp: action.payload.timestamp,
+            reason: action.payload.reason,
+          },
+        ],
+        activeGuardrail: null,
+      };
+      break;
+
+    case "REMEDIATE_GUARDRAIL":
+      nextState = {
+        ...state,
+        userRemediations: [
+          ...state.userRemediations,
           {
             nodeId: state.activeGuardrail?.nodeId || "",
             timestamp: action.payload.timestamp,

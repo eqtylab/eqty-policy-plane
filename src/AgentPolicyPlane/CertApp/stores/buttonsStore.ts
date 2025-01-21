@@ -2,6 +2,13 @@
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -22,7 +29,7 @@ type Prop = {
 
 const props: Prop[] = [
   {
-    title: "Garda Control Protocol",
+    title: "Major Emergency Management (MEM)",
     color: "#5db0c8",
     width: Widths.NORMAL,
     count: 2,
@@ -30,7 +37,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Privacy Protocol",
+    title: "Local Government Act",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -46,7 +53,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Bias Detection in Emergency Prioritization",
+    title: "Severe Weather and Flooding Plans",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 1,
@@ -54,7 +61,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Social Media Input Verification",
+    title: "Civil Defence Act",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -62,7 +69,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Decision Logging for Emergency Response",
+    title: "Emergency Powers Act",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -70,7 +77,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Health and Safety Risk Analysis",
+    title: "Roads Acts",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -78,7 +85,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Feedback Loop Detection",
+    title: "GDPR",
     color: "#3c3d3d",
     width: Widths.THICK,
     count: 1,
@@ -86,9 +93,17 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Post-Incident Analysis System",
+    title: "Public Order Act",
     color: "#ffffff",
     width: Widths.NORMAL,
+    count: 2,
+    hovered: false,
+    animation: null,
+  },
+  {
+    title: "Safety, Health and Welfare at Work",
+    color: "#3c3d3d",
+    width: Widths.THIN,
     count: 2,
     hovered: false,
     animation: null,

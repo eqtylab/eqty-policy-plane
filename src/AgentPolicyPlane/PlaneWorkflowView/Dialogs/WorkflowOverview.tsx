@@ -9,68 +9,6 @@ interface WorkflowMetric {
   color: string;
 }
 
-const metrics: WorkflowMetric[] = [
-  {
-    value: 11,
-    label: "Total Agents",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path
-          d="M7 1.75L12.25 4.375V9.625L7 12.25L1.75 9.625V4.375L7 1.75Z"
-          stroke="currentColor"
-          strokeWidth="1.2"
-        />
-      </svg>
-    ),
-    color: "tw-text-cyan-400/80",
-  },
-  {
-    value: 1,
-    label: "Nemo Guard",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path
-          d="M2.33334 2.33334H11.6667M2.33334 7H11.6667M2.33334 11.6667H11.6667"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
-    color: "tw-text-green-400/80",
-  },
-  {
-    value: 3,
-    label: "Data Sources",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path
-          d="M4.66666 1.75H9.33332L11.6667 4.08333V9.91667L9.33332 12.25H4.66666L2.33333 9.91667V4.08333L4.66666 1.75Z"
-          stroke="currentColor"
-          strokeWidth="1.2"
-        />
-      </svg>
-    ),
-    color: "tw-text-purple-400/80",
-  },
-  {
-    value: 2,
-    label: "External Tools",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path
-          d="M7.58333 1.75H11.6667V5.83333M11.6667 1.75L8.16667 5.25M6.41667 12.25H2.33333V8.16667M2.33333 12.25L5.83333 8.75"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-    color: "tw-text-orange-400/80",
-  },
-];
-
 const stages = [
   // {
   //   name: "Parallel Input Processing",
@@ -96,7 +34,71 @@ const stages = [
 
 export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
   const { state } = usePipeline();
-  const compliant = state.userOverrides.length > 0;
+  const compliant =
+    state.userOverrides.length > 0 && state.userRemediations.length > 0;
+
+  const metrics: WorkflowMetric[] = [
+    {
+      value: 11,
+      label: "Total Agents",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path
+            d="M7 1.75L12.25 4.375V9.625L7 12.25L1.75 9.625V4.375L7 1.75Z"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          />
+        </svg>
+      ),
+      color: "tw-text-cyan-400/80",
+    },
+    {
+      value: state.userRemediations.length,
+      label: "Nemo Guard",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path
+            d="M2.33334 2.33334H11.6667M2.33334 7H11.6667M2.33334 11.6667H11.6667"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+          />
+        </svg>
+      ),
+      color: "tw-text-green-400/80",
+    },
+    {
+      value: 3,
+      label: "Data Sources",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path
+            d="M4.66666 1.75H9.33332L11.6667 4.08333V9.91667L9.33332 12.25H4.66666L2.33333 9.91667V4.08333L4.66666 1.75Z"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          />
+        </svg>
+      ),
+      color: "tw-text-purple-400/80",
+    },
+    {
+      value: 2,
+      label: "External Tools",
+      icon: (
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path
+            d="M7.58333 1.75H11.6667V5.83333M11.6667 1.75L8.16667 5.25M6.41667 12.25H2.33333V8.16667M2.33333 12.25L5.83333 8.75"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ),
+      color: "tw-text-orange-400/80",
+    },
+  ];
+
   return (
     <div className="tw-w-[264px] tw-flex tw-flex-col tw-bg-branddialogbg tw-rounded-xl tw-p-4 mt-3">
       {/* compliant or not banner */}
@@ -171,16 +173,6 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
       </div>
 
       {/* Integration Details */}
-      <div className="tw-mt-4 tw-pt-3 tw-border-t !tw-border-white/10">
-        <div className="tw-flex tw-justify-between tw-items-center tw-text-xs">
-          <span className="tw-text-white/60">Core Technology</span>
-          <span className="tw-text-white">NVIDIA Nemo + LLMs</span>
-        </div>
-        <div className="tw-flex tw-justify-between tw-items-center tw-text-xs tw-mt-1">
-          <span className="tw-text-white/60">Notification</span>
-          <span className="tw-text-white">Twilio + Apptek</span>
-        </div>
-      </div>
     </div>
   );
 };

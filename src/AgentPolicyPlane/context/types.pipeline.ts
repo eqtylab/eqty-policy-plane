@@ -21,6 +21,11 @@ export interface PipelineState {
     timestamp: number;
     reason: string;
   }[];
+  userRemediations: {
+    nodeId: string;
+    timestamp: number;
+    reason: string;
+  }[];
   metrics: {
     responseTime: number;
     riskLevel: "low" | "medium" | "high" | "critical";

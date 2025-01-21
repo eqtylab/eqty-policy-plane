@@ -1,7 +1,12 @@
 // src/AgentPolicyPlane/PlaneWorkflowView/Dialogs/OverridePolicy.tsx
+
 import React from "react";
 
 interface AgentPolicyOverrideDialogProps {
+  control: {
+    alertType?: "authorize" | "remediate";
+    id: string;
+  };
   onOverride?: () => void;
   onCancel?: () => void;
   onDetails?: () => void;
@@ -9,48 +14,59 @@ interface AgentPolicyOverrideDialogProps {
 
 export const AgentPolicyOverrideDialog: React.FC<
   AgentPolicyOverrideDialogProps
-> = ({ onOverride, onCancel, onDetails }) => {
+> = ({ control, onOverride, onCancel, onDetails }) => {
+  const isAuthorizeType = control.alertType === "authorize";
+
   return (
     <div className="tw-flex tw-items-center tw-justify-center tw-h-full">
       <div className="tw-rounded-xl tw-bg-branddialogbg tw-p-6 tw-max-w-[258px] tw-space-y-6 mt-3">
-        {/* Permission needed banner */}
+        {/* Status banner */}
         <div
           id="eq-control-dialog"
-          className="tw-inline-block tw-bg-permission-gradient tw-text-white tw-rounded-lg tw-px-4 tw-py-2 tw-text-xs"
+          className={`tw-inline-block ${
+            isAuthorizeType ? "tw-bg-permission-gradient" : "tw-bg-red-500/20"
+          } tw-text-white tw-rounded-lg tw-px-4 tw-py-2 tw-text-xs`}
         >
-          Permissions needed.
+          {isAuthorizeType ? "Permissions needed" : "Remediation required"}
         </div>
 
         {/* Message text */}
         <p className="tw-text-white tw-text-base">
-          You action was halted because it flagged a Sourcing Protocol Control
-          which is mandatory.
+          {isAuthorizeType
+            ? "This workflow is non-compliant without human authorization of multiple Sourcing Protocol controls."
+            : "This workflow cannot proceed due to GDPR Article 25 (Data Protection by Design) requirements. Potential PII data sources must be properly protected before execution."}
         </p>
 
         {/* Buttons container */}
         <div className="tw-space-y-3">
-          {/* Override button */}
-          <button
-            onClick={onOverride}
-            onMouseEnter={() => {
-              const graphAlert = document.getElementById("ripple-point-eq");
-              graphAlert?.setAttribute("data-eqalertoverride", "true");
-            }}
-            onMouseLeave={() => {
-              const graphAlert = document.getElementById("ripple-point-eq");
-              graphAlert?.setAttribute("data-eqalertoverride", "false");
-            }}
-            className="tw-w-full tw-py-3 tw-px-4 tw-rounded-xl tw-bg-override-gradient tw-text-white tw-text-sm hover:tw-opacity-90 tw-transition-opacity"
-          >
-            Grant Authorization{" "}
-          </button>
+          {/* Conditional primary action button */}
+          {isAuthorizeType && (
+            <button
+              onClick={onOverride}
+              onMouseEnter={() => {
+                const graphAlert = document.getElementById(
+                  "ripple-point-eq-ctrl-3"
+                );
+                graphAlert?.setAttribute("data-eqalertoverride", "true");
+              }}
+              onMouseLeave={() => {
+                const graphAlert = document.getElementById(
+                  "ripple-point-eq-ctrl-3"
+                );
+                graphAlert?.setAttribute("data-eqalertoverride", "false");
+              }}
+              className="tw-w-full tw-py-3 tw-px-4 tw-rounded-xl tw-bg-override-gradient tw-text-white tw-text-sm hover:tw-opacity-90 tw-transition-opacity"
+            >
+              Grant Authorization
+            </button>
+          )}
 
           {/* Cancel button */}
           <button
             onClick={onCancel}
             className="tw-w-full tw-py-3 tw-px-4 tw-rounded-xl tw-bg-cancel-gradient tw-text-white tw-text-sm hover:tw-opacity-90 tw-transition-opacity"
           >
-            Cancel
+            {isAuthorizeType ? "Cancel" : "Close"}
           </button>
 
           {/* Open Details */}

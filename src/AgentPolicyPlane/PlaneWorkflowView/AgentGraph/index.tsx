@@ -23,7 +23,10 @@ const initialNodes: Node<AgentNodeData>[] = [
   {
     id: "start",
     position: { x: 50, y: 600 },
-    data: {},
+    data: {
+      title: "OSINT Feed",
+      labelPosition: "bottom",
+    },
     type: "turbo",
   },
   {
@@ -109,9 +112,26 @@ const initialNodes: Node<AgentNodeData>[] = [
     type: "turbo",
   },
   {
+    id: "remediate",
+    position: { x: 450, y: 525 },
+    data: {
+      controlId: "ctrl-9",
+      title: "Validate PII protection measures",
+      type: "policy-alert",
+      animating: true,
+      labelPosition: "right",
+      role: "GDPR Data Protection Protocol - Remediation Required",
+      backstory:
+        "Mandatory data protection checkpoint due to GDPR Article 25 requirements. System detected potential exposure of personal data in emergency response feeds, including unprotected social media content and victim location data.",
+      goal: "Ensure appropriate technical measures are in place to protect personal data before processing emergency response information",
+    },
+    type: "turbo",
+  },
+  {
     id: "nemo-guardrail1",
     position: { x: 450, y: 525 },
     data: {
+      hide: true,
       title: "Nemo Guardrail",
       labelPosition: "right",
       type: "nemo-guardrail",
@@ -139,6 +159,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "reconfirm",
     position: { x: 450, y: 350 },
     data: {
+      controlId: "ctrl-3",
       title: "Grant AI-driven action in high-risk scenario",
       type: "policy-alert",
       animating: true,
@@ -179,7 +200,10 @@ const initialNodes: Node<AgentNodeData>[] = [
   {
     id: "end",
     position: { x: 600, y: 175 },
-    data: {},
+    data: {
+      title: "Summary Report",
+      labelPosition: "right",
+    },
     type: "turbo",
   },
 ];
@@ -478,9 +502,20 @@ export const AgentGraph = ({
           ...node.data,
           status: pipelineState.nodes[node.id]?.status || "idle",
           animating:
-            node.id === "reconfirm" && pipelineState.userOverrides.length === 0,
+            (node.id === "reconfirm" &&
+              pipelineState.userOverrides.length === 0) ||
+            (node.id === "remediate" &&
+              pipelineState.userRemediations.length === 0),
           resolved:
-            node.id === "reconfirm" && pipelineState.userOverrides.length > 0,
+            (node.id === "reconfirm" &&
+              pipelineState.userOverrides.length > 0) ||
+            (node.id === "remediate" &&
+              pipelineState.userRemediations.length > 0),
+          hide:
+            (node.id === "nemo-guardrail1" &&
+              pipelineState.userRemediations.length === 0) ||
+            (node.id === "remediate" &&
+              pipelineState.userRemediations.length > 0),
         },
       }))
     );
@@ -562,7 +597,7 @@ export const AgentGraph = ({
           role: node.data.role,
           backstory: node.data.backstory,
           goal: node.data.goal,
-          isAlert: node.id === "reconfirm",
+          isAlert: node.id === "reconfirm" || node.id === "remediate",
         },
         position: { x, y },
       });

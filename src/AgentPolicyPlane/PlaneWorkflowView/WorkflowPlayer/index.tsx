@@ -24,7 +24,8 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
   const { state } = usePipeline();
 
   // Add check for override
-  const hasOverride = state.userOverrides.length > 0;
+  const hasOverride =
+    state.userOverrides.length > 0 && state.userRemediations.length > 0;
 
   // Add completed nodes count
   const completedNodes = Object.values(state.nodes).filter(
@@ -37,7 +38,7 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
         <div className="tw-flex tw-items-center tw-gap-2 tw-w-full">
           <div
             className={`tw-min-w-[8px] tw-min-h-[8px] tw-rounded-full ${
-              isBlocked && !hasOverride
+              isBlocked || !hasOverride
                 ? "tw-bg-brandalert tw-animate-pulse-glow-alert"
                 : state.status === "running"
                 ? "tw-bg-brandblue tw-animate-pulse-glow-blue"
@@ -47,13 +48,13 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
             }`}
           />
           <span className="tw-text-white tw-text-xs tw-truncate">
-            {isBlocked && !hasOverride
-              ? "Human Authorization Required"
+            {isBlocked || !hasOverride
+              ? "Workflow is not compliant"
               : state.status === "running"
-              ? `Running. Completed: (${Math.min(
+              ? `Running: (${Math.min(
                   Math.max(completedNodes - 1, 0),
                   11
-                )}/11 Agents)`
+                )}/11 Agents Complete)`
               : state.status === "completed"
               ? "Completed"
               : "Ready to Run"}
@@ -65,10 +66,10 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
             state.status !== "completed" ? (
               <button
                 onClick={onPlay}
-                disabled={isBlocked && !hasOverride}
+                disabled={isBlocked || !hasOverride}
                 className={`tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-text-white tw-text-sm
                 ${
-                  isBlocked && !hasOverride
+                  isBlocked || !hasOverride
                     ? "tw-bg-gray-600 tw-cursor-not-allowed"
                     : "tw-bg-brandblue hover:tw-bg-opacity-90"
                 }`}
@@ -89,8 +90,28 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
           ) : (
             <button
               onClick={onPause}
-              className="tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-bg-yellow-600/2 tw-text-white tw-text-sm hover:tw-bg-opacity-90"
+              className="tw-flex tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-bg-yellow-600/2 tw-text-white tw-text-sm hover:tw-bg-opacity-90"
             >
+              <svg
+                className="tw-animate-spin tw--ml-1 tw-mr-3 tw-h-5 tw-w-5 tw-text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="tw-opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  className="tw-opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>{" "}
               Pause
             </button>
           )}
