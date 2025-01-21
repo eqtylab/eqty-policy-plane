@@ -12,6 +12,7 @@ interface WorkflowPlayerProps {
   onPlay?: () => void;
   onPause?: () => void;
   onCancel?: () => void;
+  onFinal?: () => void;
 }
 
 export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
@@ -20,6 +21,7 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
   onPlay,
   onPause,
   onCancel,
+  onFinal,
 }) => {
   const { state } = usePipeline();
 
@@ -80,7 +82,7 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
               state.status == "completed" && (
                 //  brandgreen button, "View Final Report"
                 <button
-                  onClick={onPlay}
+                  onClick={onFinal}
                   className="tw-flex-1 tw-py-2 tw-px-4 tw-rounded-lg tw-bg-brandgreen tw-text-branddialogbg tw-text-sm hover:tw-bg-opacity-90"
                 >
                   View Final Report

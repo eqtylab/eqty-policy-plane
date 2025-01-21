@@ -31,8 +31,10 @@ import { AnimationWrapper } from "./Interactive/AnimationWrapper";
 import { DrawLine } from "./Interactive/AlertLines";
 import { DelayedRenderWrapper } from "./Interactive/DelayedRenderWrapper";
 
-import ResponsiveContainer from "./responsive";
+// import ResponsiveContainer from "./responsive";
 import { AgentNodeData } from "./PlaneWorkflowView/AgentGraph/AgentNode";
+
+import { AgenticSummaryReportCert } from "../AICertificates/SummaryCert";
 
 const sampleControls = [
   {
@@ -130,6 +132,8 @@ const AgentPolicyPlane = () => {
     usePipeline();
   const [overrideGranted, setOverrideGranted] = useState(false);
   const [remediateGranted, setRemediateGranted] = useState(false);
+
+  const [showFinalReportModal, setShowFinalReportModal] = useState(false);
 
   const [currentActiveControl, setCurrentActiveControl] =
     useState<Control | null>();
@@ -324,6 +328,7 @@ const AgentPolicyPlane = () => {
                   onPlay={startPipeline}
                   onPause={() => null}
                   onCancel={() => null}
+                  onFinal={() => setShowFinalReportModal(true)}
                 />
                 <div className="tw-w-[264px] tw-relative">
                   {activeAlertUID && currentActiveControl?.isAlert && (
@@ -375,6 +380,49 @@ const AgentPolicyPlane = () => {
     );
   };
 
+  // Add this near the end of the component, just before the return statement
+  const renderFinalReportModal = () => {
+    if (!showFinalReportModal) return null;
+
+    return (
+      <div className="tw-fixed tw-inset-0 tw-z-[2000] tw-flex tw-items-center tw-justify-center tw-bg-black/50">
+        <div
+          className="tw-relative tw-bg-white tw-shadow-lg tw-max-h-[90vh] tw-overflow-auto"
+          style={{
+            width: "8.5in",
+            height: "11in",
+            transform: "scale(0.9)",
+          }}
+        >
+          {/* Close button */}
+          <button
+            onClick={() => setShowFinalReportModal(false)}
+            className="tw-absolute tw-top-4 tw-right-4 tw-z-10 tw-rounded-full tw-bg-gray-800 tw-p-2 tw-text-white hover:tw-bg-gray-700"
+          >
+            <svg
+              className="tw-h-6 tw-w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          {/* Report Content */}
+          <div className="tw-h-full tw-w-full tw-overflow-auto">
+            <AgenticSummaryReportCert />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <AgentPolicyPlaneContainer outsideGridRender={() => <RunLogging />}>
       {renderTabContent()}
@@ -382,6 +430,7 @@ const AgentPolicyPlane = () => {
         <PlaneNav showCertApp={showCertApp} setShowCertApp={setShowCertApp} />
         <PlaneTabs tabs={tabs} onTabChange={handleTabChange} />
       </div>
+      {renderFinalReportModal()}
     </AgentPolicyPlaneContainer>
   );
 };
