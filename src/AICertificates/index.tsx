@@ -61,88 +61,68 @@ const CertIcon = () => (
 export const AgentProvisionCertificate = () => {
   const certificationChecks = [
     {
-      category: "1. Risk Management",
+      category: "1. Core Salesforce Platform Components",
       checks: [
-        // Analyzing group
-        "Analyzing known health and safety risks",
-        "Analyzing known fundamental rights risks",
-        "Analyzing foreseeable health and safety risks",
-        "Analyzing foreseeable fundamental rights risks",
-        // Evaluating group
-        "Evaluating emerging risks",
-        "Evaluating emerging risks from misuse",
-        "Evaluating risks from monitoring system",
-        // Identifying group
-        "Identifying known health and safety risks",
-        "Identifying known fundamental rights risks",
-        "Identifying foreseeable health and safety risks",
-        "Identifying foreseeable fundamental rights risks",
-        // Implementation
-        "Implementing health and safety measures",
+        "Flow Builder with Case Creation Templates",
+        "Process Builder with Loyalty Automation",
+        "Custom Apex Classes for Business Logic",
+        "Lightning Components for UI",
+        "Experience Cloud Portal Configuration",
+        "Custom Objects for Event Management",
+        "Validation Rules and Triggers",
+        "Platform Event Configurations",
       ],
     },
     {
-      category: "2. Data Governance",
+      category: "2. Data Cloud Architecture",
       checks: [
-        // Detecting group
-        "Detecting discriminatory outputs",
-        "Detecting biased health and safety outputs",
-        "Detecting biased fundamental rights outputs",
-        // Mitigating group
-        "Mitigating discriminatory outputs",
-        "Mitigating biased health and safety outputs",
-        "Mitigating biased fundamental rights outputs",
-        // Preventing group
-        "Preventing discriminatory outputs",
-        "Preventing biased health and safety outputs",
-        "Preventing biased fundamental rights outputs",
+        "Unified Profile Data Model",
+        "CRM Data Stream Configuration",
+        "S3 Data Ingestion Pipeline",
+        "Identity Resolution Rules",
+        "Real-time Sync Mechanisms",
+        "Calculated Insights Framework",
+        "Data Harmonization Rules",
+        "Cross-object Relationship Maps",
       ],
     },
     {
-      category: "3. System Monitoring",
+      category: "3. Agentforce Implementation",
       checks: [
-        // Analyzing group
-        "Analyzing compliance data",
-        "Analyzing performance data",
-        "Analyzing system interactions",
-        // Collecting/Documenting group
-        "Collecting performance data",
-        "Documenting deployer performance data",
-        "Documenting performance data",
-        // Feedback loops group
-        "Detecting feedback loops",
-        "Implementing feedback loop mitigation measures",
+        "Atlas Reasoning Engine Configuration",
+        "Agent Task Decomposition Rules",
+        "Action Planning Framework",
+        "Autonomous Operation Boundaries",
+        "Platform-specific Guardrails",
+        "Prompt Management System",
+        "Agent Interaction Models",
+        "Feedback Loop Implementation",
       ],
     },
     {
-      category: "4. Quality Management",
+      category: "4. Integration Components",
       checks: [
-        // Primary actions
-        "Conducting post-development examination procedures",
-        "Executing systematic quality assurance actions",
-        "Implementing quality control techniques",
-        "Implementing serious incident reporting procedures",
-        "Maintaining written quality management policies",
-        "Managing security of supply measures",
-        "Performing post-development test procedures",
+        "Einstein Trust Layer Setup",
+        "Databricks Connection Configuration",
+        "External API Management",
+        "Credit Card Loyalty Integration",
+        "WhatsApp Channel Setup",
+        "Messenger Integration",
+        "Website Interaction Framework",
+        "CRM Channel Orchestration",
       ],
     },
     {
-      category: "5. Record Keeping",
+      category: "5. Compliance Framework",
       checks: [
-        // Automatic logs group
-        "Automatically generating logs",
-        "Generating automatic logs",
-        // Implementing group
-        "Implementing record-keeping documentation systems",
-        "Implementing record-keeping information systems",
-        // Logging group
-        "Logging product risk identification",
-        "Logging relevant events",
-        "Logging substantial modifications",
-        // Maintaining group
-        "Maintaining record-keeping documentation procedures",
-        "Maintaining record-keeping information procedures",
+        "Data Residency Controls",
+        "Cross-cloud Encryption",
+        "Audit Trail System",
+        "Data Masking Rules",
+        "Access Control Framework",
+        "Retention Policy Implementation",
+        "GDPR Compliance Controls",
+        "Security Monitoring System",
       ],
     },
   ];

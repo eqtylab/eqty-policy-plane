@@ -1,6 +1,6 @@
 Overview of First Responder Notification Pipeline
 
-The pipeline is designed to intelligently process emergency situations and notify first responders through a sophisticated multi-path workflow:
+The pipeline is designed to intelligently process emergency situations and notify investigators through a sophisticated multi-path workflow:
 
 Path 1 - Video Analysis:
 
@@ -52,12 +52,12 @@ The pipeline starts with x2 concurrent paths of jobs.
       - (Social Media): this agent searchers local twitter, facebook, and telegram feeds for distress calls.
     - The three previous outputs are provided to a Summarizer agent. This agent crafts a summary of key events in markdown form. The agent is reporting on the current situation and need for response.
     - A nemo guardrail analyzes the summary.
-      - Is there a need to continue distress call and notify first responders?
+      - Is there a need to continue distress call and notify investigators?
       - Is there any potential information from social media feeds that could indicate either a very serious situation (human life at stake, misinformation, etc)
 - _Midway-Funnel_
   - The nemo guardrail may let the summary through to the next agent and the pipeline continues. At this point the video footage summary will be merged with the OSINT summary.
   - (Prioritize event on need and impact): This agent determines where and how first responders should focus their efforts. It outputs a priority report with a tactical approach suggested.
     - **Provisional Policy Override: (Grant AI-driven action in high-risk scenario) **Given the nature of the event, and inclusion of certain social media feeds and risk for issues such as judgement around human life, and/or inclusion of possible misinformation, a human must authorize the use of this pipeline beforehand. (typically relying on the nemo guardrail, as well as human judgement given the situation).
 - Finale response and notification
-  - (Establish the response plan): this agent will write a final response plan, that is formal, with adequate information for context and record keeping. This report is considered authoritative. It is both tactical and comprehensive of decisions to be made about how to notify first responders.
-  - (Notify first responders): this agent will utilize twilio and apptek tooling to have an ai make calls through a direct hotline to first responders. The final report is also faxed. (3 total tool calls).
+  - (Establish the response plan): this agent will write a final response plan, that is formal, with adequate information for context and record keeping. This report is considered authoritative. It is both tactical and comprehensive of decisions to be made about how to notify investigators.
+  - (Notify investigators): this agent will utilize twilio and apptek tooling to have an ai make calls through a direct hotline to first responders. The final report is also faxed. (3 total tool calls).

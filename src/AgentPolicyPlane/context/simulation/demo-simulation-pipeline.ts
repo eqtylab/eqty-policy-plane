@@ -459,8 +459,8 @@ const nodes: Record<string, NodeConfig> = {
     id: "reconfirm",
     label: "Grant AI-driven action in high-risk scenario",
     description: "Human approval checkpoint for high-risk scenarios",
-    minDuration: 1000,
-    maxDuration: 3000,
+    minDuration: 200,
+    maxDuration: 1200,
     dependencies: [{ nodeId: "prioritize", required: true }],
     guardrails: {
       controlIds: ["ctrl-3"], // Maps to the "Sourcing Protocol" control
@@ -523,7 +523,7 @@ const nodes: Record<string, NodeConfig> = {
 
   notify: {
     id: "notify",
-    label: "Notify First Responders",
+    label: "Notify Investigators",
     description: "Dispatches notifications through multiple channels",
     minDuration: 5000,
     maxDuration: 10000,

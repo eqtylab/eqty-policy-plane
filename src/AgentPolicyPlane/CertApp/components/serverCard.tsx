@@ -20,6 +20,7 @@
 // src/AgentPolicyPlane/CertApp/components/serverCard.tsx
 // src/AgentPolicyPlane/CertApp/components/serverCard.tsx
 // src/AgentPolicyPlane/CertApp/components/serverCard.tsx
+// src/AgentPolicyPlane/CertApp/components/serverCard.tsx
 import React from "react";
 
 import AtomIcon from "../icons/atom";
@@ -59,7 +60,7 @@ const ServerCard = () => {
                 <AtomIcon />
               </div>
               <h2 className="tw-text-base tw-font-semibold">
-                Notify First Responders
+                Notify Investigators
               </h2>
             </div>
             <div className="tw-flex tw-items-start tw-p-1 tw-bg-[#A35456] tw-rounded-lg  ">

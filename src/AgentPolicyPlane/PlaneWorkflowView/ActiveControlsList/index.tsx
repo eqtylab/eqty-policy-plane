@@ -30,7 +30,7 @@ const AlertList = ({
   return (
     <>
       {data.map((control) => {
-        let classes = `tw-px-2 tw-py-1 tw-rounded-lg tw-cursor-pointer tw-transition-colors tw-max-w-[153px] tw-flex tw-items-center tw-relative`;
+        let classes = `tw-px-2 tw-py-1 tw-rounded-lg tw-cursor-pointer tw-transition-colors tw-max-w-[200px] tw-flex tw-items-center tw-relative`;
 
         if (control.isAlert && control.id === "ctrl-3" && noOverrides) {
           classes += " tw-border !tw-border-brandreddark tw-bg-brandred";
@@ -108,7 +108,7 @@ export const ActiveControlsList: React.FC<ActiveControlsListProps> = ({
 }) => {
   return (
     <div className="tw-text-white tw-flex-col tw-flex tw-items-center tw-overflow-x-visible">
-      <h2 className="tw-text-[18px] tw-mb-4 tw-font-[500] tw-w-[153px]">
+      <h2 className="tw-text-[18px] tw-mb-4 tw-font-[500] tw-w-[200px]">
         Active Policies
       </h2>
       <div

@@ -33,7 +33,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "partner",
     position: { x: 225, y: 525 },
     data: {
-      title: "Partner Report (Paramedic/Fire)",
+      title: "Twitter",
       labelPosition: "top",
       parallelVertSize: true,
       role: "Partner Report Analyzer",
@@ -61,7 +61,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "social",
     position: { x: 225, y: 675 },
     data: {
-      title: "Social Media",
+      title: "Telegram",
       labelPosition: "top",
       parallelVertSize: true,
       role: "Social Media Monitor",
@@ -75,7 +75,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "video",
     position: { x: 100, y: 425 },
     data: {
-      title: "Collect video footage",
+      title: "Other Social Media",
       labelPosition: "top",
       role: "Video Feed Collector",
       backstory:
@@ -146,7 +146,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "prioritize",
     position: { x: 450, y: 425 },
     data: {
-      title: "Prioritize event on need and impact",
+      title: "Estimate Veracity",
       labelPosition: "right",
       role: "Event Prioritizer",
       backstory:
@@ -175,7 +175,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "plan",
     position: { x: 450, y: 275 },
     data: {
-      title: "Establish the response plan",
+      title: "Generate Alert",
       labelPosition: "right",
       role: "Response Plan Creator",
       backstory:
@@ -188,7 +188,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "notify",
     position: { x: 450, y: 175 },
     data: {
-      title: "Notify First Responders of response plan",
+      title: "Send Alert to Investigators",
       labelPosition: "top",
       role: "First Responder Notifier",
       backstory:
@@ -201,7 +201,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "end",
     position: { x: 600, y: 175 },
     data: {
-      title: "Summary Report",
+      title: "Summary Threat Report",
       labelPosition: "right",
     },
     type: "turbo",

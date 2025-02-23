@@ -39,14 +39,14 @@ import { AgenticSummaryReportCert } from "../AICertificates/SummaryCert";
 const sampleControls = [
   {
     id: "ctrl-1",
-    title: "Major Emergency Management (MEM)",
+    title: "National Anti-Terrorist Prosecutor's Office",
     isAlert: false,
     mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-2",
-    title: "Local Government Act",
+    title: "Criminal Code and Code of Criminal Procedure",
     isAlert: false,
     mandatory: false,
     implemented: false,
@@ -59,36 +59,34 @@ const sampleControls = [
     implemented: true,
     alertType: "authorize",
   },
-
   {
     id: "ctrl-4",
-    title: "Severe Weather and Flooding Plans",
+    title: "Europol Protocols",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-5",
-    title: "Civil Defence Act",
+    title: "Preuves Numériques (Digital Evidence)",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-6",
-    title: "Emergency Powers Act",
+    title: "Perquisitions Protocols (Search/Seizure Protocols)",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-7",
-    title: "Roads Acts",
+    title: "EU AI Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
-
   {
     id: "ctrl-9",
     title: "GDPR",
@@ -99,14 +97,15 @@ const sampleControls = [
   },
   {
     id: "ctrl-10",
-    title: "Public Order Act",
+    title:
+      "Loi Informatique et Libertés (French Data Protection and Civil Liberties Law)",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-11",
-    title: "Safety, Health and Welfare at Work",
+    title: "Droit de la Preuve (Law of Evidence)",
     isAlert: false,
     mandatory: false,
     implemented: true,

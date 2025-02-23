@@ -9,6 +9,11 @@
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -29,7 +34,7 @@ type Prop = {
 
 const props: Prop[] = [
   {
-    title: "Major Emergency Management (MEM)",
+    title: "National Anti-Terrorist Prosecutor's Office",
     color: "#5db0c8",
     width: Widths.NORMAL,
     count: 2,
@@ -37,7 +42,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Local Government Act",
+    title: "Code of Criminal Procedure",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -53,7 +58,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Severe Weather and Flooding Plans",
+    title: "Europol Protocols",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 1,
@@ -61,7 +66,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Civil Defence Act",
+    title: "Preuves Numériques (Digital Evidence)",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -69,7 +74,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Emergency Powers Act",
+    title: "Perquisitions Protocols",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -77,7 +82,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Roads Acts",
+    title: "EU AI Act",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -93,7 +98,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Public Order Act",
+    title: "French Data Protection and Civil Liberties Law",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -101,7 +106,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Safety, Health and Welfare at Work",
+    title: "Droit de la Preuve",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,

@@ -103,7 +103,7 @@ const Header = () => {
           Response Summary
         </p>
         <span className="tw-text-white tw-text-[32px] tw-font-normal tw-leading-[100%] tw-mb-1">
-          Emergency Response System
+          Threat Alert System
         </span>
         <p className="tw-text-[#A1A1AA] tw-font-normal tw-text-[13px] tw-leading-[100%]">
           Generated {timestamp}
@@ -121,31 +121,31 @@ export const AgenticSummaryReportCert = () => {
   };
 
   const summaryText = `
-Emergency Response Activation Report - ${getTimestampApriori()}
-
-CRITICAL INCIDENT SUMMARY
-Downtown River District flooding event triggered multi-agent emergency response system. Video surveillance confirmed 2-3 feet of standing water with 2-inch/hour rise rate. Multiple rescue operations coordinated across 12 square blocks.
-
-KEY ACTIONS EXECUTED
-- Water rescue operations deployed for family at 123 River Street
-- Medical evacuation coordinated at Riverside Apartments
-- Infrastructure assessment of Downtown Bridge
-- Emergency shelter established at Community Center
-
-RESPONSE METRICS
-- 45+ evacuation requests processed
-- 3 EMS units deployed
-- 2 rescue boats activated
-- 25+ civilians requiring immediate assistance
-- 78 water emergency calls logged
-
-CONTROL OVERRIDES
-Two critical policy controls required mitigation:
-1. Sourcing Protocol Override: Authorized for emergency response coordination
-2. GDPR Compliance: Data protection measures implemented for civilian information
-
-All actions executed in compliance with Major Emergency Management (MEM) protocols and validated through Nemo Guardrails system.
-`;
+  Investigator Alert Report - ${getTimestampApriori()}
+  
+  THREAT ASSESSMENT SUMMARY
+  OSINT feed analysis triggered multi-source verification system. Video surveillance data collected from Twitter, Telegram and auxiliary social media channels confirm escalating situation. Analysis covers primary affected zone with cross-referenced data points.
+  
+  KEY INTELLIGENCE GATHERED
+  - Video footage analysis completed through automated verification
+  - Social media correlation through multiple platforms
+  - Location-based intelligence mapping
+  - Real-time event tracking through OSINT feeds
+  
+  SURVEILLANCE METRICS
+  - 45+ primary source confirmations
+  - 3 independent verification channels
+  - 2 automated analysis cycles completed
+  - 25+ corroborating data points
+  - 78 related social media posts analyzed
+  
+  COMPLIANCE STATUS
+  Two protocol frameworks required verification:
+  1. Sourcing Protocol: Validated through compliance gateway
+  2. GDPR Requirements: Data protection measures active
+  
+  All intelligence gathering executed in compliance with National Anti-Terrorist Prosecutor's Office guidelines and validated through Nemo Guardrails system.
+  `;
 
   return (
     <div className="tw-p-6 tw-bg-[#09090B] tw-rounded-xl">

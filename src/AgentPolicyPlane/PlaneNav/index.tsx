@@ -143,7 +143,7 @@ const Title = () => {
         <PlaneNavIcon />
       </div>
       <span className="tw-text-black tw-text-[16px] ftw-ont-[400]">
-        Notify First Responders
+        Notify Investigators
       </span>
     </div>
   );

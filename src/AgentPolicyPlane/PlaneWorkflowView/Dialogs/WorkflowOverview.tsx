@@ -115,7 +115,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
       <div className="tw-flex tw-items-center tw-gap-2 tw-mb-4">
         <div>
           <h3 className="tw-text-white tw-text-sm tw-font-medium">
-            Notify First Responders
+            Notify Investigators
           </h3>
           <p className="tw-text-white/60 tw-text-xs">Agentic Workflow</p>
         </div>
