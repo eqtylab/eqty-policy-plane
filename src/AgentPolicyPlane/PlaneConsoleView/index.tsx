@@ -13,7 +13,7 @@ const headerComponents = {
   default: (props: any) => {
     const onContextMenu = (event: any) => {
       event.preventDefault();
-      alert("context menu");
+      // alert("context menu");
     };
     return <DockviewDefaultTab onContextMenu={onContextMenu} {...props} />;
   },

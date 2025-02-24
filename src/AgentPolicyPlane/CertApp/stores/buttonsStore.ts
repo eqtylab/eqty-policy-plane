@@ -14,6 +14,7 @@
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -34,7 +35,7 @@ type Prop = {
 
 const props: Prop[] = [
   {
-    title: "National Anti-Terrorist Prosecutor's Office",
+    title: "Solvency II Directive",
     color: "#5db0c8",
     width: Widths.NORMAL,
     count: 2,
@@ -42,7 +43,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Code of Criminal Procedure",
+    title: "Insurance Distribution Directive (IDD)",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -58,7 +59,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Europol Protocols",
+    title: "General Data Protection Regulation (GDPR)",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 1,
@@ -66,7 +67,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Preuves Numériques (Digital Evidence)",
+    title: "Recovery and Resolution Directive",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -74,7 +75,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Perquisitions Protocols",
+    title: "UK GDPR",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -82,7 +83,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "EU AI Act",
+    title: "Financial Services and Markets Act 2000 (FSMA)",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -90,26 +91,10 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "GDPR",
+    title: "Temporary Permissions Regime (TPR)",
     color: "#3c3d3d",
     width: Widths.THICK,
     count: 1,
-    hovered: false,
-    animation: null,
-  },
-  {
-    title: "French Data Protection and Civil Liberties Law",
-    color: "#ffffff",
-    width: Widths.NORMAL,
-    count: 2,
-    hovered: false,
-    animation: null,
-  },
-  {
-    title: "Droit de la Preuve",
-    color: "#3c3d3d",
-    width: Widths.THIN,
-    count: 2,
     hovered: false,
     animation: null,
   },

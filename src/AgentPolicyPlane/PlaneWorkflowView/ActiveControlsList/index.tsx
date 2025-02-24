@@ -32,20 +32,24 @@ const AlertList = ({
       {data.map((control) => {
         let classes = `tw-px-2 tw-py-1 tw-rounded-lg tw-cursor-pointer tw-transition-colors tw-max-w-[200px] tw-flex tw-items-center tw-relative`;
 
-        if (control.isAlert && control.id === "ctrl-3" && noOverrides) {
+        if (control.isAlert && control.id === "guardrail-2" && noOverrides) {
           classes += " tw-border !tw-border-brandreddark tw-bg-brandred";
-        } else if (control.isAlert && control.id === "ctrl-3" && !noOverrides) {
+        } else if (
+          control.isAlert &&
+          control.id === "guardrail-2" &&
+          !noOverrides
+        ) {
           classes +=
             " tw-border !tw-border-brandgreen tw-bg-brandgreen tw-text-branddialogbg";
         } else if (
           control.isAlert &&
-          control.id === "ctrl-9" &&
+          control.id === "guardrail-1" &&
           noRemediations
         ) {
           classes += " tw-border !tw-border-brandreddark tw-bg-brandred";
         } else if (
           control.isAlert &&
-          control.id === "ctrl-9" &&
+          control.id === "guardrail-1" &&
           !noRemediations
         ) {
           classes +=
@@ -70,7 +74,7 @@ const AlertList = ({
             </div>
 
             {/* Sonar animations - only shown for alert items */}
-            {control.isAlert && control.id === "ctrl-3" && noOverrides && (
+            {control.isAlert && control.id === "guardrail-2" && noOverrides && (
               <div
                 id={`${control.id}-item-wrapper`}
                 className="tw-absolute tw-inset-0 tw-z-0 tw-pointer-events-none"
@@ -81,17 +85,19 @@ const AlertList = ({
                 <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar-more-delayed tw-opacity-40"></div>
               </div>
             )}
-            {control.isAlert && control.id === "ctrl-9" && noRemediations && (
-              <div
-                id={`${control.id}-item-wrapper`}
-                className="tw-absolute tw-inset-0 tw-z-0 tw-pointer-events-none"
-                style={{ overflow: "visible" }}
-              >
-                <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar tw-opacity-40"></div>
-                <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar-delayed tw-opacity-40"></div>
-                <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar-more-delayed tw-opacity-40"></div>
-              </div>
-            )}
+            {control.isAlert &&
+              control.id === "guardrail-1" &&
+              noRemediations && (
+                <div
+                  id={`${control.id}-item-wrapper`}
+                  className="tw-absolute tw-inset-0 tw-z-0 tw-pointer-events-none"
+                  style={{ overflow: "visible" }}
+                >
+                  <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar tw-opacity-40"></div>
+                  <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar-delayed tw-opacity-40"></div>
+                  <div className="tw-absolute tw-inset-0 tw-rounded-lg tw-border !tw-border-brandreddark animate-sonar-more-delayed tw-opacity-40"></div>
+                </div>
+              )}
           </div>
         );
       })}

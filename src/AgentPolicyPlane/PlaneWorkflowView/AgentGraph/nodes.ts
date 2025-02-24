@@ -126,14 +126,14 @@ export const CLAIMS_NODES: Node<AgentNodeData>[] = [
     type: "turbo",
   },
   {
-    id: "guardrail-check1",
+    id: "guardrail-1",
     position: { x: 650, y: 700 },
     data: {
       title: "Validate PII Protection Measures and Check Legal Basis",
       labelPosition: "bottom",
       type: "policy-alert",
       animating: true,
-      controlId: "ctrl-9",
+      controlId: "guardrail-1",
 
       role: "Validate PII Protection Measures and Check Legal Basis",
       backstory:
@@ -182,7 +182,7 @@ export const CLAIMS_NODES: Node<AgentNodeData>[] = [
     type: "turbo",
   },
   {
-    id: "guardrail-check2",
+    id: "guardrail-2",
     position: { x: 980, y: 500 },
     data: {
       type: "policy-alert",

@@ -36,79 +36,73 @@ import { AgentNodeData } from "./PlaneWorkflowView/AgentGraph/AgentNode";
 
 import { AgenticSummaryReportCert } from "../AICertificates/SummaryCert";
 
+// Solvency II Directive
+// Insurance Distribution Directive (IDD)
+// Sourcing Protocol (SAME)
+// General Data Protection Regulation (GDPR)
+// Recovery and Resolution Directive
+// UK GDPR (SAME)
+// Financial Services and Markets Act 2000 (FSMA)
+// Temporary Permissions Regime (TPR)
+
 const sampleControls = [
   {
     id: "ctrl-1",
-    title: "National Anti-Terrorist Prosecutor's Office",
+    title: "Solvency II Directive",
     isAlert: false,
     mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-2",
-    title: "Criminal Code and Code of Criminal Procedure",
+    title: "Insurance Distribution Directive (IDD)",
     isAlert: false,
     mandatory: false,
     implemented: false,
   },
   {
-    id: "ctrl-3",
+    id: "guardrail-2",
     title: "Sourcing Protocol",
     isAlert: true,
     mandatory: true,
-    implemented: true,
+    implemented: false,
     alertType: "authorize",
   },
   {
-    id: "ctrl-4",
-    title: "Europol Protocols",
-    isAlert: false,
-    mandatory: false,
-    implemented: true,
+    id: "guardrail-1",
+    title: "General Data Protection Regulation (GDPR)",
+    isAlert: true,
+    mandatory: true,
+    implemented: false,
   },
   {
     id: "ctrl-5",
-    title: "Preuves Numériques (Digital Evidence)",
+    title: "Recovery and Resolution Directive",
     isAlert: false,
-    mandatory: false,
+    mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-6",
-    title: "Perquisitions Protocols (Search/Seizure Protocols)",
+    title: "UK GDPR",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-7",
-    title: "EU AI Act",
+    title: "Financial Services and Markets Act 2000 (FSMA)",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-9",
-    title: "GDPR",
+    title: "Temporary Permissions Regime (TPR)",
     isAlert: true,
     mandatory: false,
     implemented: true,
     alertType: "remediate",
-  },
-  {
-    id: "ctrl-10",
-    title:
-      "Loi Informatique et Libertés (French Data Protection and Civil Liberties Law)",
-    isAlert: false,
-    mandatory: false,
-    implemented: true,
-  },
-  {
-    id: "ctrl-11",
-    title: "Droit de la Preuve (Law of Evidence)",
-    isAlert: false,
-    mandatory: false,
-    implemented: true,
   },
 ];
 
@@ -139,23 +133,23 @@ const AgentPolicyPlane = () => {
 
   const handleOverride = () => {
     // Use the overrideGuardrail function from the hook
-    overrideGuardrail("ctrl-3", "Manual override approved");
+    overrideGuardrail("guardrail-2", "Manual override approved");
     setOverrideGranted(true);
     setActiveAlertUID(null);
   };
 
   const handleRemediate = () => {
     // Use the remediateGuardrail function from the hook
-    remediateGuardrail("ctrl-9", "Manual remediation approved");
+    remediateGuardrail("guardrail-1", "Manual remediation approved");
     setActiveAlertUID(null);
     setShowPolicyDetails(false);
     setRemediateGranted(true);
   };
 
   useEffect(() => {
-    setActiveAlertUID("ctrl-3");
-    setActiveAlertControlDivId("ctrl-3-item-wrapper");
-    setCurrentActiveControl(sampleControls[2]);
+    setActiveAlertUID("guardrail-1");
+    setActiveAlertControlDivId("guardrail-1-item-wrapper");
+    setCurrentActiveControl(sampleControls[3]);
   }, []);
 
   const [tabs, setTabs] = React.useState([
@@ -249,10 +243,9 @@ const AgentPolicyPlane = () => {
   };
 
   const onNodeClick = (node: WrappedNode) => {
-    if (node.id === "reconfirm") {
-      // handleControlClick("ctrl-3", "ctrl-3-item-wrapper");
-      setActiveAlertUID("ctrl-3");
-      setActiveAlertControlDivId("ctrl-3-item-wrapper");
+    if (node.id === "guardrail-1") {
+      setActiveAlertUID("guardrail-1");
+      setActiveAlertControlDivId("guardrail-1-item-wrapper");
     }
   };
 
@@ -290,25 +283,27 @@ const AgentPolicyPlane = () => {
                   textColor="white"
                   onNodeClick={onNodeClick}
                 />
-                {showPolicyDetails && currentActiveControl?.id === "ctrl-3" && (
-                  <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
-                    <AnimationWrapper>
-                      <AgentPolicyDetailsDialog
-                        onClose={() => setShowPolicyDetails(false)}
-                      />
-                    </AnimationWrapper>
-                  </div>
-                )}
-                {showPolicyDetails && currentActiveControl?.id === "ctrl-9" && (
-                  <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
-                    <AnimationWrapper>
-                      <AgentPolicyDetailsRemediateDialog
-                        onClose={() => setShowPolicyDetails(false)}
-                        onClick={() => handleRemediate()}
-                      />
-                    </AnimationWrapper>
-                  </div>
-                )}
+                {showPolicyDetails &&
+                  currentActiveControl?.id === "guardrail-1" && (
+                    <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
+                      <AnimationWrapper>
+                        <AgentPolicyDetailsDialog
+                          onClose={() => setShowPolicyDetails(false)}
+                        />
+                      </AnimationWrapper>
+                    </div>
+                  )}
+                {showPolicyDetails &&
+                  currentActiveControl?.id === "guardrail-1" && (
+                    <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
+                      <AnimationWrapper>
+                        <AgentPolicyDetailsRemediateDialog
+                          onClose={() => setShowPolicyDetails(false)}
+                          onClick={() => handleRemediate()}
+                        />
+                      </AnimationWrapper>
+                    </div>
+                  )}
                 {/* <div className="tw-absolute tw--top-16 tw-left-16 tw-transform tw--translate-y-[32px]  tw-flex tw-z-10">
                   <PlaneNav
                     showCertApp={showCertApp}
@@ -348,6 +343,9 @@ const AgentPolicyPlane = () => {
                 </div>
               </div>
             </div>
+            hey
+            {activeAlertControlDivId}
+            {JSON.stringify(currentActiveControl)}
             {activeAlertUID && activeAlertControlDivId && (
               <>
                 <DelayedRenderWrapper t={380}>

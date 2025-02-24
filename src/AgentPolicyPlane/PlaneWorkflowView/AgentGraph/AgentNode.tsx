@@ -99,6 +99,8 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   }
 
   if (data.type && data.type === "policy-alert") {
+    console.log("policy-alert", data);
+    // alert(JSON.stringify(data));
     return (
       <div className="wrapper wrapper-alert">
         <div className="tw-flex tw-items-center tw-justify-center tw-relative tw-w-full">
@@ -118,7 +120,11 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
           <div className="tw-absolute ripple-wrapper">
             {/* Base circle */}
             <div
-              id={data.animating ? `ripple-point-eq-${data.controlId}` : ""}
+              id={
+                data.animating
+                  ? `ripple-point-eq-${data.controlId}`
+                  : "requires-ID"
+              }
               className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandgreen"
               // data-eqalertoverride="false"
             >

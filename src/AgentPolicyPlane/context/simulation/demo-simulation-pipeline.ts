@@ -826,8 +826,8 @@ const nodes: Record<string, NodeConfig> = {
     },
   },
 
-  "guardrail-check1": {
-    id: "guardrail-check1",
+  "guardrail-1": {
+    id: "guardrail-1",
     label: "Validate PII Protection Measures and Check Legal Basis",
     description:
       "GDPR compliance checkpoint for data protection in claims processing",
@@ -835,7 +835,7 @@ const nodes: Record<string, NodeConfig> = {
     maxDuration: 4000,
     dependencies: [{ nodeId: "group-evidence", required: true }],
     guardrails: {
-      controlIds: ["ctrl-9"], // Maps to the "Data Protection Protocol" control
+      controlIds: ["guardrail-1"], // Maps to the "Data Protection Protocol" control
       checkOnStart: true,
       checkOnComplete: true,
     },
@@ -861,7 +861,7 @@ const nodes: Record<string, NodeConfig> = {
     maxDuration: 20000,
     dependencies: [
       { nodeId: "triage-claims", required: true },
-      { nodeId: "guardrail-check1", required: true },
+      { nodeId: "guardrail-1", required: true },
     ],
     outputs: [
       {
@@ -926,8 +926,8 @@ const nodes: Record<string, NodeConfig> = {
     logsToOutput: [],
   },
 
-  "guardrail-check2": {
-    id: "guardrail-check2",
+  "guardrail-2": {
+    id: "guardrail-2",
     label: "Grant AI Driven Action in High-Risk Scenario",
     description: "Human approval checkpoint for high-value or complex claims",
     minDuration: 3000,
@@ -976,7 +976,7 @@ const nodes: Record<string, NodeConfig> = {
     minDuration: 8000,
     maxDuration: 15000,
     dependencies: [
-      { nodeId: "guardrail-check2", required: true },
+      { nodeId: "guardrail-2", required: true },
       { nodeId: "offer-care", required: true },
     ],
     outputs: [

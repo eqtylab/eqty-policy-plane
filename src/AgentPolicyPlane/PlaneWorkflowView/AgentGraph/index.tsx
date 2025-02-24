@@ -237,30 +237,32 @@ export const AgentGraph = ({
   const [edges, setEdges, onEdgesChange] = useEdgesState(CLAIMS_EDGES);
 
   useEffect(() => {
-    setNodes((nodes) =>
-      nodes.map((node) => ({
-        ...node,
-        data: {
-          ...node.data,
-          status: pipelineState.nodes[node.id]?.status || "idle",
-          animating:
-            (node.id === "reconfirm" &&
-              pipelineState.userOverrides.length === 0) ||
-            (node.id === "remediate" &&
-              pipelineState.userRemediations.length === 0),
-          resolved:
-            (node.id === "reconfirm" &&
-              pipelineState.userOverrides.length > 0) ||
-            (node.id === "remediate" &&
-              pipelineState.userRemediations.length > 0),
-          hide:
-            (node.id === "nemo-guardrail1" &&
-              pipelineState.userRemediations.length === 0) ||
-            (node.id === "remediate" &&
-              pipelineState.userRemediations.length > 0),
-        },
-      }))
-    );
+    const updatedNodes = nodes.map((node) => ({
+      ...node,
+      data: {
+        ...node.data,
+        status: pipelineState.nodes[node.id]?.status || "idle",
+        animating:
+          (node.id === "guardrail-2" &&
+            pipelineState.userOverrides.length === 0) ||
+          (node.id === "guardrail-1" &&
+            pipelineState.userRemediations.length === 0),
+        resolved:
+          (node.id === "guardrail-2" &&
+            pipelineState.userOverrides.length > 0) ||
+          (node.id === "guardrail-1" &&
+            pipelineState.userRemediations.length > 0),
+        hide:
+          (node.id === "nemo-guardrail1" &&
+            pipelineState.userRemediations.length === 0) ||
+          (node.id === "guardrail-1" &&
+            pipelineState.userRemediations.length > 0),
+      },
+    }));
+
+    console.log("Updated nodes:", updatedNodes);
+
+    setNodes(updatedNodes);
   }, [pipelineState, setNodes]);
 
   useEffect(() => {
