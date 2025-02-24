@@ -55,8 +55,8 @@ export const WorkflowPlayer: React.FC<WorkflowPlayerProps> = ({
               : state.status === "running"
               ? `Running: (${Math.min(
                   Math.max(completedNodes - 1, 0),
-                  11
-                )}/11 Agents Complete)`
+                  15
+                )}/15 Agents Complete)`
               : state.status === "completed"
               ? "Completed"
               : "Ready to Run"}

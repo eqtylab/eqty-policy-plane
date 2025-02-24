@@ -6,6 +6,7 @@
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 import React from "react";
 import Card from "./card";
 
@@ -22,7 +23,7 @@ import LogoIcon from "../icons/logo";
 const cardsData = [
   {
     title: "Controls Failed",
-    content: <p className="text-red-400">0 Controls</p>,
+    content: <p className="text-red-400">1 Controls</p>,
     icon: <AlertIcon />,
   },
   {

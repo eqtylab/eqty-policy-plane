@@ -239,3 +239,13 @@ export const OUTPUT_8 = [
     response: "Plan activated, resources mobilizing",
   },
 ];
+
+// 9-16 are empty strings
+export const OUTPUT_9 = ``;
+export const OUTPUT_10 = ``;
+export const OUTPUT_11 = ``;
+export const OUTPUT_12 = ``;
+export const OUTPUT_13 = ``;
+export const OUTPUT_14 = ``;
+export const OUTPUT_15 = ``;
+export const OUTPUT_16 = ``;

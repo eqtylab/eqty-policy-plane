@@ -8,6 +8,7 @@ import { AgentIcon } from "./icons/AgentIcon";
 import { NemoIcon } from "./icons/NemoIcon";
 
 export type AgentNodeData = {
+  hidden?: boolean;
   controlId?: string;
   hide?: boolean;
   title?: string;
@@ -167,6 +168,9 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
 
           <Handle id="sourcetop" type="source" position={Position.Top} />
           <Handle id="targetbottom" type="target" position={Position.Bottom} />
+
+          <Handle id="sourceright" type="source" position={Position.Right} />
+          <Handle id="targettop" type="target" position={Position.Top} />
         </div>
         {data.title && (
           <NodeLabel
@@ -182,9 +186,10 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   return (
     <>
       <div
-        className={`${
-          data.parallelVertSize ? "wrapper-half" : "wrapper"
-        } tw-relative`}
+        className={`${data.parallelVertSize ? "wrapper-half" : "wrapper"}${
+          data.hidden ? " !tw-opacity-0 " : ""
+        }
+        tw-relative`}
         style={getNodeStatusStyles(data.status)}
       >
         {/* Add rotating ring for running state */}
@@ -200,6 +205,8 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
           <Handle type="source" position={Position.Right} />
           <Handle id="sourcetop" type="source" position={Position.Top} />
           <Handle id="targetbottom" type="target" position={Position.Bottom} />
+          <Handle id="sourceright" type="source" position={Position.Right} />
+          <Handle id="targettop" type="target" position={Position.Top} />
         </div>
         {data.title && (
           <NodeLabel
