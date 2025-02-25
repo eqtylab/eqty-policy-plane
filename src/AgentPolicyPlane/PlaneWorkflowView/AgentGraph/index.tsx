@@ -111,16 +111,6 @@ const AgentInfoDialog: React.FC<{
                 authorizing deployment.
               </div>
             </div>
-
-            {/* Action Buttons */}
-            {/* <div className="tw-flex tw-gap-2">
-              <button className="tw-flex-1 tw-px-3 tw-py-2 tw-text-sm tw-rounded-md tw-bg-amber-500/10 tw-text-amber-400/70 tw-border tw-border-amber-500/20">
-                Review Controls
-              </button>
-              <button className="tw-flex-1 tw-px-3 tw-py-2 tw-text-sm tw-rounded-md tw-bg-brandblue/10 tw-text-brandblue tw-border tw-border-brandblue/20">
-                Authorize
-              </button>
-            </div> */}
           </div>
         </div>
 
@@ -278,7 +268,7 @@ export const AgentGraph = ({
         // Edge should be dimmed if target hasn't started yet
         const style =
           targetNode?.status === "idle"
-            ? { opacity: 0.2, stroke: "rgb(222, 222, 222)" }
+            ? { opacity: 0.6, stroke: "rgb(222, 222, 222)" }
             : { opacity: 1, stroke: "rgb(222, 222, 222)" };
 
         return {

@@ -89,7 +89,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
       default:
         return {
           background: "rgba(255, 255, 255, 0.1)",
-          opacity: 0.5,
+          opacity: 0.8,
         };
     }
   };
@@ -99,7 +99,6 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   }
 
   if (data.type && data.type === "policy-alert") {
-    console.log("policy-alert", data);
     // alert(JSON.stringify(data));
     return (
       <div className="wrapper wrapper-alert">

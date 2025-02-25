@@ -90,8 +90,7 @@ custom css for the AgentGraph component (react flow overriden styles)
 }
 
 .react-flow__edge .react-flow__edge-path {
-  stroke: rgb(222, 222, 222);
-  strokewidth: 1;
+  stroke-width: 1;
   stroke-opacity: 1;
 }
 
@@ -207,7 +206,7 @@ custom css for the AgentGraph component (react flow overriden styles)
 }
 
 .react-flow__edge .react-flow__edge-path {
-  stroke: rgb(222, 222, 222);
+  stroke: red;
   stroke-width: 1;
   transition: opacity 0.3s ease;
 }
