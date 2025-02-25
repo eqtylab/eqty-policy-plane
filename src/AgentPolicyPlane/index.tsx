@@ -343,9 +343,9 @@ const AgentPolicyPlane = () => {
                 </div>
               </div>
             </div>
-            hey
-            {activeAlertControlDivId}
-            {JSON.stringify(currentActiveControl)}
+
+            {/* {activeAlertControlDivId} */}
+            {/* {JSON.stringify(currentActiveControl)} */}
             {activeAlertUID && activeAlertControlDivId && (
               <>
                 <DelayedRenderWrapper t={380}>

@@ -185,6 +185,7 @@ export const CLAIMS_NODES: Node<AgentNodeData>[] = [
     id: "guardrail-2",
     position: { x: 980, y: 500 },
     data: {
+      controlId: "guardrail-2",
       type: "policy-alert",
       title: "Grant AI Driven Action in High-Risk Scenario",
       labelPosition: "right",
@@ -239,6 +240,8 @@ export const CLAIMS_NODES: Node<AgentNodeData>[] = [
     id: "guardrail-check3",
     position: { x: 1100, y: 300 },
     data: {
+      controlId: "guardrail-check3",
+      resolved: true,
       type: "policy-alert",
       title: "Meaningful Human Review of Claims Response Plan",
       labelPosition: "top",

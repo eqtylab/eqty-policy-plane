@@ -934,7 +934,7 @@ const nodes: Record<string, NodeConfig> = {
     maxDuration: 6000,
     dependencies: [{ nodeId: "estimate-costs", required: true }],
     guardrails: {
-      controlIds: ["ctrl-5"], // Maps to high-value claims control
+      controlIds: ["guardrail-2"], // Maps to high-value claims control
       checkOnStart: true,
       checkOnComplete: true,
     },

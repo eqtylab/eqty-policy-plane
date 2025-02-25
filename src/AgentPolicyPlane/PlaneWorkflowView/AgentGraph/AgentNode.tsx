@@ -116,7 +116,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             }}
           />
 
-          {/* Red circle with ripple effect */}
+          {/* Circle with ripple effect - green when resolved, red when not */}
           <div className="tw-absolute ripple-wrapper">
             {/* Base circle */}
             <div
@@ -125,22 +125,29 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
                   ? `ripple-point-eq-${data.controlId}`
                   : "requires-ID"
               }
-              className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandgreen"
-              // data-eqalertoverride="false"
+              className={`tw-w-4 tw-h-4 tw-rounded-full tw-m-auto tw-relative ${
+                data.resolved ? "tw-bg-brandgreen" : "tw-bg-brandalert"
+              }`}
             >
               {/* Ripple rings - only shown when animating */}
               {data.animating && (
                 <>
                   <div
-                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple "
+                    className={`tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full animate-ripple ${
+                      data.resolved ? "tw-bg-brandgreen" : "tw-bg-brandalert"
+                    }`}
                     style={{ opacity: "0.75" }}
                   ></div>
                   <div
-                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple-delayed "
+                    className={`tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full animate-ripple-delayed ${
+                      data.resolved ? "tw-bg-brandgreen" : "tw-bg-brandalert"
+                    }`}
                     style={{ opacity: "0.75" }}
                   ></div>
                   <div
-                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple-more-delayed "
+                    className={`tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full animate-ripple-more-delayed ${
+                      data.resolved ? "tw-bg-brandgreen" : "tw-bg-brandalert"
+                    }`}
                     style={{ opacity: "0.75" }}
                   ></div>
                 </>
