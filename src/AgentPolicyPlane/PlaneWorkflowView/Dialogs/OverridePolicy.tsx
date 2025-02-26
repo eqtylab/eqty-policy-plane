@@ -34,7 +34,7 @@ export const AgentPolicyOverrideDialog: React.FC<
         <p className="tw-text-white tw-text-base">
           {isAuthorizeType
             ? "This workflow is non-compliant without human authorization of multiple Sourcing Protocol controls."
-            : "This workflow cannot proceed due to GDPR Article 25 (Data Protection by Design) requirements. Potential PII data sources must be properly protected before execution."}
+            : "This workflow cannot proceed due to CUI handling requirements (32 CFR Part 2002). Controlled Unclassified Information must be properly secured with appropriate safeguards before execution."}
         </p>
 
         {/* Buttons container */}

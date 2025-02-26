@@ -36,33 +36,24 @@ import { AgentNodeData } from "./PlaneWorkflowView/AgentGraph/AgentNode";
 
 import { AgenticSummaryReportCert } from "../AICertificates/SummaryCert";
 
-// Solvency II Directive
-// Insurance Distribution Directive (IDD)
-// Sourcing Protocol (SAME)
-// General Data Protection Regulation (GDPR)
-// Recovery and Resolution Directive
-// UK GDPR (SAME)
-// Financial Services and Markets Act 2000 (FSMA)
-// Temporary Permissions Regime (TPR)
-
 const sampleControls = [
   {
     id: "ctrl-1",
-    title: "Solvency II Directive",
+    title: "Executive Order 12333",
     isAlert: false,
     mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-2",
-    title: "Insurance Distribution Directive (IDD)",
+    title: "Foreign Intelligence Surveillance Act (FISA)",
     isAlert: false,
     mandatory: false,
     implemented: false,
   },
   {
     id: "guardrail-2",
-    title: "Sourcing Protocol",
+    title: "Sourcing Protocol", // KEPT as requested
     isAlert: true,
     mandatory: true,
     implemented: false,
@@ -70,39 +61,47 @@ const sampleControls = [
   },
   {
     id: "guardrail-1",
-    title: "General Data Protection Regulation (GDPR)",
+    title: "Controlled Unclassified Information (CUI)", // CONVERTED from GDPR
     isAlert: true,
     mandatory: true,
     implemented: false,
   },
   {
     id: "ctrl-5",
-    title: "Recovery and Resolution Directive",
+    title: "Intelligence Community Directive 102",
     isAlert: false,
     mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-6",
-    title: "UK GDPR",
+    title: "National Intelligence Priorities Framework",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-7",
-    title: "Financial Services and Markets Act 2000 (FSMA)",
+    title: "Intelligence Authorization Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-9",
-    title: "Temporary Permissions Regime (TPR)",
+    title: "NATO Security Classification Protocols",
     isAlert: true,
     mandatory: false,
     implemented: true,
     alertType: "remediate",
+  },
+  {
+    id: "ctrl-10",
+    title: "National Space Security Policy", // Added as requested
+    isAlert: false,
+    mandatory: false,
+    implemented: false,
+    alertType: "authorize",
   },
 ];
 

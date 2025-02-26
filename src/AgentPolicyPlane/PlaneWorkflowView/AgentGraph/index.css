@@ -199,15 +199,17 @@ custom css for the AgentGraph component (react flow overriden styles)
   0%,
   100% {
     opacity: 0.8;
+    transform: scale(1);
   }
   50% {
     opacity: 0.4;
+    transform: scale(1.2);
   }
 }
 
 .react-flow__edge .react-flow__edge-path {
   stroke: red;
-  stroke-width: 1;
+  stroke-width: 2;
   transition: opacity 0.3s ease;
 }
 

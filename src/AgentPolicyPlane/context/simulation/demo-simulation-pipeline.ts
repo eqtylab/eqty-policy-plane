@@ -3,587 +3,6 @@
 import { PipelineConfig } from "../types.pipeline";
 import { NodeConfig } from "../types.nodes";
 
-// import {
-//   OUTPUT_1,
-//   OUTPUT_2,
-//   OUTPUT_3,
-//   OUTPUT_4,
-//   OUTPUT_5,
-//   OUTPUT_6,
-//   OUTPUT_7,
-//   OUTPUT_8,
-// } from "./simulated-outputs";
-
-// const nodes: Record<string, NodeConfig> = {
-//   start: {
-//     id: "start",
-//     label: "Start",
-//     description: "Pipeline entry point",
-//     minDuration: 1000,
-//     maxDuration: 2000,
-//     outputs: [],
-//     logsToOutput: [
-//       {
-//         id: 9,
-//         content: "Human Override Required",
-//         details: "High-risk scenario detected - requires manual authorization",
-//         timestamp: "14:01:30",
-//         type: "warning",
-//         agent: {
-//           id: "policy-1",
-//           name: "Policy Override Validator",
-//           type: "policy-validator",
-//         },
-//         expandable: true,
-//         hash: "bakY7wf3b4a2",
-//       },
-//       {
-//         id: 10,
-//         content: "Human Override Granted",
-//         details: "Emergency response protocol override approved by operator",
-//         timestamp: "14:02:00",
-//         type: "human-override",
-//         metrics: {
-//           executionTime: 500,
-//         },
-//         expandable: true,
-//         hash: "bak6f2Y7e3a4",
-//       },
-//       {
-//         id: 1,
-//         content: "Pipeline execution started",
-//         details: "Initializing concurrent data collection paths",
-//         timestamp: "14:00:00",
-//         type: "info",
-//         hash: "bakk09F4w1dH",
-//         expandable: true,
-//       },
-//     ],
-//   },
-//   // Video Processing Branch
-//   video: {
-//     id: "video",
-//     label: "Collect video footage",
-//     description: "Collects and processes video feeds from surveillance systems",
-//     minDuration: 5000,
-//     maxDuration: 15000,
-//     logsToOutput: [
-//       {
-//         id: 2,
-//         content: "Video Feed Collector established connection",
-//         details:
-//           "Successfully connected to surveillance network - streaming from 8 critical flood zone cameras",
-//         timestamp: "14:00:02",
-//         type: "info",
-//         agent: {
-//           id: "video-1",
-//           name: "Video Feed Collector",
-//           type: "video-collector",
-//         },
-//         metrics: {
-//           executionTime: 1850,
-//           apiCalls: [
-//             {
-//               service: "surveillance-api",
-//               duration: 1200,
-//               status: 200,
-//             },
-//           ],
-//         },
-//         expandable: true,
-//         hash: "bak1a2k3e4d5",
-//       },
-//     ],
-//     outputs: [
-//       // {
-//       //   type: "video-analysis",
-//       //   content: "Raw video feed data",
-//       //   metadata: {
-//       //     title: "Surveillance Feed Analysis",
-//       //   },
-//       // },
-//     ],
-//     tooling: {
-//       type: "vision",
-//       provider: "nemo",
-//     },
-//   },
-
-//   analyze: {
-//     id: "analyze",
-//     label: "Analyze Footage",
-//     description: "Uses NVIDIA mixed-modal LLMs to analyze video content",
-//     minDuration: 10000,
-//     maxDuration: 20000,
-//     dependencies: [
-//       {
-//         nodeId: "video",
-//         required: true,
-//       },
-//     ],
-//     logsToOutput: [
-//       {
-//         id: 3,
-//         content: "Video Analysis Complete",
-//         details:
-//           "NVIDIA mixed-modal LLM analysis detected rising water levels in zones A3 and B2",
-//         timestamp: "14:00:45",
-//         type: "agent-complete",
-//         agent: {
-//           id: "analyze-1",
-//           name: "Video Analyzer",
-//           type: "video-analyzer",
-//         },
-//         output: {
-//           type: "report",
-//           id: "video-analysis-001",
-//           location: "/outputs/video/001",
-//         },
-//         expandable: true,
-//         hash: "baklf7600a2r",
-//       },
-//     ],
-//     outputs: [
-//       {
-//         id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
-//         title: "Video Feed Analysis",
-//         component: "markdown",
-//         params: { content: OUTPUT_1 },
-//         metadata: {
-//           description: "Detailed analysis of visual content and events",
-//         },
-//       },
-//     ],
-//     tooling: {
-//       type: "vision",
-//       provider: "nemo",
-//       config: {
-//         modelType: "mixed-modal",
-//       },
-//     },
-//   },
-
-//   // OSINT Collection Branch
-//   partner: {
-//     id: "partner",
-//     label: "Partner Report (Paramedic/Fire)",
-//     description: "Collects reports from local EMS stations",
-//     minDuration: 3000,
-//     maxDuration: 8000,
-//     logsToOutput: [
-//       {
-//         id: 4,
-//         content: "Partner Report Collection Started",
-//         details: "Retrieving reports from 5 local EMS stations",
-//         timestamp: "14:00:03",
-//         type: "info",
-//         agent: {
-//           id: "partner-1",
-//           name: "Partner Report Analyzer",
-//           type: "partner-analyzer",
-//         },
-//         expandable: true,
-//         hash: "bak3a4k5e88q",
-//       },
-//     ],
-//     outputs: [
-//       {
-//         id: "e817b187-aba3-4b0d-a34e-a1d82319627c",
-//         title: "Partner Reports (EMS/Fire)",
-//         component: "markdown",
-//         params: { content: OUTPUT_2 },
-//       },
-//     ],
-//     tooling: {
-//       type: "osint",
-//       provider: "anthropic",
-//     },
-//   },
-
-//   calls: {
-//     id: "calls",
-//     label: "Calls for service",
-//     description: "Monitors dispatch logs and analyzes call patterns",
-//     minDuration: 4000,
-//     maxDuration: 10000,
-//     logsToOutput: [
-//       {
-//         id: 5,
-//         content: "Service Call Analysis Alert",
-//         details:
-//           "Detected 300% increase in water-related emergency calls in past 15 minutes",
-//         timestamp: "14:00:15",
-//         type: "warning",
-//         agent: {
-//           id: "calls-1",
-//           name: "Service Call Analyzer",
-//           type: "service-call-analyzer",
-//         },
-//         output: {
-//           type: "chart",
-//           id: "call-pattern-001",
-//           location: "/outputs/calls/patterns/001",
-//         },
-//         expandable: true,
-//         hash: "bak5a6k7e8d9",
-//       },
-//     ],
-//     outputs: [
-//       {
-//         id: "ce3b39d8-1bae-4ed3-b4db-2a74658f0d85",
-//         title: "Emergency Call Analysis",
-//         component: "jsonChart",
-//         params: { content: OUTPUT_3 },
-//       },
-//     ],
-//     alertConditions: {
-//       type: "anomaly",
-//       threshold: 0.75,
-//       triggers: ["high-call-volume", "pattern-change"],
-//     },
-//     tooling: {
-//       type: "osint",
-//       provider: "anthropic",
-//     },
-//   },
-
-//   social: {
-//     id: "social",
-//     label: "Social Media",
-//     description: "Monitors social media for distress signals",
-//     minDuration: 5000,
-//     maxDuration: 12000,
-//     logsToOutput: [
-//       {
-//         id: 6,
-//         content: "Social Media Monitor Alert",
-//         details:
-//           "Multiple verified distress calls detected on Twitter and Telegram in downtown area",
-//         timestamp: "14:00:20",
-//         type: "warning",
-//         agent: {
-//           id: "social-1",
-//           name: "Social Media Monitor",
-//           type: "social-monitor",
-//         },
-//         expandable: true,
-//         hash: "bak0a1k2e3d4",
-//       },
-//     ],
-//     outputs: [
-//       {
-//         id: "14c18af1-a352-45e6-976e-3c194bdc6ee8",
-//         title: "Social Media Distress Signals",
-//         component: "markdown",
-//         params: { content: OUTPUT_4 },
-//       },
-//     ],
-//     tooling: {
-//       type: "osint",
-//       provider: "anthropic",
-//     },
-//   },
-
-//   // Aggregation and Analysis
-//   summary: {
-//     id: "summary",
-//     label: "Summary Key Events",
-//     description: "Aggregates and summarizes all collected information",
-//     minDuration: 8000,
-//     maxDuration: 15000,
-//     dependencies: [
-//       { nodeId: "partner", required: true },
-//       { nodeId: "calls", required: true },
-//       { nodeId: "social", required: true },
-//     ],
-//     inputMergeStrategy: "summarize",
-//     logsToOutput: [
-//       {
-//         id: 7,
-//         content: "OSINT Summary Generated",
-//         details: "Compiled emergency situation report from all OSINT sources",
-//         timestamp: "14:01:00",
-//         type: "agent-output",
-//         agent: {
-//           id: "summary-1",
-//           name: "Information Summarizer",
-//           type: "summarizer",
-//         },
-//         output: {
-//           type: "markdown",
-//           id: "osint-summary-001",
-//           location: "/outputs/summary/001",
-//         },
-//         expandable: true,
-//         hash: "bak4a5k6e7d8",
-//       },
-//     ],
-//     outputs: [
-//       {
-//         id: "f303866d-d08a-48a7-81c3-c30486149d87",
-//         title: "Situation Summary",
-//         component: "markdown",
-//         params: { content: OUTPUT_5 },
-//       },
-//     ],
-//     tooling: {
-//       type: "llm",
-//       provider: "anthropic",
-//     },
-//   },
-
-//   remediate: {
-//     id: "remediate",
-//     label: "Validate PII protection measures",
-//     description: "GDPR Article 25 compliance checkpoint for data protection",
-//     minDuration: 2000,
-//     maxDuration: 4000,
-//     dependencies: [{ nodeId: "prioritize", required: true }],
-//     guardrails: {
-//       controlIds: ["ctrl-9"], // Maps to the "Data Protection Protocol" control
-//       checkOnStart: true,
-//       checkOnComplete: true,
-//     },
-//     alertConditions: {
-//       type: "data-protection",
-//       triggers: [
-//         "unprotected-pii-detected",
-//         "sensitive-data-exposure",
-//         "insufficient-encryption",
-//         "missing-data-minimization",
-//         "unauthorized-data-access",
-//       ],
-//     },
-
-//     logsToOutput: [],
-//   },
-
-//   "nemo-guardrail1": {
-//     id: "nemo-guardrail1",
-//     label: "Nemo Guardrail",
-//     description: "Analyzes risk factors and validates response necessity",
-//     minDuration: 3000,
-//     maxDuration: 7000,
-//     dependencies: [{ nodeId: "summary", required: true }],
-//     guardrails: {
-//       controlIds: ["ctrl-1", "ctrl-2", "ctrl-3"],
-//       checkOnComplete: true,
-//     },
-//     tooling: {
-//       type: "llm",
-//       provider: "nemo",
-//     },
-//     logsToOutput: [
-//       {
-//         id: 8,
-//         content: "Nemo Guardrail Check Initiated",
-//         details: "Analyzing risk factors and validating response necessity",
-//         timestamp: "14:01:15",
-//         type: "info",
-//         agent: {
-//           id: "nemo-1",
-//           name: "Nemo Guardrail",
-//           type: "nemo-guardrail",
-//         },
-//         expandable: true,
-//         hash: "bak9a0k1e2d3",
-//       },
-//     ],
-//     alertConditions: {
-//       type: "risk-level",
-//       threshold: 0.7,
-//       triggers: [
-//         "life-safety-risk",
-//         "misinformation-detected",
-//         "rapid-escalation",
-//       ],
-//     },
-//     outputs: [
-//       // {
-//       //   type: "alert",
-//       //   content: "guardrail-assessment",
-//       //   metadata: {
-//       //     title: "Risk Assessment Report",
-//       //   },
-//       // },
-//     ],
-//   },
-
-//   prioritize: {
-//     id: "prioritize",
-//     label: "Prioritize event on need and impact",
-//     description: "Analyzes severity and determines response priorities",
-//     minDuration: 6000,
-//     maxDuration: 12000,
-//     dependencies: [
-//       { nodeId: "nemo-guardrail1", required: true },
-//       { nodeId: "analyze", required: true },
-//     ],
-//     inputMergeStrategy: "prioritize",
-//     outputs: [
-//       {
-//         id: "e5836695-f2d0-47f4-86e8-d0dbaae4031a",
-//         title: "Priority Risk Assessment",
-//         component: "riskAssesment",
-//         params: { content: OUTPUT_6 },
-//       },
-//     ],
-//     tooling: {
-//       type: "llm",
-//       provider: "anthropic",
-//     },
-//     logsToOutput: [
-//       {
-//         id: 19,
-//         content: "Event Prioritization Complete",
-//         details: "Analyzed risk factors and determined response priorities",
-//         timestamp: "14:01:30",
-//         type: "agent-complete",
-//         agent: {
-//           id: "prioritize-1",
-//           name: "Event Prioritizer",
-//           type: "event-prioritizer",
-//         },
-//         output: {
-//           type: "report",
-//           id: "priority-report-001",
-//           location: "/outputs/priorities/001",
-//         },
-//         expandable: true,
-//         hash: "bak2a3k4e5d6",
-//       },
-//     ],
-//   },
-
-//   reconfirm: {
-//     id: "reconfirm",
-//     label: "Grant AI-driven action in high-risk scenario",
-//     description: "Human approval checkpoint for high-risk scenarios",
-//     minDuration: 200,
-//     maxDuration: 1200,
-//     dependencies: [{ nodeId: "prioritize", required: true }],
-//     guardrails: {
-//       controlIds: ["ctrl-3"], // Maps to the "Sourcing Protocol" control
-//       checkOnStart: true,
-//       checkOnComplete: true,
-//     },
-//     alertConditions: {
-//       type: "risk-level",
-//       threshold: 0.8,
-//       triggers: [
-//         "high-risk-scenario",
-//         "human-life-risk",
-//         "misinformation-risk",
-//       ],
-//     },
-//     logsToOutput: [],
-//   },
-
-//   plan: {
-//     id: "plan",
-//     label: "Establish the response plan",
-//     description: "Creates formal response plan documentation",
-//     minDuration: 8000,
-//     maxDuration: 15000,
-//     dependencies: [{ nodeId: "reconfirm", required: true }],
-//     outputs: [
-//       {
-//         id: "d22ec671-806a-4db2-8c60-f0f8754f9b7b",
-//         title: "Response Plan",
-//         component: "markdown",
-//         params: { content: OUTPUT_7 },
-//       },
-//     ],
-//     tooling: {
-//       type: "llm",
-//       provider: "anthropic",
-//     },
-//     logsToOutput: [
-//       {
-//         id: 11,
-//         content: "Response Plan Generated",
-//         details: "Comprehensive emergency response plan created",
-//         timestamp: "14:02:30",
-//         type: "agent-complete",
-//         agent: {
-//           id: "plan-1",
-//           name: "Response Plan Creator",
-//           type: "plan-creator",
-//         },
-//         output: {
-//           type: "report",
-//           id: "response-plan-001",
-//           location: "/outputs/plans/001",
-//         },
-//         expandable: true,
-//         hash: "bak2a3k4e5d6",
-//       },
-//     ],
-//   },
-
-//   notify: {
-//     id: "notify",
-//     label: "Notify Investigators",
-//     description: "Dispatches notifications through multiple channels",
-//     minDuration: 5000,
-//     maxDuration: 10000,
-//     dependencies: [{ nodeId: "plan", required: true }],
-//     outputs: [
-//       {
-//         id: "108eb93a-071e-4407-8b78-a73aabd9e803",
-//         title: "First Responder Notifications",
-//         component: "toolNotify",
-//         params: { content: OUTPUT_8 },
-//       },
-//     ],
-//     tooling: {
-//       type: "notification",
-//       provider: "twilio",
-//     },
-//     logsToOutput: [
-//       {
-//         id: 12,
-//         content: "First Responder Notification Complete",
-//         details:
-//           "Successfully notified all emergency response units via Twilio and Apptek",
-//         timestamp: "14:03:00",
-//         type: "success",
-//         agent: {
-//           id: "notify-1",
-//           name: "First Responder Notifier",
-//           type: "responder-notifier",
-//         },
-//         metrics: {
-//           apiCalls: [
-//             {
-//               service: "twilio-api",
-//               duration: 800,
-//               status: 200,
-//             },
-//             {
-//               service: "apptek-api",
-//               duration: 600,
-//               status: 200,
-//             },
-//           ],
-//         },
-//         expandable: true,
-//         hash: "bak7a8k9e0d1",
-//       },
-//     ],
-//   },
-
-//   end: {
-//     id: "end",
-//     label: "End",
-//     description: "Pipeline completion",
-//     minDuration: 1000,
-//     maxDuration: 2000,
-//     dependencies: [{ nodeId: "notify", required: true }],
-//     logsToOutput: [],
-//   },
-// };
-
 import {
   OUTPUT_1,
   OUTPUT_2,
@@ -604,24 +23,51 @@ import {
 } from "./simulated-outputs";
 
 const nodes: Record<string, NodeConfig> = {
-  // Initial claim intake
+  // Initial intelligence intake
   "claimant-details": {
     id: "claimant-details",
-    label: "Claimant Accident Details",
+    label: "Source Intelligence Details",
     description:
-      "Collects and processes detailed information about insurance claims incidents",
+      "Collects and processes detailed information from field operatives and intelligence sources",
     minDuration: 4000,
     maxDuration: 10000,
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 101,
+        content: "Field Intelligence Collection Complete",
+        details:
+          "Successfully processed raw intelligence from 5 field operatives in eastern border region",
+        timestamp: "08:45:20",
+        type: "success",
+        agent: {
+          id: "source-intel-1",
+          name: "Field Intelligence Processor",
+          type: "intel-collector",
+        },
+        metrics: {
+          executionTime: 7850,
+          apiCalls: [
+            {
+              service: "secure-comms-api",
+              duration: 2200,
+              status: 200,
+            },
+          ],
+        },
+        expandable: true,
+        hash: "int1a2k3e4d5",
+      },
+    ],
+
     outputs: [
       {
         id: "a1eb3c99-1c0b-4ef8-bb6d-6bb9bd380a11",
-        title: "Accident Details Report",
+        title: "Source Intelligence Report",
         component: "markdown",
         params: { content: OUTPUT_1 },
         metadata: {
           description:
-            "Comprehensive details of the incident from claimant perspective",
+            "Comprehensive details from intelligence source perspective",
         },
       },
     ],
@@ -633,20 +79,46 @@ const nodes: Record<string, NodeConfig> = {
 
   "claimant-media": {
     id: "claimant-media",
-    label: "Claimant Media",
+    label: "SIGINT Media",
     description:
-      "Processes photos, videos, and other media evidence provided by claimants",
+      "Processes communications, electronic emissions, and digital transmissions for national security",
     minDuration: 5000,
     maxDuration: 12000,
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 102,
+        content: "SIGINT Collection Active",
+        details:
+          "Monitoring 14 frequency bands for communications, electronic emissions, and digital transmissions",
+        timestamp: "09:10:05",
+        type: "info",
+        agent: {
+          id: "sigint-1",
+          name: "Signals Intelligence Processor",
+          type: "signals-collector",
+        },
+        metrics: {
+          executionTime: 8450,
+          apiCalls: [
+            {
+              service: "crypto-analysis-api",
+              duration: 3800,
+              status: 200,
+            },
+          ],
+        },
+        expandable: true,
+        hash: "sig5a6k7e8d9",
+      },
+    ],
     outputs: [
       {
         id: "b27f1187-aba3-4b0d-a34e-a1d82319627c",
-        title: "Claimant Media Analysis",
+        title: "SIGINT Analysis",
         component: "markdown",
         params: { content: OUTPUT_2 },
         metadata: {
-          description: "Analysis of media evidence submitted by the claimant",
+          description: "Analysis of signals intelligence gathered from sources",
         },
       },
     ],
@@ -661,9 +133,9 @@ const nodes: Record<string, NodeConfig> = {
 
   "triage-claims": {
     id: "triage-claims",
-    label: "Triage Claims",
+    label: "Intelligence Triage",
     description:
-      "Categorizes and prioritizes claims based on severity, complexity, and urgency",
+      "Categorizes and prioritizes intelligence based on credibility, relevance, and time-sensitivity",
     minDuration: 3000,
     maxDuration: 9000,
     dependencies: [
@@ -671,11 +143,28 @@ const nodes: Record<string, NodeConfig> = {
       { nodeId: "claimant-media", required: true },
     ],
     inputMergeStrategy: "prioritize",
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 103,
+        content: "Priority Intelligence Alert",
+        details:
+          "Multiple high-priority indicators detected in eastern border region",
+        timestamp: "09:18:45",
+        type: "warning",
+        agent: {
+          id: "triage-1",
+          name: "Intelligence Prioritization System",
+          type: "triage-system",
+        },
+        metrics: {},
+        expandable: true,
+        hash: "tri9a0k1e2d3",
+      },
+    ],
     outputs: [
       {
         id: "c3b39d8-1bae-4ed3-b4db-2a74658f0d85",
-        title: "Claim Triage Assessment",
+        title: "Intelligence Triage Assessment",
         component: "jsonChart",
         params: { content: OUTPUT_3 },
       },
@@ -689,15 +178,36 @@ const nodes: Record<string, NodeConfig> = {
   // Evidence collection branches
   "witness-evidence": {
     id: "witness-evidence",
-    label: "Witness Evidence",
-    description: "Collects and analyzes statements from witnesses",
+    label: "HUMINT Reports",
+    description: "Collects and analyzes human intelligence reports",
     minDuration: 8000,
     maxDuration: 18000,
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 104,
+        content: "HUMINT Source Reports Processed",
+        details:
+          "3 high-reliability sources confirm military mobilization in target region",
+        timestamp: "09:30:10",
+        type: "agent-output",
+        agent: {
+          id: "humint-1",
+          name: "Human Intelligence Processor",
+          type: "humint-analyst",
+        },
+        output: {
+          type: "markdown",
+          id: "humint-analysis-001",
+          location: "/outputs/humint/001",
+        },
+        expandable: true,
+        hash: "hum4a5k6e7d8",
+      },
+    ],
     outputs: [
       {
         id: "d4c18af1-a352-45e6-976e-3c194bdc6ee8",
-        title: "Witness Statement Analysis",
+        title: "HUMINT Analysis",
         component: "markdown",
         params: { content: OUTPUT_4 },
       },
@@ -710,15 +220,33 @@ const nodes: Record<string, NodeConfig> = {
 
   "other-parties-media": {
     id: "other-parties-media",
-    label: "Other Parties' Media",
-    description: "Collects and organizes media evidence from third parties",
+    label: "Allied Intel Sharing",
+    description:
+      "Manages intelligence shared by NATO allies and partner nations",
     minDuration: 6000,
     maxDuration: 14000,
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 105,
+        content: "NATO Intelligence Exchange Complete",
+        details:
+          "Intelligence received from 3 alliance partners confirming activity patterns",
+        timestamp: "09:45:30",
+        type: "info",
+        agent: {
+          id: "allied-1",
+          name: "Allied Information Exchange",
+          type: "intel-exchange",
+        },
+
+        expandable: true,
+        hash: "all8a9k0e1d2",
+      },
+    ],
     outputs: [
       {
         id: "e5303866d-d08a-48a7-81c3-c30486149d87",
-        title: "Third Party Media Analysis",
+        title: "Allied Intelligence Analysis",
         component: "markdown",
         params: { content: OUTPUT_5 },
       },
@@ -731,16 +259,34 @@ const nodes: Record<string, NodeConfig> = {
 
   cctv: {
     id: "cctv",
-    label: "CCTV",
-    description: "Acquires and processes CCTV footage relevant to the claim",
+    label: "Geospatial Intelligence",
+    description:
+      "Processes satellite imagery, drone footage, and other geospatial data",
     minDuration: 7000,
     maxDuration: 16000,
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 106,
+        content: "GEOINT Analysis Complete",
+        details:
+          "Satellite and drone footage analysis reveals significant military movements",
+        timestamp: "10:00:15",
+        type: "success",
+        agent: {
+          id: "geoint-1",
+          name: "Geospatial Intelligence Processor",
+          type: "imagery-analyst",
+        },
+
+        expandable: true,
+        hash: "geo3a4k5e6d7",
+      },
+    ],
     outputs: [
       {
         id: "f6836695-f2d0-47f4-86e8-d0dbaae4031a",
-        title: "CCTV Analysis",
-        component: "markdown",
+        title: "GEOINT Analysis",
+        component: "jsonChart",
         params: { content: OUTPUT_6 },
       },
     ],
@@ -755,16 +301,33 @@ const nodes: Record<string, NodeConfig> = {
 
   "other-media": {
     id: "other-media",
-    label: "Other Media Evidence",
+    label: "OSINT Collection",
     description:
-      "Collects and analyzes alternative media sources like dashcams and drone footage",
+      "Gathers and analyzes open-source intelligence from public domains",
     minDuration: 5000,
     maxDuration: 15000,
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 107,
+        content: "Open Source Intelligence Gathered",
+        details:
+          "Analysis of social media, news outlets, and public data shows corroborating patterns",
+        timestamp: "10:10:40",
+        type: "info",
+        agent: {
+          id: "osint-1",
+          name: "Open Source Collector",
+          type: "osint-monitor",
+        },
+
+        expandable: true,
+        hash: "osi7a8k9e0d1",
+      },
+    ],
     outputs: [
       {
         id: "g7ec671-806a-4db2-8c60-f0f8754f9b7b",
-        title: "Alternative Media Analysis",
+        title: "OSINT Analysis",
         component: "markdown",
         params: { content: OUTPUT_7 },
       },
@@ -777,16 +340,32 @@ const nodes: Record<string, NodeConfig> = {
 
   "police-report": {
     id: "police-report",
-    label: "Police Report",
-    description: "Acquires and interprets official police documentation",
+    label: "Law Enforcement Data",
+    description: "Coordinates with domestic and international law enforcement",
     minDuration: 6000,
     maxDuration: 12000,
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 108,
+        content: "Law Enforcement Intelligence Received",
+        details: "Border security reports confirm unusual patterns of activity",
+        timestamp: "10:15:20",
+        type: "info",
+        agent: {
+          id: "lawenf-1",
+          name: "Law Enforcement Liaison",
+          type: "le-coordinator",
+        },
+
+        expandable: true,
+        hash: "law2a3k4e5d6",
+      },
+    ],
     outputs: [
       {
         id: "h8eb93a-071e-4407-8b78-a73aabd9e803",
-        title: "Police Report Analysis",
-        component: "markdown",
+        title: "Law Enforcement Data Analysis",
+        component: "jsonChart",
         params: { content: OUTPUT_8 },
       },
     ],
@@ -799,8 +378,9 @@ const nodes: Record<string, NodeConfig> = {
   // Evidence aggregation
   "group-evidence": {
     id: "group-evidence",
-    label: "Group Evidence",
-    description: "Aggregates and organizes evidence from multiple sources",
+    label: "Intelligence Fusion",
+    description:
+      "Aggregates intelligence from multiple sources into a cohesive operational picture",
     minDuration: 5000,
     maxDuration: 10000,
     dependencies: [
@@ -811,11 +391,28 @@ const nodes: Record<string, NodeConfig> = {
       { nodeId: "police-report", required: false },
     ],
 
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 109,
+        content: "Multi-Source Intelligence Fusion Complete",
+        details:
+          "Comprehensive intelligence picture generated from all collection sources",
+        timestamp: "10:25:10",
+        type: "success",
+        agent: {
+          id: "fusion-1",
+          name: "Intelligence Fusion Engine",
+          type: "intel-integrator",
+        },
+
+        expandable: true,
+        hash: "fus6a7k8e9d0",
+      },
+    ],
     outputs: [
       {
         id: "i9eebc99-9c0b-4ef8-bb6d-6bb9bd380b22",
-        title: "Consolidated Evidence Package",
+        title: "Consolidated Intelligence Package",
         component: "markdown",
         params: { content: OUTPUT_9 },
       },
@@ -828,9 +425,9 @@ const nodes: Record<string, NodeConfig> = {
 
   "guardrail-1": {
     id: "guardrail-1",
-    label: "Validate PII Protection Measures and Check Legal Basis",
+    label: "Validate Classification and Legal Compliance",
     description:
-      "GDPR compliance checkpoint for data protection in claims processing",
+      "Ensures intelligence handling complies with relevant laws and classification protocols",
     minDuration: 2000,
     maxDuration: 4000,
     dependencies: [{ nodeId: "group-evidence", required: true }],
@@ -849,14 +446,31 @@ const nodes: Record<string, NodeConfig> = {
         "unauthorized-data-access",
       ],
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 110,
+        content: "Classification Compliance Check Complete",
+        details:
+          "All intelligence properly classified according to handling requirements",
+        timestamp: "10:28:45",
+        type: "success",
+        agent: {
+          id: "compliance-1",
+          name: "Classification Validator",
+          type: "compliance-monitor",
+        },
+
+        expandable: true,
+        hash: "cla1a2k3e4d5",
+      },
+    ],
   },
 
   "analyze-data": {
     id: "analyze-data",
-    label: "Analyse Data to Validate Claim Aligns to Evidence",
+    label: "Pattern and Anomaly Detection",
     description:
-      "Examines relationships between claim details and collected evidence",
+      "Applies advanced analytics to identify patterns, anomalies, and correlations",
     minDuration: 10000,
     maxDuration: 20000,
     dependencies: [
@@ -866,7 +480,7 @@ const nodes: Record<string, NodeConfig> = {
     outputs: [
       {
         id: "j10c18af1-a352-45e6-976e-3c194bdc6f99",
-        title: "Claim Validation Analysis",
+        title: "Intelligence Pattern Analysis",
         component: "markdown",
         params: { content: OUTPUT_10 },
       },
@@ -878,21 +492,36 @@ const nodes: Record<string, NodeConfig> = {
         modelType: "analysis",
       },
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 111,
+        content: "Pattern Recognition Alert",
+        details: "87% pattern match with April 2024 border incursion detected",
+        timestamp: "10:45:30",
+        type: "warning",
+        agent: {
+          id: "pattern-1",
+          name: "Pattern Analysis System",
+          type: "analytics-engine",
+        },
+        expandable: true,
+        hash: "pat5a6k7e8d9",
+      },
+    ],
   },
 
   "verify-policy": {
     id: "verify-policy",
-    label: "Verify Policy Coverage & T&C Alignment",
+    label: "Verify National Security Priorities Alignment",
     description:
-      "Analyzes policy documentation to determine coverage applicability",
+      "Evaluates intelligence against current national security directives",
     minDuration: 7000,
     maxDuration: 14000,
     dependencies: [{ nodeId: "analyze-data", required: true }],
     outputs: [
       {
         id: "k11eb3c99-1c0b-4ef8-bb6d-6bb9bd380c33",
-        title: "Policy Coverage Assessment",
+        title: "Security Priority Assessment",
         component: "markdown",
         params: { content: OUTPUT_11 },
       },
@@ -901,20 +530,38 @@ const nodes: Record<string, NodeConfig> = {
       type: "llm",
       provider: "anthropic",
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 112,
+        content: "Security Priority Alignment Confirmed",
+        details:
+          "Intelligence situation directly aligns with National Priority #1: Border Security",
+        timestamp: "11:15:20",
+        type: "info",
+        agent: {
+          id: "priority-1",
+          name: "Security Priority Validator",
+          type: "policy-validator",
+        },
+
+        expandable: true,
+        hash: "pri9a0k1e2d3",
+      },
+    ],
   },
 
   "estimate-costs": {
     id: "estimate-costs",
-    label: "Estimate Repair Costs",
-    description: "Calculates accurate repair or replacement costs",
+    label: "Threat Assessment",
+    description:
+      "Evaluates potential threats based on capability, intent, and opportunity",
     minDuration: 6000,
     maxDuration: 12000,
     dependencies: [{ nodeId: "verify-policy", required: true }],
     outputs: [
       {
         id: "l12f1187-aba3-4b0d-a34e-a1d82319627d",
-        title: "Cost Estimation Report",
+        title: "Threat Assessment Report",
         component: "jsonChart",
         params: { content: OUTPUT_12 },
       },
@@ -923,13 +570,30 @@ const nodes: Record<string, NodeConfig> = {
       type: "llm",
       provider: "anthropic",
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 113,
+        content: "Threat Assessment Complete",
+        details: "Severe threat level determined with high confidence",
+        timestamp: "11:30:40",
+        type: "warning",
+        agent: {
+          id: "threat-1",
+          name: "Threat Analysis System",
+          type: "threat-assessor",
+        },
+
+        expandable: true,
+        hash: "thr4a5k6e7d8",
+      },
+    ],
   },
 
   "guardrail-2": {
     id: "guardrail-2",
-    label: "Grant AI Driven Action in High-Risk Scenario",
-    description: "Human approval checkpoint for high-value or complex claims",
+    label: "Authorization for Sensitive Operations",
+    description:
+      "Ensures proper oversight for high-risk intelligence operations",
     minDuration: 3000,
     maxDuration: 6000,
     dependencies: [{ nodeId: "estimate-costs", required: true }],
@@ -943,21 +607,38 @@ const nodes: Record<string, NodeConfig> = {
       threshold: 0.75,
       triggers: ["high-value-claim", "complex-liability", "potential-fraud"],
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 114,
+        content: "Senior Authority Approval Required",
+        details:
+          "Intelligence assessment requires senior leadership authorization",
+        timestamp: "11:35:10",
+        type: "guardrail-pass",
+        agent: {
+          id: "auth-1",
+          name: "Operations Authorization Monitor",
+          type: "oversight-system",
+        },
+
+        expandable: true,
+        hash: "aut8a9k0e1d2",
+      },
+    ],
   },
 
   "offer-care": {
     id: "offer-care",
-    label: "Offer Care & Scan for Vulnerabilities",
+    label: "Source Protection Assessment",
     description:
-      "Identifies claimant vulnerabilities and ensures appropriate support",
+      "Identifies operational security risks and protection measures for sources",
     minDuration: 4000,
     maxDuration: 8000,
     dependencies: [{ nodeId: "triage-claims", required: true }],
     outputs: [
       {
         id: "m13b39d8-1bae-4ed3-b4db-2a74658f0d85",
-        title: "Vulnerability Assessment & Care Plan",
+        title: "Source Protection Plan",
         component: "markdown",
         params: { content: OUTPUT_13 },
       },
@@ -966,13 +647,30 @@ const nodes: Record<string, NodeConfig> = {
       type: "llm",
       provider: "anthropic",
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 115,
+        content: "Source Protection Measures Implemented",
+        details:
+          "Protective protocols activated for 3 high-risk HUMINT sources",
+        timestamp: "11:40:30",
+        type: "info",
+        agent: {
+          id: "protection-1",
+          name: "Source Security System",
+          type: "asset-protector",
+        },
+
+        expandable: true,
+        hash: "pro3a4k5e6d7",
+      },
+    ],
   },
 
   "generate-plan": {
     id: "generate-plan",
-    label: "Generate Claims Response Plan",
-    description: "Creates comprehensive claims resolution strategies",
+    label: "Generate Intelligence Product",
+    description: "Synthesizes complex intelligence into actionable reports",
     minDuration: 8000,
     maxDuration: 15000,
     dependencies: [
@@ -982,7 +680,7 @@ const nodes: Record<string, NodeConfig> = {
     outputs: [
       {
         id: "n14c18af1-a352-45e6-976e-3c194bdc6e88",
-        title: "Claims Response Plan",
+        title: "Intelligence Product",
         component: "markdown",
         params: { content: OUTPUT_14 },
       },
@@ -991,21 +689,38 @@ const nodes: Record<string, NodeConfig> = {
       type: "llm",
       provider: "anthropic",
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 116,
+        content: "Intelligence Product Generated",
+        details:
+          "Comprehensive intelligence assessment with recommendations completed",
+        timestamp: "11:55:15",
+        type: "success",
+        agent: {
+          id: "product-1",
+          name: "Intelligence Product Generator",
+          type: "intel-synthesizer",
+        },
+
+        expandable: true,
+        hash: "pro7a8k9e0d1",
+      },
+    ],
   },
 
   "notify-agent": {
     id: "notify-agent",
-    label: "Notify Claims Agent of Response Plan",
+    label: "Disseminate to Decision Makers",
     description:
-      "Formats and dispatches claim response plans to claims handlers",
+      "Ensures intelligence products reach appropriate decision-makers",
     minDuration: 3000,
     maxDuration: 7000,
     dependencies: [{ nodeId: "generate-plan", required: true }],
     outputs: [
       {
         id: "o15303866d-d08a-48a7-81c3-c30486149d87",
-        title: "Agent Notification Package",
+        title: "Decision Maker Notification Package",
         component: "toolNotify",
         params: { content: OUTPUT_15 },
       },
@@ -1014,14 +729,44 @@ const nodes: Record<string, NodeConfig> = {
       type: "notification",
       provider: "twilio",
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 117,
+        content: "Intelligence Dissemination Complete",
+        details:
+          "Priority intelligence successfully delivered to Joint Operations Command",
+        timestamp: "12:00:40",
+        type: "success",
+        agent: {
+          id: "dissem-1",
+          name: "Intelligence Disseminator",
+          type: "intel-distributor",
+        },
+        metrics: {
+          apiCalls: [
+            {
+              service: "secure-notification-api",
+              duration: 800,
+              status: 200,
+            },
+            {
+              service: "command-portal-api",
+              duration: 650,
+              status: 200,
+            },
+          ],
+        },
+        expandable: true,
+        hash: "dis2a3k4e5d6",
+      },
+    ],
   },
 
   "guardrail-check3": {
     id: "guardrail-check3",
-    label: "Meaningful Human Review of Claims Response Plan",
+    label: "Human Verification of Intelligence Assessment",
     description:
-      "Ensures qualified human oversight of AI-generated claims decisions",
+      "Ensures qualified intelligence professionals review automated assessments",
     minDuration: 5000,
     maxDuration: 10000,
     dependencies: [{ nodeId: "notify-agent", required: true }],
@@ -1039,21 +784,38 @@ const nodes: Record<string, NodeConfig> = {
         "missing-authorization",
       ],
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 118,
+        content: "Human Analyst Verification Complete",
+        details:
+          "Senior intelligence officer has reviewed and validated assessment",
+        timestamp: "12:10:20",
+        type: "success",
+        agent: {
+          id: "verify-1",
+          name: "Human Oversight Validator",
+          type: "verification-system",
+        },
+
+        expandable: true,
+        hash: "ver6a7k8e9d0",
+      },
+    ],
   },
 
   "generate-summary": {
     id: "generate-summary",
-    label: "Generate Summary Report for the CMS",
+    label: "Generate Brief for Joint Operations",
     description:
-      "Compiles all claim information into standardized report format",
+      "Compiles finalized intelligence into standardized formats for joint operations",
     minDuration: 5000,
     maxDuration: 10000,
     dependencies: [{ nodeId: "guardrail-check3", required: true }],
     outputs: [
       {
         id: "p16836695-f2d0-47f4-86e8-d0dbaae4031a",
-        title: "Final Claims Summary Report",
+        title: "Joint Operations Intelligence Brief",
         component: "markdown",
         params: { content: OUTPUT_16 },
       },
@@ -1062,7 +824,24 @@ const nodes: Record<string, NodeConfig> = {
       type: "llm",
       provider: "anthropic",
     },
-    logsToOutput: [],
+    logsToOutput: [
+      {
+        id: 119,
+        content: "Joint Operations Brief Generated",
+        details:
+          "NATO-compatible intelligence brief created for allied operations",
+        timestamp: "12:20:15",
+        type: "success",
+        agent: {
+          id: "brief-1",
+          name: "Joint Operations Briefer",
+          type: "brief-generator",
+        },
+
+        expandable: true,
+        hash: "bri1a2k3e4d5",
+      },
+    ],
   },
 };
 

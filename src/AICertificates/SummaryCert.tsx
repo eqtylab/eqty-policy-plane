@@ -103,7 +103,7 @@ const Header = () => {
           Response Summary
         </p>
         <span className="tw-text-white tw-text-[32px] tw-font-normal tw-leading-[100%] tw-mb-1">
-          Threat Alert System
+          Joint Intelligence Brief
         </span>
         <p className="tw-text-[#A1A1AA] tw-font-normal tw-text-[13px] tw-leading-[100%]">
           Generated {timestamp}
@@ -121,30 +121,30 @@ export const AgenticSummaryReportCert = () => {
   };
 
   const summaryText = `
-  Investigator Alert Report - ${getTimestampApriori()}
+  Joint Intelligence Briefing - ${getTimestampApriori()}
   
   THREAT ASSESSMENT SUMMARY
-  OSINT feed analysis triggered multi-source verification system. Video surveillance data collected from Twitter, Telegram and auxiliary social media channels confirm escalating situation. Analysis covers primary affected zone with cross-referenced data points.
+  SIGINT collection triggered multi-source verification protocol. Geospatial intelligence data aggregated from satellite imagery, drone surveillance and NATO partner feeds confirm developing situation. Analysis covers designated area of interest with cross-referenced intelligence indicators.
   
   KEY INTELLIGENCE GATHERED
-  - Video footage analysis completed through automated verification
-  - Social media correlation through multiple platforms
-  - Location-based intelligence mapping
-  - Real-time event tracking through OSINT feeds
+  - Satellite imagery analysis completed through automated verification
+  - SIGINT correlation across multiple collection platforms
+  - Geospatial intelligence mapping with terrain analysis
+  - Real-time threat monitoring through allied intelligence feeds
   
-  SURVEILLANCE METRICS
+  INTELLIGENCE METRICS
   - 45+ primary source confirmations
   - 3 independent verification channels
   - 2 automated analysis cycles completed
-  - 25+ corroborating data points
-  - 78 related social media posts analyzed
+  - 25+ corroborating intelligence indicators
+  - 78 related OSINT data points analyzed
   
   COMPLIANCE STATUS
   Two protocol frameworks required verification:
   1. Sourcing Protocol: Validated through compliance gateway
-  2. GDPR Requirements: Data protection measures active
+  2. CUI Requirements: Information protection measures active
   
-  All intelligence gathering executed in compliance with National Anti-Terrorist Prosecutor's Office guidelines and validated through Nemo Guardrails system.
+  All intelligence gathering executed in compliance with National Space Security Policy guidelines and validated through Nemo Guardrails system.
   `;
 
   return (

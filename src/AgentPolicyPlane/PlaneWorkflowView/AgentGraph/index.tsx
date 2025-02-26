@@ -19,7 +19,7 @@ import { usePipeline } from "../../context/PipelineContext";
 import AgentNode, { type AgentNodeData } from "./AgentNode";
 import AgentEdge from "./AgentEdge";
 
-import { CLAIMS_NODES, CLAIMS_EDGES } from "./nodes";
+import { INTEL_NODES, INTEL_EDGES } from "./usGvnodes";
 
 const nodeTypes = {
   turbo: AgentNode,
@@ -223,8 +223,8 @@ export const AgentGraph = ({
   });
 
   const { state: pipelineState } = usePipeline();
-  const [nodes, setNodes, onNodesChange] = useNodesState(CLAIMS_NODES);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(CLAIMS_EDGES);
+  const [nodes, setNodes, onNodesChange] = useNodesState(INTEL_NODES);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(INTEL_EDGES);
 
   useEffect(() => {
     const updatedNodes = nodes.map((node) => ({

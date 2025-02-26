@@ -73,7 +73,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
     switch (status) {
       case "running":
         return {
-          background: "rgba(0, 157, 255, 0.15)",
+          background: "blue",
           animation: "node-pulse 2s ease-in-out infinite",
         };
       case "completed":
@@ -207,7 +207,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
         {/* Add rotating ring for running state */}
         {data.status === "running" && (
           <div
-            className="tw-absolute tw-inset-[-2px] tw-rounded-full tw-border-2 tw-border-transparent tw-border-t-blue-400"
+            className="tw-absolute tw-inset-[-2px] tw-rounded-full tw-border-8 tw-border-transparent tw-border-t-blue-400"
             style={{ animation: "rotate-ring 1s linear infinite" }}
           />
         )}

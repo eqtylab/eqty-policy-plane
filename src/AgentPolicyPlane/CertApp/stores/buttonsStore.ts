@@ -15,6 +15,9 @@
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -35,7 +38,7 @@ type Prop = {
 
 const props: Prop[] = [
   {
-    title: "Solvency II Directive",
+    title: "Executive Order 12333",
     color: "#5db0c8",
     width: Widths.NORMAL,
     count: 2,
@@ -43,7 +46,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Insurance Distribution Directive (IDD)",
+    title: "Foreign Intelligence Surveillance Act (FISA)",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -51,7 +54,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Sourcing Protocol",
+    title: "Sourcing Protocol", // KEPT as requested
     color: "#a35456",
     width: Widths.THICK,
     count: 1,
@@ -59,7 +62,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "General Data Protection Regulation (GDPR)",
+    title: "Controlled Unclassified Information (CUI)", // CONVERTED from GDPR
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 1,
@@ -67,7 +70,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Recovery and Resolution Directive",
+    title: "Intelligence Community Directive 102",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -75,7 +78,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "UK GDPR",
+    title: "National Intelligence Priorities Framework",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -83,7 +86,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Financial Services and Markets Act 2000 (FSMA)",
+    title: "Intelligence Authorization Act",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -91,8 +94,16 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Temporary Permissions Regime (TPR)",
+    title: "NATO Security Classification Protocols",
     color: "#3c3d3d",
+    width: Widths.THICK,
+    count: 1,
+    hovered: false,
+    animation: null,
+  },
+  {
+    title: "National Space Security Policy", // Added to match previous list
+    color: "#a35456",
     width: Widths.THICK,
     count: 1,
     hovered: false,
