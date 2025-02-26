@@ -34,7 +34,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
 
   const metrics: WorkflowMetric[] = [
     {
-      value: 11,
+      value: 15,
       label: "Total Agents",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
