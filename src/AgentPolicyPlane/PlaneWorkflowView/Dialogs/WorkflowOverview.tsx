@@ -10,24 +10,19 @@ interface WorkflowMetric {
 }
 
 const stages = [
-  // {
-  //   name: "Parallel Input Processing",
-  //   details: "Video Analysis & OSINT Collection",
-  //   color: "tw-border-blue-500/30",
-  // },
   {
-    name: "Information Fusion",
-    details: "NVIDIA LLM & OSINT Summary",
+    name: "Intelligence Fusion",
+    details: "NVIDIA LLM & SIGINT Integration",
     color: "tw-border-purple-500/30",
   },
   {
-    name: "Risk Assessment",
-    details: "Nemo Guardrails & Human Override",
+    name: "Threat Assessment",
+    details: "Nemo Guardrails & Analyst Override",
     color: "tw-border-green-500/30",
   },
   {
-    name: "Response Execution",
-    details: "Twilio & Apptek Integration",
+    name: "Mission Support",
+    details: "JWICS & NATO Gateway Integration",
     color: "tw-border-orange-500/30",
   },
 ];
@@ -54,7 +49,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
     },
     {
       value: state.userRemediations.length,
-      label: "Nemo Guard",
+      label: "CUI Controls",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path
@@ -69,7 +64,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
     },
     {
       value: 3,
-      label: "Data Sources",
+      label: "Intel Sources",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path
@@ -83,7 +78,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
     },
     {
       value: 2,
-      label: "External Tools",
+      label: "Allied Systems",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path
@@ -115,7 +110,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
       <div className="tw-flex tw-items-center tw-gap-2 tw-mb-4">
         <div>
           <h3 className="tw-text-white tw-text-sm tw-font-medium">
-            Notify Investigators
+            Joint Intelligence Briefing
           </h3>
           <p className="tw-text-white/60 tw-text-xs">Agentic Workflow</p>
         </div>
@@ -141,19 +136,22 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
       {/* Key Features */}
       <div className="tw-mb-3">
         <div className="tw-text-white/80 tw-text-xs tw-font-medium tw-mb-2">
-          Input Sources
+          Intelligence Sources
         </div>
         <div className="tw-flex tw-flex-wrap tw-gap-1">
-          {["Video Feed", "EMS Reports", "Dispatch Logs", "Social Media"].map(
-            (source) => (
-              <span
-                key={source}
-                className="tw-px-2 tw-py-0.5 tw-rounded-full tw-text-[10px] tw-bg-white/[0.03] tw-border !tw-border-white/10 tw-text-white/80"
-              >
-                {source}
-              </span>
-            )
-          )}
+          {[
+            "Satellite Imagery",
+            "SIGINT Data",
+            "HUMINT Reports",
+            "OSINT Feeds",
+          ].map((source) => (
+            <span
+              key={source}
+              className="tw-px-2 tw-py-0.5 tw-rounded-full tw-text-[10px] tw-bg-white/[0.03] tw-border !tw-border-white/10 tw-text-white/80"
+            >
+              {source}
+            </span>
+          ))}
         </div>
       </div>
 

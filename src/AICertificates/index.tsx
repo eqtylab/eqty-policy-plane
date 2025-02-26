@@ -222,7 +222,7 @@ export const AgentProvisionCertificate = () => {
                 </div>
 
                 <div className="tw-text-[32px]  tw-text-green-500">
-                  Garda Síochána
+                  Aviva Insurance
                 </div>
               </div>
             </div>

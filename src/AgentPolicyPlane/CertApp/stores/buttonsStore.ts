@@ -14,6 +14,10 @@
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -34,7 +38,7 @@ type Prop = {
 
 const props: Prop[] = [
   {
-    title: "National Anti-Terrorist Prosecutor's Office",
+    title: "Executive Order 12333",
     color: "#5db0c8",
     width: Widths.NORMAL,
     count: 2,
@@ -42,7 +46,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Code of Criminal Procedure",
+    title: "Foreign Intelligence Surveillance Act (FISA)",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -50,7 +54,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Sourcing Protocol",
+    title: "Sourcing Protocol", // KEPT as requested
     color: "#a35456",
     width: Widths.THICK,
     count: 1,
@@ -58,7 +62,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Europol Protocols",
+    title: "Controlled Unclassified Information (CUI)", // CONVERTED from GDPR
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 1,
@@ -66,7 +70,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Preuves Numériques (Digital Evidence)",
+    title: "Intelligence Community Directive 102",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -74,7 +78,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Perquisitions Protocols",
+    title: "National Intelligence Priorities Framework",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -82,7 +86,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "EU AI Act",
+    title: "Intelligence Authorization Act",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -90,7 +94,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "GDPR",
+    title: "NATO Security Classification Protocols",
     color: "#3c3d3d",
     width: Widths.THICK,
     count: 1,
@@ -98,18 +102,10 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "French Data Protection and Civil Liberties Law",
-    color: "#ffffff",
-    width: Widths.NORMAL,
-    count: 2,
-    hovered: false,
-    animation: null,
-  },
-  {
-    title: "Droit de la Preuve",
-    color: "#3c3d3d",
-    width: Widths.THIN,
-    count: 2,
+    title: "National Space Security Policy", // Added to match previous list
+    color: "#a35456",
+    width: Widths.THICK,
+    count: 1,
     hovered: false,
     animation: null,
   },

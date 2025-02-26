@@ -120,9 +120,11 @@ export const AgentPolicyDetailsRemediateDialog: React.FC<
               CTRL-041
             </div>
             <div className="tw-flex tw-items-center tw-gap-2">
-              <h2 className="tw-text-lg tw-text-white">GDPR: Article 25</h2>
+              <h2 className="tw-text-lg tw-text-white">
+                CUI: 32 CFR Part 2002
+              </h2>
               <h4 className="tw-text-xs tw-text-white">
-                (Data protection by design and by default)
+                (Controlled Unclassified Information)
               </h4>
             </div>
           </div>
@@ -139,9 +141,9 @@ export const AgentPolicyDetailsRemediateDialog: React.FC<
             <div className="tw-bg-white/5 tw-rounded-lg tw-p-3">
               <div className="tw-text-xs tw-text-white/60 tw-mb-1">Purpose</div>
               <div className="tw-text-sm tw-text-white">
-                GDPR Article 25 ("Data protection by design and by default")
-                requires organizations to implement appropriate technical and
-                organizational measures to protect personal data.
+                32 CFR Part 2002 requires federal agencies to implement
+                appropriate safeguards to protect Controlled Unclassified
+                Information (CUI) from unauthorized access and disclosure.
               </div>
             </div>
 
@@ -151,9 +153,9 @@ export const AgentPolicyDetailsRemediateDialog: React.FC<
               </div>
               <ul className="tw-space-y-2">
                 {[
-                  "Presence of PII in fine-tuning dataset",
-                  "Presence of PII in inference",
-                  "No detection of PII classifiers",
+                  "Presence of CUI in training dataset",
+                  "Presence of CUI in inference operations",
+                  "No detection of CUI classification markers",
                 ].map((item, i) => (
                   <li
                     key={i}
@@ -174,8 +176,9 @@ export const AgentPolicyDetailsRemediateDialog: React.FC<
                 Requirements
               </div>
               <div className="tw-text-sm tw-text-white">
-                Implement safeguards to protect PII from being exposed in model
-                training and inference from agentic workflows.
+                Implement safeguards to protect Controlled Unclassified
+                Information from exposure in model training and inference within
+                intelligence processing workflows.
               </div>
             </div>
 
@@ -192,7 +195,7 @@ export const AgentPolicyDetailsRemediateDialog: React.FC<
                   <div className="tw-w-8 tw-h-8">
                     <NemoIcon />
                   </div>
-                  <span className="tw-text-xs">Nemo Guardrail - PII</span>
+                  <span className="tw-text-xs">Nemo Guardrail - CUI</span>
                 </button>
               </div>
             </div>

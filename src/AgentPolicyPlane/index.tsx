@@ -39,57 +39,57 @@ import { AgenticSummaryReportCert } from "../AICertificates/SummaryCert";
 const sampleControls = [
   {
     id: "ctrl-1",
-    title: "National Anti-Terrorist Prosecutor's Office",
+    title: "Executive Order 12333",
     isAlert: false,
     mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-2",
-    title: "Criminal Code and Code of Criminal Procedure",
+    title: "Foreign Intelligence Surveillance Act (FISA)",
     isAlert: false,
     mandatory: false,
     implemented: false,
   },
   {
-    id: "ctrl-3",
-    title: "Sourcing Protocol",
+    id: "guardrail-2",
+    title: "Sourcing Protocol", // KEPT as requested
     isAlert: true,
     mandatory: true,
-    implemented: true,
+    implemented: false,
     alertType: "authorize",
   },
   {
-    id: "ctrl-4",
-    title: "Europol Protocols",
-    isAlert: false,
-    mandatory: false,
-    implemented: true,
+    id: "guardrail-1",
+    title: "Controlled Unclassified Information (CUI)", // CONVERTED from GDPR
+    isAlert: true,
+    mandatory: true,
+    implemented: false,
   },
   {
     id: "ctrl-5",
-    title: "Preuves Numériques (Digital Evidence)",
+    title: "Intelligence Community Directive 102",
     isAlert: false,
-    mandatory: false,
+    mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-6",
-    title: "Perquisitions Protocols (Search/Seizure Protocols)",
+    title: "National Intelligence Priorities Framework",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-7",
-    title: "EU AI Act",
+    title: "Intelligence Authorization Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-9",
-    title: "GDPR",
+    title: "NATO Security Classification Protocols",
     isAlert: true,
     mandatory: false,
     implemented: true,
@@ -97,18 +97,11 @@ const sampleControls = [
   },
   {
     id: "ctrl-10",
-    title:
-      "Loi Informatique et Libertés (French Data Protection and Civil Liberties Law)",
+    title: "National Space Security Policy", // Added as requested
     isAlert: false,
     mandatory: false,
-    implemented: true,
-  },
-  {
-    id: "ctrl-11",
-    title: "Droit de la Preuve (Law of Evidence)",
-    isAlert: false,
-    mandatory: false,
-    implemented: true,
+    implemented: false,
+    alertType: "authorize",
   },
 ];
 
@@ -139,23 +132,23 @@ const AgentPolicyPlane = () => {
 
   const handleOverride = () => {
     // Use the overrideGuardrail function from the hook
-    overrideGuardrail("ctrl-3", "Manual override approved");
+    overrideGuardrail("guardrail-2", "Manual override approved");
     setOverrideGranted(true);
     setActiveAlertUID(null);
   };
 
   const handleRemediate = () => {
     // Use the remediateGuardrail function from the hook
-    remediateGuardrail("ctrl-9", "Manual remediation approved");
+    remediateGuardrail("guardrail-1", "Manual remediation approved");
     setActiveAlertUID(null);
     setShowPolicyDetails(false);
     setRemediateGranted(true);
   };
 
   useEffect(() => {
-    setActiveAlertUID("ctrl-3");
-    setActiveAlertControlDivId("ctrl-3-item-wrapper");
-    setCurrentActiveControl(sampleControls[2]);
+    setActiveAlertUID("guardrail-1");
+    setActiveAlertControlDivId("guardrail-1-item-wrapper");
+    setCurrentActiveControl(sampleControls[3]);
   }, []);
 
   const [tabs, setTabs] = React.useState([
@@ -249,10 +242,9 @@ const AgentPolicyPlane = () => {
   };
 
   const onNodeClick = (node: WrappedNode) => {
-    if (node.id === "reconfirm") {
-      // handleControlClick("ctrl-3", "ctrl-3-item-wrapper");
-      setActiveAlertUID("ctrl-3");
-      setActiveAlertControlDivId("ctrl-3-item-wrapper");
+    if (node.id === "guardrail-1") {
+      setActiveAlertUID("guardrail-1");
+      setActiveAlertControlDivId("guardrail-1-item-wrapper");
     }
   };
 
@@ -290,25 +282,27 @@ const AgentPolicyPlane = () => {
                   textColor="white"
                   onNodeClick={onNodeClick}
                 />
-                {showPolicyDetails && currentActiveControl?.id === "ctrl-3" && (
-                  <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
-                    <AnimationWrapper>
-                      <AgentPolicyDetailsDialog
-                        onClose={() => setShowPolicyDetails(false)}
-                      />
-                    </AnimationWrapper>
-                  </div>
-                )}
-                {showPolicyDetails && currentActiveControl?.id === "ctrl-9" && (
-                  <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
-                    <AnimationWrapper>
-                      <AgentPolicyDetailsRemediateDialog
-                        onClose={() => setShowPolicyDetails(false)}
-                        onClick={() => handleRemediate()}
-                      />
-                    </AnimationWrapper>
-                  </div>
-                )}
+                {showPolicyDetails &&
+                  currentActiveControl?.id === "guardrail-1" && (
+                    <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
+                      <AnimationWrapper>
+                        <AgentPolicyDetailsDialog
+                          onClose={() => setShowPolicyDetails(false)}
+                        />
+                      </AnimationWrapper>
+                    </div>
+                  )}
+                {showPolicyDetails &&
+                  currentActiveControl?.id === "guardrail-1" && (
+                    <div className="tw-w-11/12 tw-h-full tw-absolute tw-left-0 tw-right-0 tw-m-auto tw-z-[1000]">
+                      <AnimationWrapper>
+                        <AgentPolicyDetailsRemediateDialog
+                          onClose={() => setShowPolicyDetails(false)}
+                          onClick={() => handleRemediate()}
+                        />
+                      </AnimationWrapper>
+                    </div>
+                  )}
                 {/* <div className="tw-absolute tw--top-16 tw-left-16 tw-transform tw--translate-y-[32px]  tw-flex tw-z-10">
                   <PlaneNav
                     showCertApp={showCertApp}
@@ -348,6 +342,9 @@ const AgentPolicyPlane = () => {
                 </div>
               </div>
             </div>
+
+            {/* {activeAlertControlDivId} */}
+            {/* {JSON.stringify(currentActiveControl)} */}
             {activeAlertUID && activeAlertControlDivId && (
               <>
                 <DelayedRenderWrapper t={380}>

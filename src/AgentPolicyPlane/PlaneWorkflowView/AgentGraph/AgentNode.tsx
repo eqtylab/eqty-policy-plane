@@ -8,6 +8,7 @@ import { AgentIcon } from "./icons/AgentIcon";
 import { NemoIcon } from "./icons/NemoIcon";
 
 export type AgentNodeData = {
+  hidden?: boolean;
   controlId?: string;
   hide?: boolean;
   title?: string;
@@ -72,7 +73,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
     switch (status) {
       case "running":
         return {
-          background: "rgba(0, 157, 255, 0.15)",
+          background: "blue",
           animation: "node-pulse 2s ease-in-out infinite",
         };
       case "completed":
@@ -88,7 +89,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
       default:
         return {
           background: "rgba(255, 255, 255, 0.1)",
-          opacity: 0.5,
+          opacity: 0.8,
         };
     }
   };
@@ -98,6 +99,7 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   }
 
   if (data.type && data.type === "policy-alert") {
+    // alert(JSON.stringify(data));
     return (
       <div className="wrapper wrapper-alert">
         <div className="tw-flex tw-items-center tw-justify-center tw-relative tw-w-full">
@@ -113,27 +115,38 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
             }}
           />
 
-          {/* Red circle with ripple effect */}
+          {/* Circle with ripple effect - green when resolved, red when not */}
           <div className="tw-absolute ripple-wrapper">
             {/* Base circle */}
             <div
-              id={data.animating ? `ripple-point-eq-${data.controlId}` : ""}
-              className="tw-w-4 tw-h-4 tw-bg-brandalert tw-rounded-full tw-m-auto tw-relative data-[eqalertoverride='true']:tw-bg-brandgreen"
-              // data-eqalertoverride="false"
+              id={
+                data.animating
+                  ? `ripple-point-eq-${data.controlId}`
+                  : "requires-ID"
+              }
+              className={`tw-w-4 tw-h-4 tw-rounded-full tw-m-auto tw-relative ${
+                data.resolved ? "tw-bg-brandgreen" : "tw-bg-brandalert"
+              }`}
             >
               {/* Ripple rings - only shown when animating */}
               {data.animating && (
                 <>
                   <div
-                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple "
+                    className={`tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full animate-ripple ${
+                      data.resolved ? "tw-bg-brandgreen" : "tw-bg-brandalert"
+                    }`}
                     style={{ opacity: "0.75" }}
                   ></div>
                   <div
-                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple-delayed "
+                    className={`tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full animate-ripple-delayed ${
+                      data.resolved ? "tw-bg-brandgreen" : "tw-bg-brandalert"
+                    }`}
                     style={{ opacity: "0.75" }}
                   ></div>
                   <div
-                    className="tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full tw-bg-brandalert animate-ripple-more-delayed "
+                    className={`tw-absolute tw-inset-0 tw-w-4 tw-h-4 tw-rounded-full animate-ripple-more-delayed ${
+                      data.resolved ? "tw-bg-brandgreen" : "tw-bg-brandalert"
+                    }`}
                     style={{ opacity: "0.75" }}
                   ></div>
                 </>
@@ -167,6 +180,9 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
 
           <Handle id="sourcetop" type="source" position={Position.Top} />
           <Handle id="targetbottom" type="target" position={Position.Bottom} />
+
+          <Handle id="sourceright" type="source" position={Position.Right} />
+          <Handle id="targettop" type="target" position={Position.Top} />
         </div>
         {data.title && (
           <NodeLabel
@@ -182,15 +198,16 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
   return (
     <>
       <div
-        className={`${
-          data.parallelVertSize ? "wrapper-half" : "wrapper"
-        } tw-relative`}
+        className={`${data.parallelVertSize ? "wrapper-half" : "wrapper"}${
+          data.hidden ? " !tw-opacity-0 " : ""
+        }
+        tw-relative`}
         style={getNodeStatusStyles(data.status)}
       >
         {/* Add rotating ring for running state */}
         {data.status === "running" && (
           <div
-            className="tw-absolute tw-inset-[-2px] tw-rounded-full tw-border-2 tw-border-transparent tw-border-t-blue-400"
+            className="tw-absolute tw-inset-[-2px] tw-rounded-full tw-border-8 tw-border-transparent tw-border-t-blue-400"
             style={{ animation: "rotate-ring 1s linear infinite" }}
           />
         )}
@@ -200,6 +217,8 @@ export default memo(({ data }: NodeProps<Node<AgentNodeData>>) => {
           <Handle type="source" position={Position.Right} />
           <Handle id="sourcetop" type="source" position={Position.Top} />
           <Handle id="targetbottom" type="target" position={Position.Bottom} />
+          <Handle id="sourceright" type="source" position={Position.Right} />
+          <Handle id="targettop" type="target" position={Position.Top} />
         </div>
         {data.title && (
           <NodeLabel
