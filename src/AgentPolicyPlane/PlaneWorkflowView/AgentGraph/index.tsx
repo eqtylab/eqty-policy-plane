@@ -33,7 +33,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "partner",
     position: { x: 225, y: 525 },
     data: {
-      title: "Twitter",
+      title: "Partner Report (Paramedic/Fire)",
       labelPosition: "top",
       parallelVertSize: true,
       role: "Partner Report Analyzer",
@@ -61,7 +61,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "social",
     position: { x: 225, y: 675 },
     data: {
-      title: "Telegram",
+      title: "Social Media",
       labelPosition: "top",
       parallelVertSize: true,
       role: "Social Media Monitor",
@@ -75,7 +75,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "video",
     position: { x: 100, y: 425 },
     data: {
-      title: "Other Social Media",
+      title: "Collect Video Footage",
       labelPosition: "top",
       role: "Video Feed Collector",
       backstory:
@@ -120,10 +120,10 @@ const initialNodes: Node<AgentNodeData>[] = [
       type: "policy-alert",
       animating: true,
       labelPosition: "right",
-      role: "GDPR Data Protection Protocol - Remediation Required",
+      role: "CPRA Data Protection Protocol - Remediation Required",
       backstory:
-        "Mandatory data protection checkpoint due to GDPR Article 25 requirements. System detected potential exposure of personal data in emergency response feeds, including unprotected social media content and victim location data.",
-      goal: "Ensure appropriate technical measures are in place to protect personal data before processing emergency response information",
+        "Mandatory data protection checkpoint due to CPRA Section 1798.100-1798.199 requirements. System detected potential exposure of sensitive personal information in emergency response feeds, including unprotected social media content, victim location data, and health information requiring specific protections under California law.",
+      goal: "Ensure appropriate technical measures are in place to protect personal data in accordance with CPRA requirements before processing emergency response information",
     },
     type: "turbo",
   },
@@ -132,10 +132,10 @@ const initialNodes: Node<AgentNodeData>[] = [
     position: { x: 450, y: 525 },
     data: {
       hide: true,
-      title: "Nemo Guardrail",
+      title: "Intel Guardrail",
       labelPosition: "right",
       type: "nemo-guardrail",
-      role: "Nemo Guardrail",
+      role: "Intel Guardrail",
       backstory:
         "You are a specialized safety system that analyzes risk factors and validates response necessity. You ensure all actions comply with safety protocols and ethical guidelines.",
       goal: "Analyze summaries for risk factors and validate whether emergency response is necessary, checking for potential misinformation or ethical concerns",
@@ -146,7 +146,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "prioritize",
     position: { x: 450, y: 425 },
     data: {
-      title: "Estimate Veracity",
+      title: "Prioritize events based on need and activity",
       labelPosition: "right",
       role: "Event Prioritizer",
       backstory:
@@ -175,7 +175,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "plan",
     position: { x: 450, y: 275 },
     data: {
-      title: "Generate Alert",
+      title: "Establish the response plan",
       labelPosition: "right",
       role: "Response Plan Creator",
       backstory:
@@ -188,7 +188,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "notify",
     position: { x: 450, y: 175 },
     data: {
-      title: "Send Alert to Investigators",
+      title: "Send Alert to first responders",
       labelPosition: "top",
       role: "First Responder Notifier",
       backstory:
@@ -201,7 +201,7 @@ const initialNodes: Node<AgentNodeData>[] = [
     id: "end",
     position: { x: 600, y: 175 },
     data: {
-      title: "Summary Threat Report",
+      title: "Summary Report",
       labelPosition: "right",
     },
     type: "turbo",

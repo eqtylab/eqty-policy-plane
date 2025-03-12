@@ -121,7 +121,7 @@ export const AgentProvisionCertificate = () => {
         "Data Masking Rules",
         "Access Control Framework",
         "Retention Policy Implementation",
-        "GDPR Compliance Controls",
+        "CPRA Compliance Controls",
         "Security Monitoring System",
       ],
     },

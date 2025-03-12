@@ -6,6 +6,8 @@
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 // src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
+// src/AgentPolicyPlane/CertApp/components/sidebar.tsx
 import React from "react";
 import Card from "./card";
 
@@ -22,7 +24,7 @@ import LogoIcon from "../icons/logo";
 const cardsData = [
   {
     title: "Controls Failed",
-    content: <p className="text-red-400">0 Controls</p>,
+    content: <p className="text-red-400">2 Controls</p>,
     icon: <AlertIcon />,
   },
   {
@@ -45,7 +47,7 @@ const cardsData = [
   },
   {
     title: "Agent Authority",
-    content: <p>Provisioned by Garda</p>,
+    content: <p>Provisioned by California Highway Patrol</p>,
     icon: <ShieldIcon />,
   },
   {

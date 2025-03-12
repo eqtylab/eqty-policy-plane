@@ -14,6 +14,18 @@
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 // src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
+// src/AgentPolicyPlane/CertApp/stores/buttonsStore.ts
 import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -34,7 +46,7 @@ type Prop = {
 
 const props: Prop[] = [
   {
-    title: "National Anti-Terrorist Prosecutor's Office",
+    title: "Wireless Emergency Alerts",
     color: "#5db0c8",
     width: Widths.NORMAL,
     count: 2,
@@ -42,7 +54,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Code of Criminal Procedure",
+    title: "Emergency Services Act",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -58,7 +70,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Europol Protocols",
+    title: "Incident Command",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 1,
@@ -66,7 +78,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Preuves Numériques (Digital Evidence)",
+    title: "CA Governor OES",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -74,7 +86,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Perquisitions Protocols",
+    title: "Flood Control Law Water",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -82,7 +94,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "EU AI Act",
+    title: "(SEMS) Regulations",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,
@@ -90,7 +102,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "GDPR",
+    title: "Privacy Rights Act (CPRA)",
     color: "#3c3d3d",
     width: Widths.THICK,
     count: 1,
@@ -98,7 +110,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "French Data Protection and Civil Liberties Law",
+    title: "AI Transparency Act",
     color: "#ffffff",
     width: Widths.NORMAL,
     count: 2,
@@ -106,7 +118,7 @@ const props: Prop[] = [
     animation: null,
   },
   {
-    title: "Droit de la Preuve",
+    title: "Data Transparency",
     color: "#3c3d3d",
     width: Widths.THIN,
     count: 2,

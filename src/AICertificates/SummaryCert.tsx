@@ -121,30 +121,34 @@ export const AgenticSummaryReportCert = () => {
   };
 
   const summaryText = `
-  Investigator Alert Report - ${getTimestampApriori()}
+  Flood Emergency Response Report - ${getTimestampApriori()}
   
-  THREAT ASSESSMENT SUMMARY
-  OSINT feed analysis triggered multi-source verification system. Video surveillance data collected from Twitter, Telegram and auxiliary social media channels confirm escalating situation. Analysis covers primary affected zone with cross-referenced data points.
+  EMERGENCY ASSESSMENT SUMMARY
+  Automated monitoring systems detected flood conditions in Southern California border regions. Multiple data feeds analyzed from weather services, water level sensors, and civilian reports. Analysis identified primary affected zones with evacuation priorities and resource distribution needs while monitoring increased illegal border crossing attempts during emergency conditions.
   
   KEY INTELLIGENCE GATHERED
-  - Video footage analysis completed through automated verification
-  - Social media correlation through multiple platforms
-  - Location-based intelligence mapping
-  - Real-time event tracking through OSINT feeds
+  - Real-time water level data integrated from California Water Resources system
+  - Social media distress calls mapped and prioritized
+  - Aerial imagery analysis of flood boundaries and infrastructure damage
+  - Border security monitoring detected 12 unauthorized crossing attempts exploiting diverted resources
+  - Coordination with Border Patrol to secure vulnerable flood-damaged border infrastructure
+  - Trafficking/smuggling activity detected at 3 flood-compromised checkpoints
+  - Stranded civilian locations triangulated from emergency calls
   
-  SURVEILLANCE METRICS
-  - 45+ primary source confirmations
-  - 3 independent verification channels
-  - 2 automated analysis cycles completed
-  - 25+ corroborating data points
-  - 78 related social media posts analyzed
+  RESPONSE COORDINATION METRICS
+  - 45+ evacuation zones prioritized by risk level
+  - 3 emergency shelter locations identified with capacity assessments
+  - 2 resource distribution networks optimized
+  - 25+ high-priority rescue operations coordinated
+  - 8 border security incidents addressed during flood response
+  - 78 civilian assistance requests routed to appropriate response teams
   
   COMPLIANCE STATUS
   Two protocol frameworks required verification:
-  1. Sourcing Protocol: Validated through compliance gateway
-  2. GDPR Requirements: Data protection measures active
+  1. Sourcing Protocol: Validated through WEA compliance gateway
+  2. CPRA Requirements: Personal data protection measures active during victim and border security intelligence handling
   
-  All intelligence gathering executed in compliance with National Anti-Terrorist Prosecutor's Office guidelines and validated through Nemo Guardrails system.
+  All emergency response activities executed in compliance with California Governor OES Protocol, Flood Control Law Water Code §8000-9651, and Incident Command System (ICS) border security protocols, with data handling protected by Intel Premier AI (PII) Guardrail system.
   `;
 
   return (

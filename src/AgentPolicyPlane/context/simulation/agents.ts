@@ -37,7 +37,7 @@ export const contextPipelineAgentsOverviews = [
     goal: "Create comprehensive summaries of key events by aggregating information from all OSINT sources and video analysis",
   },
   {
-    role: "Nemo Guardrail",
+    role: "Intel Guardrail",
     backstory:
       "You are a specialized safety system that analyzes risk factors and validates response necessity. You ensure all actions comply with safety protocols and ethical guidelines.",
     goal: "Analyze summaries for risk factors and validate whether emergency response is necessary, checking for potential misinformation or ethical concerns",

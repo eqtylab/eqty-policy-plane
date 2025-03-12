@@ -120,9 +120,11 @@ export const AgentPolicyDetailsRemediateDialog: React.FC<
               CTRL-041
             </div>
             <div className="tw-flex tw-items-center tw-gap-2">
-              <h2 className="tw-text-lg tw-text-white">GDPR: Article 25</h2>
+              <h2 className="tw-text-lg tw-text-white">
+                California CPRA: Privacy Rights Act
+              </h2>
               <h4 className="tw-text-xs tw-text-white">
-                (Data protection by design and by default)
+                (Consumer data protection)
               </h4>
             </div>
           </div>
@@ -139,9 +141,13 @@ export const AgentPolicyDetailsRemediateDialog: React.FC<
             <div className="tw-bg-white/5 tw-rounded-lg tw-p-3">
               <div className="tw-text-xs tw-text-white/60 tw-mb-1">Purpose</div>
               <div className="tw-text-sm tw-text-white">
-                GDPR Article 25 ("Data protection by design and by default")
-                requires organizations to implement appropriate technical and
-                organizational measures to protect personal data.
+                Section 1798.100 (Consumer Rights): Grants consumers the right
+                to request deletion or access to their PI, requiring businesses
+                to implement secure methods for handling such data.
+                <br />
+                <br />
+                Section 1798.140 (Definitions): Defines terms like
+                "pseudonymization" and "de-identified data."
               </div>
             </div>
 
@@ -183,16 +189,18 @@ export const AgentPolicyDetailsRemediateDialog: React.FC<
               <div className="tw-text-xs tw-text-white/60 tw-mb-2">
                 Suggested Action
               </div>
-              <div className="tw-flex tw-justify-between tw-items-center">
+              <div className="tw-flex tw-justify-between tw-items-center tw-gap-1">
                 <span className="tw-text-sm tw-text-white">Implement:</span>
                 <button
                   onClick={onClick}
-                  className="tw-flex tw-items-center tw-gap-2 tw-px-3 tw-py-1.5 tw-bg-nvidiagreen tw-rounded-lg tw-text-white hover:tw-bg-opacity-90 tw-transition-colors hover:tw-shadow-md"
+                  className="tw-flex tw-items-center tw-pr-2 tw-py-1.5 tw-bg-blue-600 tw-rounded-lg tw-text-white hover:tw-bg-opacity-90 tw-transition-colors hover:tw-shadow-md"
                 >
                   <div className="tw-w-8 tw-h-8">
                     <NemoIcon />
                   </div>
-                  <span className="tw-text-xs">Nemo Guardrail - PII</span>
+                  <span className="tw-text-xs">
+                    Intel Premier AI (PII) Guardrail
+                  </span>
                 </button>
               </div>
             </div>

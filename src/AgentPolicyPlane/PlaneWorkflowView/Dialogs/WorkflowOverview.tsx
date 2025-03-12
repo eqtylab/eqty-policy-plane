@@ -54,7 +54,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
     },
     {
       value: state.userRemediations.length,
-      label: "Nemo Guard",
+      label: "Intel Guard",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path

@@ -335,23 +335,27 @@ const nodes: Record<string, NodeConfig> = {
   remediate: {
     id: "remediate",
     label: "Validate PII protection measures",
-    description: "GDPR Article 25 compliance checkpoint for data protection",
+    description:
+      "CPRA Section 1798.100-1798.199 compliance checkpoint for data protection",
     minDuration: 2000,
     maxDuration: 4000,
     dependencies: [{ nodeId: "prioritize", required: true }],
     guardrails: {
-      controlIds: ["ctrl-9"], // Maps to the "Data Protection Protocol" control
+      controlIds: ["ctrl-9"], // Maps to the "Privacy Rights Act (CPRA)" control
       checkOnStart: true,
       checkOnComplete: true,
     },
     alertConditions: {
       type: "data-protection",
       triggers: [
-        "unprotected-pii-detected",
+        "unprotected-sensitive-data-detected",
         "sensitive-data-exposure",
         "insufficient-encryption",
         "missing-data-minimization",
         "unauthorized-data-access",
+        "right-to-delete-violation",
+        "right-to-correct-violation",
+        "data-retention-violation",
       ],
     },
 

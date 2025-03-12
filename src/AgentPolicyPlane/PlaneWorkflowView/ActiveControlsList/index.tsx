@@ -108,8 +108,8 @@ export const ActiveControlsList: React.FC<ActiveControlsListProps> = ({
 }) => {
   return (
     <div className="tw-text-white tw-flex-col tw-flex tw-items-center tw-overflow-x-visible">
-      <h2 className="tw-text-[18px] tw-mb-4 tw-font-[500] tw-w-[200px]">
-        Active Policies
+      <h2 className="tw-text-[18px] tw-mb-4 tw-font-[500] tw-w-[250px] tw-text-center">
+        Active California Policies
       </h2>
       <div
         className="tw-flex tw-flex-col tw-gap-3 tw-font-[400] tw-text-[14.5px]  tw-h-[90%] tw-pb-14 tw-scroll-smooth	tw-scrollbar-hidden" // removed 0verflow-y-auto
