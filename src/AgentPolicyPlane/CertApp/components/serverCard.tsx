@@ -21,6 +21,7 @@
 // src/AgentPolicyPlane/CertApp/components/serverCard.tsx
 // src/AgentPolicyPlane/CertApp/components/serverCard.tsx
 // src/AgentPolicyPlane/CertApp/components/serverCard.tsx
+// src/AgentPolicyPlane/CertApp/components/serverCard.tsx
 import React from "react";
 
 import AtomIcon from "../icons/atom";
@@ -38,7 +39,7 @@ const ServerCard = () => {
             <div className="tw-w-[8px] tw-h-[7px] tw-bg-[#00F996] tw-rounded-full tw-translate-y-1"></div>
             <h1 className="tw-text-xl">Server Cluster 2</h1>
           </div>
-          <h2 className="tw-text-base">US East - N. Carolina</h2>
+          <h2 className="tw-text-base">US West - Santa Clara</h2>
         </div>
 
         <div className="tw-grid tw-grid-cols-2 tw-py-4 tw-place-content-center">

@@ -527,7 +527,7 @@ const nodes: Record<string, NodeConfig> = {
 
   notify: {
     id: "notify",
-    label: "Notify Investigators",
+    label: "Notify First Responders",
     description: "Dispatches notifications through multiple channels",
     minDuration: 5000,
     maxDuration: 10000,
