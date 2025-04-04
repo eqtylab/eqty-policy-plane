@@ -186,6 +186,7 @@ custom css for the AgentGraph component (react flow overriden styles)
     transform: scale(1);
   }
 }
+
 @keyframes rotate-ring {
   0% {
     transform: rotate(0deg);
@@ -267,4 +268,20 @@ custom css for the AgentGraph component (react flow overriden styles)
 
 .tw-animate-pulse-glow-green {
   animation: pulseGlowGreen 1.5s infinite;
+}
+
+@keyframes pulse-grow {
+  0%,
+  100% {
+    transform: scale(1);
+    /* opacity: 1; */
+  }
+  50% {
+    transform: scale(1.2);
+    /* opacity: 0.8; */
+  }
+}
+
+.pulse-grow-ani {
+  animation: pulse-grow 1.5s infinite ease-in-out;
 }

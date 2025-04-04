@@ -9,9 +9,9 @@ export const CLAIMS_NODES: Node<AgentNodeData>[] = [
     id: "claimant-details",
     position: { x: 200, y: 650 },
     data: {
-      title: "Claimant Accident Details",
+      title: "Claimant Details",
       labelPosition: "bottom",
-      role: "Claimant Accident Details",
+      role: "Claimant Details",
       backstory:
         "You are a specialized agent that collects and processes detailed information about insurance claims incidents. You understand how to efficiently gather relevant accident details while maintaining empathy with claimants during what may be a stressful time.",
       goal: "Collect comprehensive accident information from claimants, ensuring all relevant details are captured accurately for proper claim assessment",
@@ -129,13 +129,13 @@ export const CLAIMS_NODES: Node<AgentNodeData>[] = [
     id: "guardrail-1",
     position: { x: 650, y: 700 },
     data: {
-      title: "Validate PII Protection Measures and Check Legal Basis",
+      title: "Validate PII Protection Measures and Legal Basis",
       labelPosition: "bottom",
       type: "policy-alert",
       animating: true,
       controlId: "guardrail-1",
 
-      role: "Validate PII Protection Measures and Check Legal Basis",
+      role: "Validate PII Protection Measures and Legal Basis",
       backstory:
         "You are a compliance guardian responsible for ensuring all personal identifiable information is properly protected throughout the claims process. You understand data protection regulations and privacy laws across multiple jurisdictions.",
       goal: "Verify that all PII is properly handled according to relevant regulations, and confirm there is a valid legal basis for all data processing activities",
@@ -159,9 +159,9 @@ export const CLAIMS_NODES: Node<AgentNodeData>[] = [
     id: "verify-policy",
     position: { x: 980, y: 800 },
     data: {
-      title: "Verify Policy Coverage & T&C Alignment",
+      title: "Policy Coverage & T&C Alignment",
       labelPosition: "right",
-      role: "Verify Policy Coverage & T&C Alignment",
+      role: "Policy Coverage & T&C Alignment",
       backstory:
         "You are a policy expert that understands the nuances of insurance contracts, exclusions, and coverage limits. You can interpret complex terms and conditions and determine how they apply to specific claim scenarios.",
       goal: "Analyze policy documentation to determine if the claim event is covered under the terms and conditions, and identify any relevant exclusions or limitations",
@@ -236,29 +236,29 @@ export const CLAIMS_NODES: Node<AgentNodeData>[] = [
     },
     type: "turbo",
   },
-  {
-    id: "guardrail-check3",
-    position: { x: 1100, y: 300 },
-    data: {
-      controlId: "guardrail-check3",
-      resolved: true,
-      type: "policy-alert",
-      title: "Meaningful Human Review of Claims Response Plan",
-      labelPosition: "top",
-      role: "Meaningful Human Review of Claims Response Plan",
-      backstory:
-        "You are a verification system that ensures high-quality human oversight of AI-generated claims decisions. You understand the importance of appropriate checks and balances in automated insurance processing.",
-      goal: "Ensure that qualified human agents review and authorize claims decisions before implementation, validating that automated recommendations are appropriate and accurate",
-    },
-    type: "turbo",
-  },
+  // {
+  //   id: "guardrail-check3",
+  //   position: { x: 1100, y: 300 },
+  //   data: {
+  //     controlId: "guardrail-check3",
+  //     resolved: true,
+  //     type: "policy-alert",
+  //     title: "Meaningful Human Review of Claims Response Plan",
+  //     labelPosition: "top",
+  //     role: "Meaningful Human Review of Claims Response Plan",
+  //     backstory:
+  //       "You are a verification system that ensures high-quality human oversight of AI-generated claims decisions. You understand the importance of appropriate checks and balances in automated insurance processing.",
+  //     goal: "Ensure that qualified human agents review and authorize claims decisions before implementation, validating that automated recommendations are appropriate and accurate",
+  //   },
+  //   type: "turbo",
+  // },
   {
     id: "generate-summary",
     position: { x: 1200, y: 300 },
     data: {
-      title: "Generate Summary Report for the CMS",
+      title: "Generate Summary",
       labelPosition: "right",
-      role: "Generate Summary Report for the CMS",
+      role: "Generate Summary",
       backstory:
         "You are a specialist in creating standardized, comprehensive claims documentation for content management systems. You understand data structuring requirements and can ensure all information is properly formatted for system integration.",
       goal: "Compile all claim information, evidence, decisions, and actions into a standardized report format ready for integration with the claims management system",

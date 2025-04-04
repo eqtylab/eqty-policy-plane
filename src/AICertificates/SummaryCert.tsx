@@ -100,10 +100,10 @@ const Header = () => {
       <CertIcon />
       <div className="tw-flex tw-flex-col">
         <p className="tw-text-white tw-text-[20px] tw-font-medium tw-leading-[100%] tw-mb-1">
-          Response Summary
+          Claim Processing Summary
         </p>
         <span className="tw-text-white tw-text-[32px] tw-font-normal tw-leading-[100%] tw-mb-1">
-          Threat Alert System
+          Insurance Claim Report
         </span>
         <p className="tw-text-[#A1A1AA] tw-font-normal tw-text-[13px] tw-leading-[100%]">
           Generated {timestamp}
@@ -121,30 +121,55 @@ export const AgenticSummaryReportCert = () => {
   };
 
   const summaryText = `
-  Investigator Alert Report - ${getTimestampApriori()}
+  Final Claims Summary Report - ${getTimestampApriori()}
   
-  THREAT ASSESSMENT SUMMARY
-  OSINT feed analysis triggered multi-source verification system. Video surveillance data collected from Twitter, Telegram and auxiliary social media channels confirm escalating situation. Analysis covers primary affected zone with cross-referenced data points.
+  CLAIM OVERVIEW
+  Claim Number: AIC-2025-0045892
+  Insured: Morgan Reynolds
+  Incident Date: 2025-02-12 14:28 EST
+  Vehicle: 2022 Tesla Model Y (VIN: 5YJYGAEE4MF123456)
+  Cause of Loss: Collision with road debris and guardrail
+  Liability Determination: 0% Insured / 100% Third-Party (JB Logistics)
+  Coverage Applied: Comprehensive with deductible waiver
+  Total Incurred: $27,892.45
+  Recovery Status: Subrogation successful - 100% recovery
   
-  KEY INTELLIGENCE GATHERED
-  - Video footage analysis completed through automated verification
-  - Social media correlation through multiple platforms
-  - Location-based intelligence mapping
-  - Real-time event tracking through OSINT feeds
+  KEY RESOLUTION TIMELINE
+  - 2025-02-12: Claim reported
+  - 2025-02-19: Claim approved and repair authorized
+  - 2025-02-20: Repairs commenced at Tesla Service Center
+  - 2025-03-05: Vehicle repairs completed
+  - 2025-03-07: Vehicle returned to insured
+  - 2025-03-10: Claim closed following satisfaction confirmation
   
-  SURVEILLANCE METRICS
-  - 45+ primary source confirmations
-  - 3 independent verification channels
-  - 2 automated analysis cycles completed
-  - 25+ corroborating data points
-  - 78 related social media posts analyzed
+  FINANCIAL SUMMARY
+  | Expense Category     | Estimated | Actual  | Variance |
+  |----------------------|-----------|---------|----------|
+  | Vehicle Repairs     | $20,000.00 | $19,842.45 | -$157.55 |
+  | Rental Vehicle      | $1,200.00 | $1,350.00 | +$150.00 |
+  | Medical Expenses    | $2,500.00 | $2,750.00 | +$250.00 |
+  | Towing/Emergency    | $350.00  | $350.00 | $0.00 |
+  | Diminished Value    | $3,500.00  | $3,600.00 | +$100.00 |
+  | **Total**           | **$27,550.00** | **$27,892.45** | **+$342.45** |
   
-  COMPLIANCE STATUS
-  Two protocol frameworks required verification:
-  1. Sourcing Protocol: Validated through compliance gateway
-  2. GDPR Requirements: Data protection measures active
+  SUBROGATION OUTCOME
+  - Liability accepted by JB Logistics insurer (Continental Coverage)
+  - 100% recovery achieved: $27,892.45 received on 2025-03-08
   
-  All intelligence gathering executed in compliance with National Anti-Terrorist Prosecutor's Office guidelines and validated through Nemo Guardrails system.
+  CUSTOMER SATISFACTION METRICS
+  - Final Satisfaction Survey: 10/10
+  - Net Promoter Score: 10/10 (Promoter)
+  - Retention Risk: Very Low
+  
+  LESSONS & PROCESS IMPROVEMENTS
+  ✔ Rapid authorization minimized downtime.
+  ✔ Comprehensive evidence led to full cost recovery.
+  ✔ Proactive claimant support increased satisfaction.
+  ❖ Tesla parts procurement process can be optimized.
+  ❖ Early initiation of diminished value assessment recommended.
+
+  FINAL DISPOSITION
+  This claim was processed with optimal financial and customer experience outcomes. Claimant received prompt support, vehicle repairs met manufacturer standards, and all costs were recovered. Case marked as **reference standard** for high-value claims involving third-party liability.
   `;
 
   return (

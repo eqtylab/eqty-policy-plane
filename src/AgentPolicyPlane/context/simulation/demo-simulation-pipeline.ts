@@ -3,6 +3,8 @@
 import { PipelineConfig } from "../types.pipeline";
 import { NodeConfig } from "../types.nodes";
 
+import { LogEntry } from "../types.logs";
+
 // import {
 //   OUTPUT_1,
 //   OUTPUT_2,
@@ -603,16 +605,318 @@ import {
   OUTPUT_16,
 } from "./simulated-outputs";
 
+export const simulationLogs: LogEntry[] = [
+  {
+    id: 1,
+    content: "Claim Report Received",
+    details:
+      "New auto claim submitted via mobile app for Tesla Model Y vehicle damage",
+    timestamp: "09:15:23",
+    type: "info",
+    agent: {
+      id: "intake-1",
+      name: "Claim Intake Processor",
+      type: "data-collector",
+    },
+    hash: "ins45k8fj21p",
+    expandable: true,
+  },
+  {
+    id: 2,
+    content: "Claimant Details Processing Complete",
+    details:
+      "Successfully processed accident details, vehicle information, and initial statement from claimant",
+    timestamp: "09:18:45",
+    type: "agent-complete",
+    agent: {
+      id: "claimant-1",
+      name: "Claimant Data Analyzer",
+      type: "data-analyzer",
+    },
+    output: {
+      type: "report",
+      id: "claimant-details-001",
+      location: "/outputs/claimant/001",
+    },
+    metrics: {
+      executionTime: 3212,
+    },
+    hash: "ins72m3rt56q",
+    expandable: true,
+  },
+  {
+    id: 3,
+    content: "Media Analysis Initiated",
+    details: "Processing 12 images and dashcam video from Tesla vehicle",
+    timestamp: "09:20:12",
+    type: "info",
+    agent: {
+      id: "media-1",
+      name: "Media Evidence Analyzer",
+      type: "vision-analyzer",
+    },
+    hash: "ins91p7hg34s",
+    expandable: true,
+  },
+  {
+    id: 4,
+    content: "Media Analysis Complete",
+    details:
+      "Identified vehicle damage patterns consistent with collision with road debris and guardrail",
+    timestamp: "09:25:45",
+    type: "agent-complete",
+    agent: {
+      id: "media-1",
+      name: "Media Evidence Analyzer",
+      type: "vision-analyzer",
+    },
+    metrics: {
+      executionTime: 5633,
+    },
+    hash: "ins63k2jl09d",
+    expandable: true,
+  },
+  {
+    id: 5,
+    content: "Claim Triaged as Medium-High Priority",
+    details:
+      "Analysis indicates significant vehicle damage with clear third-party liability",
+    timestamp: "09:28:30",
+    type: "agent-output",
+    agent: {
+      id: "triage-1",
+      name: "Claims Triage Engine",
+      type: "priority-analyzer",
+    },
+    output: {
+      type: "chart",
+      id: "triage-001",
+      location: "/outputs/triage/001",
+    },
+    hash: "ins27g5fd83h",
+    expandable: true,
+  },
+  {
+    id: 6,
+    content: "Evidence Collection Initiated",
+    details:
+      "Multiple parallel evidence collection paths started for witness statements, third-party media, and police reports",
+    timestamp: "09:30:15",
+    type: "info",
+    agent: {
+      id: "evidence-1",
+      name: "Evidence Collection Manager",
+      type: "workflow-manager",
+    },
+    hash: "ins58j6kl12m",
+    expandable: true,
+  },
+  {
+    id: 7,
+    content: "CCTV Footage Analysis Warning",
+    details:
+      "Potential quality issues with traffic camera footage - proceeding with available frames",
+    timestamp: "09:35:42",
+    type: "warning",
+    agent: {
+      id: "cctv-1",
+      name: "CCTV Acquisition Agent",
+      type: "media-collector",
+    },
+    metrics: {
+      apiCalls: [
+        {
+          service: "traffic-api",
+          duration: 2100,
+          status: 200,
+        },
+      ],
+    },
+    hash: "ins34h7zx90v",
+    expandable: true,
+  },
+  {
+    id: 8,
+    content: "Evidence Package Consolidated",
+    details:
+      "All evidence sources integrated and cross-referenced. Strong support for claimant's account of events.",
+    timestamp: "09:48:23",
+    type: "agent-complete",
+    agent: {
+      id: "consolidation-1",
+      name: "Evidence Consolidation Engine",
+      type: "data-integrator",
+    },
+    output: {
+      type: "markdown",
+      id: "evidence-package-001",
+      location: "/outputs/evidence/001",
+    },
+    hash: "ins76c2np41r",
+    expandable: true,
+  },
+  {
+    id: 9,
+    content: "PII Protection Validation Complete",
+    details:
+      "All personal identifiable information properly handled according to GDPR requirements",
+    timestamp: "09:50:15",
+    type: "guardrail-pass",
+    agent: {
+      id: "guardrail-1",
+      name: "PII Protection Validator",
+      type: "compliance-checker",
+    },
+    hash: "ins81d9qm37s",
+    expandable: true,
+  },
+  {
+    id: 10,
+    content: "Claim Validation Analysis Complete",
+    details:
+      "Claim verified as legitimate with clear third-party liability established",
+    timestamp: "10:05:37",
+    type: "agent-complete",
+    agent: {
+      id: "validation-1",
+      name: "Claim Validation Analyst",
+      type: "data-analyst",
+    },
+    metrics: {
+      executionTime: 15022,
+    },
+    hash: "ins49h6jk71t",
+    expandable: true,
+  },
+  {
+    id: 11,
+    content: "Policy Coverage Verified",
+    details:
+      "Comprehensive coverage applies with deductible waiver due to clear third-party fault",
+    timestamp: "10:12:48",
+    type: "agent-output",
+    agent: {
+      id: "policy-1",
+      name: "Policy Terms Analyzer",
+      type: "contract-analyzer",
+    },
+    output: {
+      type: "markdown",
+      id: "coverage-001",
+      location: "/outputs/policy/001",
+    },
+    hash: "ins92m3kl56p",
+    expandable: true,
+  },
+  {
+    id: 12,
+    content: "Repair Cost Estimation Complete",
+    details:
+      "Total claim value estimated at $27,550 including repair, rental, and diminished value",
+    timestamp: "10:18:25",
+    type: "agent-output",
+    agent: {
+      id: "estimation-1",
+      name: "Cost Estimation Engine",
+      type: "financial-analyzer",
+    },
+    output: {
+      type: "chart",
+      id: "cost-001",
+      location: "/outputs/costs/001",
+    },
+    hash: "ins65r8tg24v",
+    expandable: true,
+  },
+  {
+    id: 13,
+    content: "High-Value Claim Detected",
+    details:
+      "Claim exceeds automatic approval threshold of $25,000 - requires authorization",
+    timestamp: "10:20:10",
+    type: "warning",
+    agent: {
+      id: "guardrail-2",
+      name: "High-Value Claim Guardian",
+      type: "threshold-checker",
+    },
+    hash: "ins38f7hj92q",
+    expandable: true,
+  },
+  {
+    id: 14,
+    content: "Human Override Granted",
+    details:
+      "Senior claims adjuster Marcus Johnson authorized high-value claim processing",
+    timestamp: "10:25:35",
+    type: "human-override",
+    metrics: {
+      executionTime: 325,
+    },
+    hash: "ins74j1kp59s",
+    expandable: true,
+  },
+  {
+    id: 15,
+    content: "Comprehensive Response Plan Generated",
+    details:
+      "Detailed strategy created for claim resolution, including repair authorization, rental arrangement, and subrogation",
+    timestamp: "10:33:42",
+    type: "agent-output",
+    agent: {
+      id: "plan-1",
+      name: "Claims Resolution Planner",
+      type: "plan-generator",
+    },
+    output: {
+      type: "markdown",
+      id: "response-001",
+      location: "/outputs/plans/001",
+    },
+    hash: "ins29g6db84k",
+    expandable: true,
+  },
+  {
+    id: 16,
+    content: "Claims Agent Notifications Sent",
+    details:
+      "Successfully dispatched claim details to assigned specialist Jennifer Torres and support team",
+    timestamp: "10:35:15",
+    type: "success",
+    agent: {
+      id: "notify-1",
+      name: "Agent Notification System",
+      type: "communication-agent",
+    },
+    metrics: {
+      apiCalls: [
+        {
+          service: "twilio-api",
+          duration: 450,
+          status: 200,
+        },
+        {
+          service: "cms-api",
+          duration: 380,
+          status: 200,
+        },
+      ],
+    },
+    hash: "ins51h8jm36r",
+    expandable: true,
+  },
+];
+
 const nodes: Record<string, NodeConfig> = {
   // Initial claim intake
   "claimant-details": {
     id: "claimant-details",
-    label: "Claimant Accident Details",
+    label: "Claimant Details",
     description:
       "Collects and processes detailed information about insurance claims incidents",
-    minDuration: 4000,
-    maxDuration: 10000,
-    logsToOutput: [],
+    minDuration: 3000,
+    maxDuration: 6000,
+    logsToOutput: [simulationLogs[0]],
     outputs: [
       {
         id: "a1eb3c99-1c0b-4ef8-bb6d-6bb9bd380a11",
@@ -636,9 +940,9 @@ const nodes: Record<string, NodeConfig> = {
     label: "Claimant Media",
     description:
       "Processes photos, videos, and other media evidence provided by claimants",
-    minDuration: 5000,
-    maxDuration: 12000,
-    logsToOutput: [],
+    minDuration: 2000,
+    maxDuration: 5000,
+    logsToOutput: [simulationLogs[1]],
     outputs: [
       {
         id: "b27f1187-aba3-4b0d-a34e-a1d82319627c",
@@ -664,14 +968,14 @@ const nodes: Record<string, NodeConfig> = {
     label: "Triage Claims",
     description:
       "Categorizes and prioritizes claims based on severity, complexity, and urgency",
-    minDuration: 3000,
-    maxDuration: 9000,
+    minDuration: 2000,
+    maxDuration: 8000,
     dependencies: [
       { nodeId: "claimant-details", required: true },
       { nodeId: "claimant-media", required: true },
     ],
     inputMergeStrategy: "prioritize",
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[2]],
     outputs: [
       {
         id: "c3b39d8-1bae-4ed3-b4db-2a74658f0d85",
@@ -691,9 +995,9 @@ const nodes: Record<string, NodeConfig> = {
     id: "witness-evidence",
     label: "Witness Evidence",
     description: "Collects and analyzes statements from witnesses",
-    minDuration: 8000,
-    maxDuration: 18000,
-    logsToOutput: [],
+    minDuration: 4000,
+    maxDuration: 10000,
+    logsToOutput: [simulationLogs[3]],
     outputs: [
       {
         id: "d4c18af1-a352-45e6-976e-3c194bdc6ee8",
@@ -712,9 +1016,9 @@ const nodes: Record<string, NodeConfig> = {
     id: "other-parties-media",
     label: "Other Parties' Media",
     description: "Collects and organizes media evidence from third parties",
-    minDuration: 6000,
-    maxDuration: 14000,
-    logsToOutput: [],
+    minDuration: 2000,
+    maxDuration: 8000,
+    logsToOutput: [simulationLogs[4]],
     outputs: [
       {
         id: "e5303866d-d08a-48a7-81c3-c30486149d87",
@@ -733,9 +1037,9 @@ const nodes: Record<string, NodeConfig> = {
     id: "cctv",
     label: "CCTV",
     description: "Acquires and processes CCTV footage relevant to the claim",
-    minDuration: 7000,
-    maxDuration: 16000,
-    logsToOutput: [],
+    minDuration: 4000,
+    maxDuration: 10000,
+    logsToOutput: [simulationLogs[5]],
     outputs: [
       {
         id: "f6836695-f2d0-47f4-86e8-d0dbaae4031a",
@@ -758,9 +1062,9 @@ const nodes: Record<string, NodeConfig> = {
     label: "Other Media Evidence",
     description:
       "Collects and analyzes alternative media sources like dashcams and drone footage",
-    minDuration: 5000,
-    maxDuration: 15000,
-    logsToOutput: [],
+    minDuration: 2000,
+    maxDuration: 7000,
+    logsToOutput: [simulationLogs[6]],
     outputs: [
       {
         id: "g7ec671-806a-4db2-8c60-f0f8754f9b7b",
@@ -779,9 +1083,9 @@ const nodes: Record<string, NodeConfig> = {
     id: "police-report",
     label: "Police Report",
     description: "Acquires and interprets official police documentation",
-    minDuration: 6000,
-    maxDuration: 12000,
-    logsToOutput: [],
+    minDuration: 3000,
+    maxDuration: 9000,
+    logsToOutput: [simulationLogs[7]],
     outputs: [
       {
         id: "h8eb93a-071e-4407-8b78-a73aabd9e803",
@@ -801,8 +1105,8 @@ const nodes: Record<string, NodeConfig> = {
     id: "group-evidence",
     label: "Group Evidence",
     description: "Aggregates and organizes evidence from multiple sources",
-    minDuration: 5000,
-    maxDuration: 10000,
+    minDuration: 2000,
+    maxDuration: 7000,
     dependencies: [
       { nodeId: "witness-evidence", required: false },
       { nodeId: "other-parties-media", required: false },
@@ -811,7 +1115,7 @@ const nodes: Record<string, NodeConfig> = {
       { nodeId: "police-report", required: false },
     ],
 
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[8]],
     outputs: [
       {
         id: "i9eebc99-9c0b-4ef8-bb6d-6bb9bd380b22",
@@ -828,7 +1132,7 @@ const nodes: Record<string, NodeConfig> = {
 
   "guardrail-1": {
     id: "guardrail-1",
-    label: "Validate PII Protection Measures and Check Legal Basis",
+    label: "Validate PII Protection Measures and Legal Basis",
     description:
       "GDPR compliance checkpoint for data protection in claims processing",
     minDuration: 2000,
@@ -849,7 +1153,7 @@ const nodes: Record<string, NodeConfig> = {
         "unauthorized-data-access",
       ],
     },
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[9]],
   },
 
   "analyze-data": {
@@ -857,8 +1161,8 @@ const nodes: Record<string, NodeConfig> = {
     label: "Analyse Data to Validate Claim Aligns to Evidence",
     description:
       "Examines relationships between claim details and collected evidence",
-    minDuration: 10000,
-    maxDuration: 20000,
+    minDuration: 4000,
+    maxDuration: 8000,
     dependencies: [
       { nodeId: "triage-claims", required: true },
       { nodeId: "guardrail-1", required: true },
@@ -878,7 +1182,7 @@ const nodes: Record<string, NodeConfig> = {
         modelType: "analysis",
       },
     },
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[10]],
   },
 
   "verify-policy": {
@@ -886,8 +1190,8 @@ const nodes: Record<string, NodeConfig> = {
     label: "Verify Policy Coverage & T&C Alignment",
     description:
       "Analyzes policy documentation to determine coverage applicability",
-    minDuration: 7000,
-    maxDuration: 14000,
+    minDuration: 3000,
+    maxDuration: 9000,
     dependencies: [{ nodeId: "analyze-data", required: true }],
     outputs: [
       {
@@ -901,15 +1205,15 @@ const nodes: Record<string, NodeConfig> = {
       type: "llm",
       provider: "anthropic",
     },
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[11]],
   },
 
   "estimate-costs": {
     id: "estimate-costs",
     label: "Estimate Repair Costs",
     description: "Calculates accurate repair or replacement costs",
-    minDuration: 6000,
-    maxDuration: 12000,
+    minDuration: 2000,
+    maxDuration: 8000,
     dependencies: [{ nodeId: "verify-policy", required: true }],
     outputs: [
       {
@@ -923,15 +1227,15 @@ const nodes: Record<string, NodeConfig> = {
       type: "llm",
       provider: "anthropic",
     },
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[12]],
   },
 
   "guardrail-2": {
     id: "guardrail-2",
     label: "Grant AI Driven Action in High-Risk Scenario",
     description: "Human approval checkpoint for high-value or complex claims",
-    minDuration: 3000,
-    maxDuration: 6000,
+    minDuration: 100,
+    maxDuration: 200,
     dependencies: [{ nodeId: "estimate-costs", required: true }],
     guardrails: {
       controlIds: ["guardrail-2"], // Maps to high-value claims control
@@ -943,7 +1247,7 @@ const nodes: Record<string, NodeConfig> = {
       threshold: 0.75,
       triggers: ["high-value-claim", "complex-liability", "potential-fraud"],
     },
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[13]],
   },
 
   "offer-care": {
@@ -951,8 +1255,8 @@ const nodes: Record<string, NodeConfig> = {
     label: "Offer Care & Scan for Vulnerabilities",
     description:
       "Identifies claimant vulnerabilities and ensures appropriate support",
-    minDuration: 4000,
-    maxDuration: 8000,
+    minDuration: 2000,
+    maxDuration: 6000,
     dependencies: [{ nodeId: "triage-claims", required: true }],
     outputs: [
       {
@@ -973,8 +1277,8 @@ const nodes: Record<string, NodeConfig> = {
     id: "generate-plan",
     label: "Generate Claims Response Plan",
     description: "Creates comprehensive claims resolution strategies",
-    minDuration: 8000,
-    maxDuration: 15000,
+    minDuration: 4000,
+    maxDuration: 9000,
     dependencies: [
       { nodeId: "guardrail-2", required: true },
       { nodeId: "offer-care", required: true },
@@ -991,7 +1295,7 @@ const nodes: Record<string, NodeConfig> = {
       type: "llm",
       provider: "anthropic",
     },
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[14]],
   },
 
   "notify-agent": {
@@ -999,8 +1303,8 @@ const nodes: Record<string, NodeConfig> = {
     label: "Notify Claims Agent of Response Plan",
     description:
       "Formats and dispatches claim response plans to claims handlers",
-    minDuration: 3000,
-    maxDuration: 7000,
+    minDuration: 2000,
+    maxDuration: 6000,
     dependencies: [{ nodeId: "generate-plan", required: true }],
     outputs: [
       {
@@ -1014,32 +1318,7 @@ const nodes: Record<string, NodeConfig> = {
       type: "notification",
       provider: "twilio",
     },
-    logsToOutput: [],
-  },
-
-  "guardrail-check3": {
-    id: "guardrail-check3",
-    label: "Meaningful Human Review of Claims Response Plan",
-    description:
-      "Ensures qualified human oversight of AI-generated claims decisions",
-    minDuration: 5000,
-    maxDuration: 10000,
-    dependencies: [{ nodeId: "notify-agent", required: true }],
-    guardrails: {
-      controlIds: ["ctrl-7"], // Maps to human oversight control
-      checkOnStart: true,
-      checkOnComplete: true,
-    },
-    alertConditions: {
-      type: "content-warning",
-      threshold: 0.6,
-      triggers: [
-        "incomplete-review",
-        "automated-decision-override",
-        "missing-authorization",
-      ],
-    },
-    logsToOutput: [],
+    logsToOutput: [simulationLogs[15]],
   },
 
   "generate-summary": {
@@ -1047,9 +1326,9 @@ const nodes: Record<string, NodeConfig> = {
     label: "Generate Summary Report for the CMS",
     description:
       "Compiles all claim information into standardized report format",
-    minDuration: 5000,
-    maxDuration: 10000,
-    dependencies: [{ nodeId: "guardrail-check3", required: true }],
+    minDuration: 2000,
+    maxDuration: 4000,
+    dependencies: [{ nodeId: "notify-agent", required: true }],
     outputs: [
       {
         id: "p16836695-f2d0-47f4-86e8-d0dbaae4031a",

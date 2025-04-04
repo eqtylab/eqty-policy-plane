@@ -9,29 +9,6 @@ interface WorkflowMetric {
   color: string;
 }
 
-const stages = [
-  // {
-  //   name: "Parallel Input Processing",
-  //   details: "Video Analysis & OSINT Collection",
-  //   color: "tw-border-blue-500/30",
-  // },
-  {
-    name: "Information Fusion",
-    details: "NVIDIA LLM & OSINT Summary",
-    color: "tw-border-purple-500/30",
-  },
-  {
-    name: "Risk Assessment",
-    details: "Nemo Guardrails & Human Override",
-    color: "tw-border-green-500/30",
-  },
-  {
-    name: "Response Execution",
-    details: "Twilio & Apptek Integration",
-    color: "tw-border-orange-500/30",
-  },
-];
-
 export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
   const { state } = usePipeline();
   const compliant =
@@ -39,7 +16,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
 
   const metrics: WorkflowMetric[] = [
     {
-      value: 11,
+      value: 15,
       label: "Total Agents",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -54,7 +31,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
     },
     {
       value: state.userRemediations.length,
-      label: "Nemo Guard",
+      label: "Guardrails",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path
@@ -68,7 +45,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
       color: "tw-text-green-400/80",
     },
     {
-      value: 3,
+      value: 5,
       label: "Data Sources",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -82,7 +59,7 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
       color: "tw-text-purple-400/80",
     },
     {
-      value: 2,
+      value: 3,
       label: "External Tools",
       icon: (
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -99,8 +76,46 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
     },
   ];
 
+  // Define stages that match our insurance workflow
+  const stages = [
+    {
+      name: "Claim Intake",
+      details: "Initial information validation",
+      color: "tw-border-blue-400",
+    },
+    {
+      name: "Evidence Collection",
+      details: "Analyzing claim evidence",
+      color: "tw-border-purple-400",
+    },
+    {
+      name: "Policy Verification",
+      details: "Coverage and terms alignment",
+      color: "tw-border-green-400",
+    },
+    {
+      name: "Cost Estimation",
+      details: "Calculating repair costs",
+      color: "tw-border-yellow-400",
+    },
+    {
+      name: "Response Planning",
+      details: "Creating and executing claim resolution plan",
+      color: "tw-border-red-400",
+    },
+  ];
+
   return (
     <div className="tw-w-[264px] tw-flex tw-flex-col tw-bg-branddialogbg tw-rounded-xl tw-p-4 mt-3">
+      {/* Header */}
+      <div className="tw-flex tw-items-center tw-gap-2 tw-mb-4">
+        <div>
+          <h3 className="tw-text-white tw-text-sm tw-font-medium">
+            Insurance Claims Processing
+          </h3>
+          <p className="tw-text-white/60 tw-text-xs">Automated Workflow</p>
+        </div>
+      </div>
       {/* compliant or not banner */}
       <div
         className={`tw-w-full tw-text-center tw-py-1 tw-mb-4 tw-rounded-lg tw-text-sm tw-font-medium ${
@@ -110,15 +125,6 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
         }`}
       >
         {compliant ? "Compliant" : "Non-Compliant"}
-      </div>
-      {/* Header */}
-      <div className="tw-flex tw-items-center tw-gap-2 tw-mb-4">
-        <div>
-          <h3 className="tw-text-white tw-text-sm tw-font-medium">
-            Notify Investigators
-          </h3>
-          <p className="tw-text-white/60 tw-text-xs">Agentic Workflow</p>
-        </div>
       </div>
 
       {/* Metrics Grid */}
@@ -144,16 +150,20 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
           Input Sources
         </div>
         <div className="tw-flex tw-flex-wrap tw-gap-1">
-          {["Video Feed", "EMS Reports", "Dispatch Logs", "Social Media"].map(
-            (source) => (
-              <span
-                key={source}
-                className="tw-px-2 tw-py-0.5 tw-rounded-full tw-text-[10px] tw-bg-white/[0.03] tw-border !tw-border-white/10 tw-text-white/80"
-              >
-                {source}
-              </span>
-            )
-          )}
+          {[
+            "Claimant Media",
+            "Witness Statements",
+            "Police Reports",
+            "CCTV Footage",
+            "Policy Documents",
+          ].map((source) => (
+            <span
+              key={source}
+              className="tw-px-2 tw-py-0.5 tw-rounded-full tw-text-[10px] tw-bg-white/[0.03] tw-border !tw-border-white/10 tw-text-white/80"
+            >
+              {source}
+            </span>
+          ))}
         </div>
       </div>
 
@@ -167,12 +177,32 @@ export const AgentPolicyWorkflowOverviewDialog: React.FC = () => {
             <div className="tw-text-white tw-text-xs tw-font-medium">
               {stage.name}
             </div>
-            <div className="tw-text-white/60 tw-text-xs">{stage.details}</div>
+            {/* <div className="tw-text-white/60 tw-text-xs">{stage.details}</div> */}
           </div>
         ))}
       </div>
 
       {/* Integration Details */}
+      {/* <div className="tw-mt-3">
+        <div className="tw-text-white/80 tw-text-xs tw-font-medium tw-mb-2">
+          Integrations
+        </div>
+        <div className="tw-flex tw-flex-wrap tw-gap-1">
+          {[
+            "Tesla Service API",
+            "Claims Management System",
+            "Twilio Notifications",
+            "Subrogation Portal",
+          ].map((integration) => (
+            <span
+              key={integration}
+              className="tw-px-2 tw-py-0.5 tw-rounded-full tw-text-[10px] tw-bg-white/[0.03] tw-border !tw-border-white/10 tw-text-white/80"
+            >
+              {integration}
+            </span>
+          ))}
+        </div>
+      </div> */}
     </div>
   );
 };
