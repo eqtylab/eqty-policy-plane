@@ -23,7 +23,7 @@ import LogoIcon from "../icons/logo";
 const cardsData = [
   {
     title: "Controls Failed",
-    content: <p className="text-red-400">1 Controls</p>,
+    content: <p className="text-red-400">0 Controls</p>,
     icon: <AlertIcon />,
   },
   {
