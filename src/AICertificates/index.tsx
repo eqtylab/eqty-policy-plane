@@ -121,7 +121,7 @@ export const AgentProvisionCertificate = () => {
         "Data Masking Rules",
         "Access Control Framework",
         "Retention Policy Implementation",
-        "GDPR Compliance Controls",
+        "Privacy Act 1988 Compliance Controls",
         "Security Monitoring System",
       ],
     },
@@ -222,7 +222,7 @@ export const AgentProvisionCertificate = () => {
                 </div>
 
                 <div className="tw-text-[32px]  tw-text-green-500">
-                  Garda Síochána
+                  OAIC
                 </div>
               </div>
             </div>
