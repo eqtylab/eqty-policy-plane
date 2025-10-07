@@ -39,14 +39,14 @@ import { AgenticSummaryReportCert } from "../AICertificates/SummaryCert";
 const sampleControls = [
   {
     id: "ctrl-1",
-    title: "National Anti-Terrorist Prosecutor's Office",
+    title: "Major Emergency Management (MEM)",
     isAlert: false,
     mandatory: true,
     implemented: true,
   },
   {
     id: "ctrl-2",
-    title: "Criminal Code and Code of Criminal Procedure",
+    title: "Local Government Act",
     isAlert: false,
     mandatory: false,
     implemented: false,
@@ -59,34 +59,36 @@ const sampleControls = [
     implemented: true,
     alertType: "authorize",
   },
+
   {
     id: "ctrl-4",
-    title: "Europol Protocols",
+    title: "Severe Weather and Flooding Plans",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-5",
-    title: "Preuves Numériques (Digital Evidence)",
+    title: "Civil Defence Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-6",
-    title: "Perquisitions Protocols (Search/Seizure Protocols)",
+    title: "Emergency Powers Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-7",
-    title: "EU AI Act",
+    title: "Roads Acts",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
+
   {
     id: "ctrl-9",
     title: "GDPR",
@@ -97,15 +99,14 @@ const sampleControls = [
   },
   {
     id: "ctrl-10",
-    title:
-      "Loi Informatique et Libertés (French Data Protection and Civil Liberties Law)",
+    title: "Public Order Act",
     isAlert: false,
     mandatory: false,
     implemented: true,
   },
   {
     id: "ctrl-11",
-    title: "Droit de la Preuve (Law of Evidence)",
+    title: "Safety, Health and Welfare at Work",
     isAlert: false,
     mandatory: false,
     implemented: true,
